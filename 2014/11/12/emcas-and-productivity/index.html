@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Emacs," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Slient Plant" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="硬件投资硬件是最简单直接的提高工作效率的方法  屏幕与键鼠是程序员与电脑之间的输出输入设置，是程序员每天工作接触时间最长的东西，硬件上的提升可以直接提高工作效率以及每天工作的心情。 键盘的选择认识薄膜键盘，机械键盘与静电电容键盘  不差钱直接上静电电容键盘机械键盘先说结论：只选红轴。  键盘这东西最好一步到位一发退烧，不需要反复投入。就机械键盘说来，  红轴与黑轴无冲，适合游戏玩家，不同的是按到底">
+<meta name="keywords" content="Emacs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emacs: 编辑代码与工作效率">
+<meta property="og:url" content="http://mpwang.github.io/2014/11/12/emcas-and-productivity/index.html">
+<meta property="og:site_name" content="Slient Plant">
+<meta property="og:description" content="硬件投资硬件是最简单直接的提高工作效率的方法  屏幕与键鼠是程序员与电脑之间的输出输入设置，是程序员每天工作接触时间最长的东西，硬件上的提升可以直接提高工作效率以及每天工作的心情。 键盘的选择认识薄膜键盘，机械键盘与静电电容键盘  不差钱直接上静电电容键盘机械键盘先说结论：只选红轴。  键盘这东西最好一步到位一发退烧，不需要反复投入。就机械键盘说来，  红轴与黑轴无冲，适合游戏玩家，不同的是按到底">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://mpwang.github.io/images/avy-goto-char.png">
+<meta property="og:image" content="http://mpwang.github.io/images/magit.png">
+<meta property="og:updated_time" content="2017-08-27T09:17:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Emacs: 编辑代码与工作效率">
+<meta name="twitter:description" content="硬件投资硬件是最简单直接的提高工作效率的方法  屏幕与键鼠是程序员与电脑之间的输出输入设置，是程序员每天工作接触时间最长的东西，硬件上的提升可以直接提高工作效率以及每天工作的心情。 键盘的选择认识薄膜键盘，机械键盘与静电电容键盘  不差钱直接上静电电容键盘机械键盘先说结论：只选红轴。  键盘这东西最好一步到位一发退烧，不需要反复投入。就机械键盘说来，  红轴与黑轴无冲，适合游戏玩家，不同的是按到底">
+<meta name="twitter:image" content="http://mpwang.github.io/images/avy-goto-char.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mpwang.github.io/2014/11/12/emcas-and-productivity/"/>
+
+
+
+
+
+  <title>Emacs: 编辑代码与工作效率 | Slient Plant</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Slient Plant</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2014/11/12/emcas-and-productivity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Emacs: 编辑代码与工作效率</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-12T00:00:00+08:00">
+                2014-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/12/emcas-and-productivity/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/11/12/emcas-and-productivity/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h1><blockquote class="blockquote-center"><p>投资硬件是最简单直接的提高工作效率的方法</p>
+</blockquote>
+<p>屏幕与键鼠是程序员与电脑之间的输出输入设置，是程序员每天工作接触时间最长的东西，硬件上的提升可以直接提高工作效率以及每天工作的心情。</p>
+<h2 id="键盘的选择"><a href="#键盘的选择" class="headerlink" title="键盘的选择"></a>键盘的选择</h2><blockquote><p><a href="http://xahlee.info/kbd/keyboard_switch_mechanisms.html" target="_blank" rel="external">认识薄膜键盘，机械键盘与静电电容键盘</a></p>
+</blockquote>
+<h3 id="不差钱直接上静电电容键盘"><a href="#不差钱直接上静电电容键盘" class="headerlink" title="不差钱直接上静电电容键盘"></a>不差钱直接上静电电容键盘</h3><h3 id="机械键盘"><a href="#机械键盘" class="headerlink" title="机械键盘"></a>机械键盘</h3><blockquote><p><a href="http://www.zhihu.com/question/23105050" target="_blank" rel="external">先说结论：只选红轴。</a></p>
+</blockquote>
+<p>键盘这东西最好一步到位一发退烧，不需要反复投入。就机械键盘说来，</p>
+<ul>
+<li>红轴与黑轴无冲，适合游戏玩家，不同的是按到底所需的力度红轴较小黑轴较大</li>
+<li>茶轴与青轴敲击有段落感适合程序员与打字員，青轴所需力度较小但是声音比较吵，茶轴是最多人选择的键芯。<br>综上选择茶轴机械键盘使用，然后可以考虑转向红轴。最重要的是实际试用自己最符合自己的手感</li>
+</ul>
+<h3 id="人体工程学键盘"><a href="#人体工程学键盘" class="headerlink" title="人体工程学键盘"></a>人体工程学键盘</h3><p>人体工程学键盘的选择见仁见智</p>
+<h3 id="HHKB-Happy-Hacking-Keyboard"><a href="#HHKB-Happy-Hacking-Keyboard" class="headerlink" title="HHKB(Happy Hacking Keyboard)"></a>HHKB(Happy Hacking Keyboard)</h3><p>HHKB吹有很多，盲目买HHKB的更多。不引战，只说个人观点：<strong>HHKB不适合重度Emacs用户</strong></p>
+<h3 id="键盘布局的选择"><a href="#键盘布局的选择" class="headerlink" title="键盘布局的选择"></a>键盘布局的选择</h3><p>市面上一般键盘所用的都是qwert布局的键盘，虽然有数据表示<a href="https://www.cnblogs.com/zhangshenjia/archive/2012/04/11/qwerty_dvorak_colemak.html" target="_blank" rel="external">dvorak布局</a>可以提高输入效率以及减少手指疲劳，但是较高的上手难度以及训练过渡期间几乎让你不会打字的痛苦都是使用dvorak布局的成本，而且不见得在你掌握新布局之后打字效率会有多大的提升。</p>
+<p>作为程序员打字的速度并不是瓶颈，思考速度才是瓶颈，老老实实使用qwert布局就足够了。</p>
+<h2 id="多屏幕"><a href="#多屏幕" class="headerlink" title="多屏幕"></a>多屏幕</h2><p><a href="http://www.techug.com/post/programmer-mult-monitors.html" target="_blank" rel="external">多个显示器可以提高程序员的工作效率</a>，减少切换屏幕带来的上下文切换。<br>从一家公司是否给员工配置多个显示器可以看出公司是否尊重程序员的工作。</p>
+<p>无脑地使用两个显示器即可提高工作效率，你可能还需要屏幕支架。</p>
+<h2 id="使用轨迹球，避免鼠标手"><a href="#使用轨迹球，避免鼠标手" class="headerlink" title="使用轨迹球，避免鼠标手"></a>使用轨迹球，避免鼠标手</h2><p>Logitech M570 聊胜于无</p>
+<h1 id="选择正确的编程字体"><a href="#选择正确的编程字体" class="headerlink" title="选择正确的编程字体"></a>选择正确的编程字体</h1><p>windows 下自带的的 Consolas 以及 Mac 下自带的 Monaco 是不错的选择</p>
+<p>英文的等宽字体: <a href="https://be5invis.github.io/Iosevka/" target="_blank" rel="external">Iosevka</a>, <a href="https://sourcefoundry.org/hack/" target="_blank" rel="external">Hack</a>, <a href="https://adobe-fonts.github.io/source-code-pro/" target="_blank" rel="external">Source Code Pro</a></p>
+<p>中文的等宽字体: 文泉驿等宽微米黑, 微软雅黑</p>
+<p>好多人还在使用Windows系统默认的字体，那效果用来看代码实在是惨不忍睹。<br>一旦选择了任一个编程字体，只要15分钟，你几乎不可能还会用回默认的Courier New字体。</p>
+<h2 id="Emacs中文与英文对齐"><a href="#Emacs中文与英文对齐" class="headerlink" title="Emacs中文与英文对齐"></a>Emacs中文与英文对齐</h2><p><a href="https://github.com/tumashu/cnfonts" target="_blank" rel="external">chinese-fonts-setup</a> 分别设置Emacs显示中英文时使用不同的字体和大小，帮助你对齐中英文，在我看来在写org文档时这是一个必备的扩展。在使用org-mode table对齐时特别有用。</p>
+<h1 id="编辑器-Emacs"><a href="#编辑器-Emacs" class="headerlink" title="编辑器: Emacs"></a>编辑器: Emacs</h1><blockquote class="blockquote-center"><p>Why it’s worth to learn emacs, because the experience will not go away</p>
+</blockquote>
+<p>Emacs的学习曲线是比较陡峭，但是长期来说投资在Emacs上的时间是值得的。逻辑非常简单：</p>
+<ul>
+<li>程序员的工作需要进行大量的文本编辑工作</li>
+<li>Emacs是非常强大的文本编辑器</li>
+<li>所以Emacs可以提高程序员的工作效率</li>
+</ul>
+<h2 id="key-binding"><a href="#key-binding" class="headerlink" title="key binding"></a>key binding</h2><p>当你在命令行界面使用bash时，你熟悉的<code>ctrl+a</code>跳至行首, <code>ctrl+e</code>跳至行末等快捷键其实就是来源于Emacs，事实上你使用的是bash依赖的<a href="https://cnswww.cns.cwru.edu/php/chet/readline/rluserman.html" target="_blank" rel="external">GNU readline</a>的默认emacs mode。</p>
+<p>Mac OS下的cocoa应用默认有emacs按键绑定，你用发现在Mac下使用emacs按键绑定是很自然的事情。</p>
+<p>大多数流行的IDE(Eclipse/JetBrains系列/VS Code)都可以设置为 emacs 布局的按键绑定。</p>
+<p>熟悉了 emacs 的基本操作快捷键组合后很多地方都可以用得上。</p>
+<h2 id="Emacs的编辑哲学"><a href="#Emacs的编辑哲学" class="headerlink" title="Emacs的编辑哲学"></a>Emacs的编辑哲学</h2><p>为什么学习Emacs可以带来好处，因为Emacs会让你对于编辑文本的思考方式不再是基于字符的方法，取而代之的是逻辑上的<code>编辑动作</code>。</p>
+<p>从最基本的两个命令（<code>M-x</code>调用命令，<code>ctrl+h</code>查找帮助）开始，你对于日常编辑文本的需求都会变成命令式的。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>排序，选中需要编辑的行，<code>M-x sort-lines</code>.</p>
+<p>消除行末多余的空格，选中需要编辑的行，<code>M-x whitespace-cleanup</code>.</p>
+<p>光标的移动，字符的删除不再是右移一个字符，删除一个字符。使用<code>ctrl</code>键组合进行基于字符的移动和删除，使用<code>meta</code>键组合进行基于词语的移动和删除。</p>
+<ul>
+<li><code>ctrl-f</code>右移一个字符 <code>meta-f</code>右移一个词语</li>
+<li><code>ctrl-d</code>删除一个字符 <code>meta-d</code>删除一个词语</li>
+</ul>
+<p>文件内的跳转不再是基于上下左右移动光标，使用<code>ace-jump-mode</code>或者<code>avy-mode</code>你可以快速将光标定位于你想要跳转到的单词。</p>
+<p><img src="/images/avy-goto-char.png" alt="jumping around"></p>
+<h3 id="showcases"><a href="#showcases" class="headerlink" title="showcases"></a>showcases</h3><p>想到知道 emacs 在日常的编辑文本工作中可以有多用。<a href="http://emacsrocks.com/" target="_blank" rel="external">Emacs Rocks</a>的一系列简短视频可以告诉你。掌握其中一些技巧可以让你在几秒钟内完成你之前也许需要用分钟来计算的任务。</p>
+<h3 id="秘密武器：emacs-lisp"><a href="#秘密武器：emacs-lisp" class="headerlink" title="秘密武器：emacs lisp"></a>秘密武器：emacs lisp</h3><p>原生的emacs也许是很好，但是还不够好。Emacs的秘密在于它的扩展可以使用emacs lisp编程语言来写，Emacs 本身相当于emacs lisp的运行环境和解析器。</p>
+<p>emacs lisp是一门完善的编程语言，所以程序员们可以方便地编写扩展来集成调用第三方的应用，也许是一个web api也许是一个命令行工具，然后提供给emacs使用。emacs用户可以方便的使用<code>M-x</code>进行调用，相当于将复杂的编辑需求抽象成一个<code>编辑动作</code>。</p>
+<h3 id="杀手级应用"><a href="#杀手级应用" class="headerlink" title="杀手级应用"></a>杀手级应用</h3><p>emacs的用户群体已经超出了程序员的范围，现在有许多作家以及科学写作者都开始使用emacs，这些都是emacs的 <a href="http://orgmode.org/" target="_blank" rel="external">org-mode</a> 带来。简单的说来org-mode是一个使用emacs来写笔记的扩展，使用一种类似于markdown的语法。</p>
+<p>我自己使用org-mode来组织笔记，编写内容然后生成<a href="https://github.com/fniessen/org-html-themes" target="_blank" rel="external">类似readthedocs风格的文档</a>，编写内容然后<a href="https://github.com/yjwen/org-reveal" target="_blank" rel="external">生成</a>用于<a href="http://lab.hakim.se/reveal-js/#/" target="_blank" rel="external">演讲分享的slides</a>。</p>
+<p>emacs的另一个杀手级应用我个人认为是<a href="https://magit.vc" target="_blank" rel="external">magit</a>，在emacs里进行 git 的管理。<br><img src="/images/magit.png" alt="magit"></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>提高工作效率，投资硬件是最简单直接生效最快的方法。程序员的日常工作需要大量的文本编辑，emacs很有用，但即使不使用emacs投资时间去掌握一个自己喜欢的编辑器/IDE也是值得的，因为每日的工作大量时间花费在编辑器/IDE里面。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Emacs/" rel="tag"># Emacs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/17/why-learn-useless-things/" rel="next" title="Scott H Young - 为什么要学'没用'的东西？">
+                <i class="fa fa-chevron-left"></i> Scott H Young - 为什么要学'没用'的东西？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/26/python-refactor-patterns/" rel="prev" title="Python重构代码的一些模式">
+                Python重构代码的一些模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460"
+               alt="Randall Wang" />
+          <p class="site-author-name" itemprop="name">Randall Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Just another coder . Heavy Emacs user</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mpwang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/asbalckswings" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Douban
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#硬件"><span class="nav-number">1.</span> <span class="nav-text">硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘的选择"><span class="nav-number">1.1.</span> <span class="nav-text">键盘的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不差钱直接上静电电容键盘"><span class="nav-number">1.1.1.</span> <span class="nav-text">不差钱直接上静电电容键盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机械键盘"><span class="nav-number">1.1.2.</span> <span class="nav-text">机械键盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人体工程学键盘"><span class="nav-number">1.1.3.</span> <span class="nav-text">人体工程学键盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HHKB-Happy-Hacking-Keyboard"><span class="nav-number">1.1.4.</span> <span class="nav-text">HHKB(Happy Hacking Keyboard)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键盘布局的选择"><span class="nav-number">1.1.5.</span> <span class="nav-text">键盘布局的选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多屏幕"><span class="nav-number">1.2.</span> <span class="nav-text">多屏幕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用轨迹球，避免鼠标手"><span class="nav-number">1.3.</span> <span class="nav-text">使用轨迹球，避免鼠标手</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选择正确的编程字体"><span class="nav-number">2.</span> <span class="nav-text">选择正确的编程字体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Emacs中文与英文对齐"><span class="nav-number">2.1.</span> <span class="nav-text">Emacs中文与英文对齐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑器-Emacs"><span class="nav-number">3.</span> <span class="nav-text">编辑器: Emacs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#key-binding"><span class="nav-number">3.1.</span> <span class="nav-text">key binding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Emacs的编辑哲学"><span class="nav-number">3.2.</span> <span class="nav-text">Emacs的编辑哲学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">3.2.1.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#showcases"><span class="nav-number">3.2.2.</span> <span class="nav-text">showcases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#秘密武器：emacs-lisp"><span class="nav-number">3.2.3.</span> <span class="nav-text">秘密武器：emacs lisp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#杀手级应用"><span class="nav-number">3.2.4.</span> <span class="nav-text">杀手级应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randall Wang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://slientplant.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://mpwang.github.io/2014/11/12/emcas-and-productivity/';
+          this.page.identifier = '2014/11/12/emcas-and-productivity/';
+          this.page.title = 'Emacs: 编辑代码与工作效率';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://slientplant.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

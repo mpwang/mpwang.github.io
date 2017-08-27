@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="杂谈," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Slient Plant" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="原文备份 风潮题目起得很大,实则谈的只是一点个人的随想. 首先要说文中并不过多涉及技术细节, 本人更不是什么大牛, 只是浅谈自己的一些不成熟并带有个人色彩的认识, 难免会有偏颇之处. 说得不对说得不好, 不要削我.   现在似乎有一股风潮(或者说近来有越吹越烈的趋势?), 与计算机, 软件开发或编程相关的事物有时会带上一些有宗教或艺术色彩的文字.  来看看一些例子:  流行的Javascript框">
+<meta name="keywords" content="杂谈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编程的技艺, 禅与道">
+<meta property="og:url" content="http://mpwang.github.io/2014/10/15/chitchat---way-to-programming/index.html">
+<meta property="og:site_name" content="Slient Plant">
+<meta property="og:description" content="原文备份 风潮题目起得很大,实则谈的只是一点个人的随想. 首先要说文中并不过多涉及技术细节, 本人更不是什么大牛, 只是浅谈自己的一些不成熟并带有个人色彩的认识, 难免会有偏颇之处. 说得不对说得不好, 不要削我.   现在似乎有一股风潮(或者说近来有越吹越烈的趋势?), 与计算机, 软件开发或编程相关的事物有时会带上一些有宗教或艺术色彩的文字.  来看看一些例子:  流行的Javascript框">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-05T11:30:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编程的技艺, 禅与道">
+<meta name="twitter:description" content="原文备份 风潮题目起得很大,实则谈的只是一点个人的随想. 首先要说文中并不过多涉及技术细节, 本人更不是什么大牛, 只是浅谈自己的一些不成熟并带有个人色彩的认识, 难免会有偏颇之处. 说得不对说得不好, 不要削我.   现在似乎有一股风潮(或者说近来有越吹越烈的趋势?), 与计算机, 软件开发或编程相关的事物有时会带上一些有宗教或艺术色彩的文字.  来看看一些例子:  流行的Javascript框">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mpwang.github.io/2014/10/15/chitchat---way-to-programming/"/>
+
+
+
+
+
+  <title>编程的技艺, 禅与道 | Slient Plant</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Slient Plant</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2014/10/15/chitchat---way-to-programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编程的技艺, 禅与道</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-15T00:00:00+08:00">
+                2014-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/15/chitchat---way-to-programming/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/10/15/chitchat---way-to-programming/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em><a href="http://www.douban.com/note/383111983/" target="_blank" rel="external">原文</a>备份</em></p>
+<h1 id="风潮"><a href="#风潮" class="headerlink" title="风潮"></a>风潮</h1><p>题目起得很大,实则谈的只是一点个人的随想. 首先要说文中并不过多涉及技术细节, 本人更不是什么大牛, 只是浅谈自己的一些不成熟并带有个人色彩的认识, 难免会有偏颇之处. 说得不对说得不好, 不要削我.</p>
+<p>  现在似乎有一股风潮(或者说近来有越吹越烈的趋势?), 与计算机, 软件开发或编程相关的事物有时会带上一些有宗教或艺术色彩的文字.<br>  来看看一些例子:</p>
+<ul>
+<li>流行的Javascript框架: Dojo(道场)</li>
+<li>流行的PHP框架: Zend PHP(阿维斯陀经注解, 网上解释这是波斯琐罗亚斯德教的圣书, 不太知道应该怎么翻译)</li>
+<li>来自外星人科技Lisp家族的杰作: 编程语言Qi(气)以及他的后继者Shen(神)</li>
+<li>网站设计领域的著名网站: CSS Zen Garden(CSS禅意花园)</li>
+<li>在寓言中暗喻程序员修仙之道的好书: The Tao of programming(编程之道)</li>
+<li>硅谷创业之父Paul Graham文集, 畅销书: 黑客与画家</li>
+<li>计算机领域中当之无愧的传世经典, 被有些好玩的程序员供起来上香奉养的神书: The Art of Computer Programming(计算机程序设计艺术)</li>
+</ul>
+<p>他们起这些名字难道是因为名字带上了宗教与艺术相关的词汇之后显得高大上(可以提升逼格)? 答案肯定是否定的. 以上的例子都是饱含智慧结晶的杰作, 不是随随便便被创作出来. 他们的作者似乎都认为编程是一门技艺, 到了相当的程度之后已经是一种境界一种艺术, 追求的事物用中国文化中代表无上境界的文字来说就是: 禅与道. 不闻乎古人有言: 技可进乎道, 艺可通乎神.</p>
+<p>  曾经看过MIT关于SICP的远古上课视频, 记忆深刻的是在第一课上那个教授在黑板上写下大大的两个单词: Computer Science, 然后回过头来对学生们说了一句话, 大意是We are going to learn computer science, but it’s not about computer and not about science. 那么究竟是about what? 这么深奥的说法今天还是无法参透啊, 但是可以作为类比吧, 编程究竟又是关于什么的呢. 编程也不仅仅是像程序们自嘲的那样: 我们程序员只是IT民工, 工地搬砖的. 即使是搬砖的, 还是可以有点小追求的.</p>
+<p>  在围棋领域中说棋士追求下棋的境界, 人们不会觉得那是他们在扯谈, 而画画, 写作, 作诗, 编曲更是直接与艺术挂钩了. 即使在工程学领域, 作为外行人也曾听闻建筑学上有”建筑是凝固的音乐”这一说法. 它们都有一个共同点, 那就是它们都是一种创造性活动. 而编程作为一种创造性活动, 也是一门技艺. 想写出让人赞叹的程序需要有高超的技巧以及相当的审美观, 如何组织程序, 写出优美的代码, 处理问题逻辑, 考虑系统架构, 设计解决方案就好像画家画画, 作家写书, 同样需要有创造性与灵感以及问题领域的专业知识, 充满挑战与乐趣, 可以称作是工程与美学的结合. 而软件开发更是关于方法论与如何组织人的活动的学问, 研究的是比较玄乎的东西, 不是硬梆梆冷冰冰的计算机硬件. 不同于建筑学此等可以用百年为单位来计数有着悠久历史的学科, 编程或者说是软件开发作为一个行业的历史比较短, 毕竟计算机的大规模普及也只是近代的事情. 关于软件开发没有人知道什么方式是最好的, 所有人都在摸索中前进. 与木匠厨师等职业的经验类似, 前人总结的best practice都是在实践中累积下来的经验之谈, 关于怎么开发软件与编程没有最好的定式, 只有合适实用与否之分. 你没见过厨师做菜的时候切菜要精确到厘米, 下佐料要精确毫克的吧, 即使是有, 这样做出来的菜可以适应不同的食材, 满足不同人的口味吗?</p>
+<p>  既然编程是一门技艺, 那么就可以去追求它. 在提升思维质量以及累积领域特定的专业知识之外, 编程这个活动还带有强烈的个人色彩, 其中有得审美因素的影响. 在大量的实践与博识之后, 在编程中就会带上个人的品味. 而品味的形成又会促使技艺的提高, 毕竟口味变刁了, 就会对代码有种精神洁癖或者变成细节控, 逼使自己去让程序变得更符合自己的审美, 在打磨的过程中让程序的品质得到提高. 所以要提高自己的技艺就要努力地形成以及提高自己的品味, 而品味的形成离不开大量的实践与广泛的见识. 写程序与写书本质上非常类似, 不同的是用的是编程语言而不是自然语言. 说起编程语言为什么叫做语言呢, 那是因为在计算机的虚拟世界里, 程序员们在用一种机器可以理解的”语言”来和计算机交流, 告诉他外面的世界是怎么样的, 想要让机器如何运作, 自由地进行创造, 所以称作为”语言”. 但是随着计算机性能的提高以及编译器理论的发展, 在离开与硬件紧密相连的领域, 现在的程序员越来越重视代码的可读性, 编程有着社交属性, 代码还是写给人看的, 翻译成机器指令的工作就交给编译器.</p>
+<p>  程序员是工程师, 是problem solver, 问题解决者. 编程员使用工具, 创造工具, 开发软件, 解决问题. 在选择什么工具, 如何创造工具, 如何开发软件, 怎么解决问题的过程中不可避免因为各自审美观与方法论的不同, 各自的答案就会带上个人色彩, 程序员圈子存在着的许多争论就因此而生. 说起来程序员在某些问题上立场鲜明, 与现实中不同党派的支持者政见不同非常类似. 最出名的莫过于Vi与Emacs哪个是最好编辑器之争(顺利一提我是Emacs党, 这篇文章就是在Emacs下写的), 最常见的就各种编程语言支持者之间的争论, 还有类unix vs. Windows, 各种IDE, 解决同个问题的不同库之间的争论等等, 程序员的圈子多姿多彩, 很热闹的啊.</p>
+<p>  程序员都是高级的工具使用者与方法论者, 个人觉得实践出真知, 程序员应该抱着实用主义的心态, 不人云亦云地去盲目迷信某种方法论与崇拜某种工具. 在这里说一说个人的一些看法:</p>
+<h1 id="大规模应用要用云服务器"><a href="#大规模应用要用云服务器" class="headerlink" title="大规模应用要用云服务器"></a>大规模应用要用云服务器</h1><p>  现在这个云服务器概念非常热门, 谷歌的GAE和亚马逊的AWS就不用说了, 国内的大互联网公司都在开展自己的云服务器服务(新浪云, 阿里云, 腾讯云, 百度云, 就连京东也来掺一脚). 但是不是现在大规模的应用和网站就得要用云服务器了? It depends. 提供一个<a href="http://highscalability.com/blog/2014/7/21/stackoverflow-update-560m-pageviews-a-month-25-servers-and-i.html" target="_blank" rel="external">例子</a>, StackExchange由100多个网站构成，其中包括了Alexa排名第54的StackOverflow(相信这个网站不会陌生)。StackExchang有400万用户，每月5.6亿PV，但只用25台服务器. 它的Windows服务器运行的操作系统版本是Windows 2012 R2，Linux服务器运行Centos 6.4.<br>  5.6亿PV, 25台服务器, 其中有11台运行的Web服务器是微软的IIS. 好像现在一提Web服务器就想起Apache和Nginx, 微软家的IIS不太受欢迎, 但是SO的例子还是说IIS很好用的.</p>
+<h1 id="设计模式很牛逼"><a href="#设计模式很牛逼" class="headerlink" title="设计模式很牛逼"></a>设计模式很牛逼</h1><p>  听说面试经常会问到? 诚然了解各种设计模式的概念并在合适的地方使用它是有益的. 但是反对将它捧得太高, 在代码中为了用它而用它, 好像用了设计模式代码就闪闪发光, 品质立马提高. 了解设计模式之后, 反而会破除对它的迷信. 可能有人会提<a href="http://coolshell.cn/articles/3320.html" target="_blank" rel="external">JDK源码里面用了23种设计模式的例子</a>来支持使用设计模式, 但是个人觉得如果你同时了解Java和设计模式, 你就会发现设计模式的使用正是因为Java这种语言比较冗余缺乏表达力, 所以需求显式地使用设计模式来弥补它的不足. 谷歌的研究主管Peter Norvig在一篇1998年的<a href="http://norvig.com/design-patterns/" target="_blank" rel="external">文章</a>中就讨论了动态语言中设计模式, 你可以看到在表达能力比较强的动态语言(还可以推广到一些强类型的函数式语言)中有些设计模式已经被隐式地包含了, 不需要显式地去使用它. 但是理解各种设计模式的概念能够让你在代码中将它们识别出来, 并在必要的合适的地方使用它们来绕过语言的缺憾来达到目的. 就像Head First Design pattern一书说的, 不能去强行修改代码来迎合某种设计模式. 八封一下, 王垠大神在博客中也有说过每当他在代码中清除一个设计模式, 他的代码就变得更加简洁, 更加容易理解(此等境界, 目前仰望中).</p>
+<h1 id="哪种编程语言最好"><a href="#哪种编程语言最好" class="headerlink" title="哪种编程语言最好"></a>哪种编程语言最好</h1><p>  各种争论之中, 编程语言之争好像是最激烈的, 到处都可以看到不同语言之间的支持者在掐架. 我是right tool for the right job的支持者, 我不会用C来写生成动态网页的程序, 也不会用Haskell来做系统管理的任务. 如果有一种编程语言是最好的, 那一种编程语言就足够了, 那为什么会有这么多编程语言, 而且新语言还在不停地诞生? 近来比较热门的新语言有Go, Rust, JVM平台上的Ceylon, 编译成C的Nimrod, Erlan平台(BVM)上的Elixir. 答案就是没有最好的编程语言, 只有合适的编程语言. 要完成特定的任务就选用特定的语言与相应的工具. 新语言的出现是因为编程语言的理论研究(像新的类型系统)在发展, 程序员的需求在同样也变化, 而越是热门的语言变化就越慢, 当有人感到现在的语言满足不了需要时, 新的编程语言就被创造出来. 多了解几门语言之后就会发现, 类似的编程概念与经验在各种语言之间是相通的, 不同是各种编程语言各自独有的特性与概念. 八卦一下垠神在博客中有说过他不羡慕各种编程语言的特性, 因为他了解背后编译器是怎么实现它们的, 如果他想要他就可以做出来. 他貌似写过很多编译器当乐趣消遣. 他最近加入了<a href="http://sourcegraph.com/" target="_blank" rel="external">sourcegraph</a>, 其中对Python/Ruby代码的分析就是以他的工作为基础的.</p>
+<h1 id="敏捷开发"><a href="#敏捷开发" class="headerlink" title="敏捷开发"></a>敏捷开发</h1><p>  推荐<a href="http://coolshell.cn/articles/3745.html" target="_blank" rel="external">一篇陈皓的文章</a>. 在我离开之前的公司时, 公司内部有着推广敏捷开发的氛围, 各种各样的讲座,分享会, 在团队内部推行daily stand-up meeting, 但是即使是使用了scrum, story, rapid iteration等概念, 实际工作中字官僚主义横行, 项目的流程还是老一套的样子, 只学其形不见其真意. 个人就不多说, 只想说方法论只是方法论, 能不能够真正去使用这种哲学做出好东西来才是重点. 原教旨主义绝对不可取.</p>
+<p>  作为一个普通的程序员, 想成为一个好的程序员还有太多东西需要学习啊.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/杂谈/" rel="tag"># 杂谈</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/14/common-lisp-too-hard-to-love/" rel="next" title="Common Lisp - 想说爱你不容易">
+                <i class="fa fa-chevron-left"></i> Common Lisp - 想说爱你不容易
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/17/why-learn-useless-things/" rel="prev" title="Scott H Young - 为什么要学'没用'的东西？">
+                Scott H Young - 为什么要学'没用'的东西？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460"
+               alt="Randall Wang" />
+          <p class="site-author-name" itemprop="name">Randall Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Just another coder . Heavy Emacs user</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mpwang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/asbalckswings" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Douban
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#风潮"><span class="nav-number">1.</span> <span class="nav-text">风潮</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大规模应用要用云服务器"><span class="nav-number">2.</span> <span class="nav-text">大规模应用要用云服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式很牛逼"><span class="nav-number">3.</span> <span class="nav-text">设计模式很牛逼</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#哪种编程语言最好"><span class="nav-number">4.</span> <span class="nav-text">哪种编程语言最好</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#敏捷开发"><span class="nav-number">5.</span> <span class="nav-text">敏捷开发</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randall Wang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://slientplant.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://mpwang.github.io/2014/10/15/chitchat---way-to-programming/';
+          this.page.identifier = '2014/10/15/chitchat---way-to-programming/';
+          this.page.title = '编程的技艺, 禅与道';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://slientplant.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
