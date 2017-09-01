@@ -275,6 +275,428 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2017/09/02/python-intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/02/python-intro/" itemprop="url">Python项目入门培训文档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T00:42:02+08:00">
+                2017-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/02/python-intro/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/02/python-intro/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>本篇文档是由近期给公司校招的新人（没有Python背景）准备的培训资料整理而来，学习计<br>划以学员的自学为主。根据实践平均每周学员需要花费1-2天的时间，每周再加上一个小时<br>跟踪和讲解相关内容。</p>
+<p>教程并不是单纯的Python语言培训，侧重点在于让新人快速参与项目开发。</p>
+<h1 id="Python学习计划"><a href="#Python学习计划" class="headerlink" title="Python学习计划"></a>Python学习计划</h1><h2 id="受众"><a href="#受众" class="headerlink" title="受众"></a>受众</h2><p>假定学员熟悉基本的编程概念，使用过Java/C/C++其中一门语言，有一定项目开发经验</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>预计为期8周的阅读及学习计划，以完成每周设定的任务的方式引导学习Python语言以及<br>相关开发知识，帮助学员进行Python项目开发</p>
+<p>需要完成的任务包括：</p>
+<ul>
+<li>完成参考资料的阅读（扩展阅读不作要求）</li>
+<li>完成一些具体的编程练习</li>
+<li>阅读一些库的文档并编写例子初步掌握使用</li>
+</ul>
+<h2 id="进度反馈及跟踪"><a href="#进度反馈及跟踪" class="headerlink" title="进度反馈及跟踪"></a>进度反馈及跟踪</h2><p>每周会有例会跟踪进度，平时的反馈我们可以通过邮件交流</p>
+<p>randall.wjz@gmail.com</p>
+<h1 id="第1周-Intro"><a href="#第1周-Intro" class="headerlink" title="第1周 Intro"></a>第1周 Intro</h1><h2 id="本周目标"><a href="#本周目标" class="headerlink" title="本周目标"></a>本周目标</h2><p>在开始学习Python语言的具体知识细节前了解一些背景知识，以及设置一个Python开发环境</p>
+<h2 id="请完成以下材料的阅读"><a href="#请完成以下材料的阅读" class="headerlink" title="请完成以下材料的阅读"></a>请完成以下材料的阅读</h2><h3 id="背景知识了解"><a href="#背景知识了解" class="headerlink" title="背景知识了解"></a>背景知识了解</h3><ol>
+<li><p>简单的Python历史介绍</p>
+<p><a href="https://www.15yan.com/story/1JKTBQvVk5e/" target="_blank" rel="external">人生苦短，我用Python</a></p>
+</li>
+<li><p>Python语言的设计哲学</p>
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0020/" target="_blank" rel="external">The Zen of Python</a></li>
+<li><a href="https://wiki.python.org/moin/PythonZenChineseTranslate" target="_blank" rel="external">中文翻译参考</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">The Zen of Python, by Tim Peters</div><div class="line"></div><div class="line">Beautiful is better than ugly.</div><div class="line">Explicit is better than implicit.</div><div class="line">Simple is better than complex.</div><div class="line">Complex is better than complicated.</div><div class="line">Flat is better than nested.</div><div class="line">Sparse is better than dense.</div><div class="line">Readability counts.</div><div class="line">Special cases aren&apos;t special enough to break the rules.</div><div class="line">Although practicality beats purity.</div><div class="line">Errors should never pass silently.</div><div class="line">Unless explicitly silenced.</div><div class="line">In the face of ambiguity, refuse the temptation to guess.</div><div class="line">There should be one-- and preferably only one --obvious way to do it.</div><div class="line">Although that way may not be obvious at first unless you&apos;re Dutch.</div><div class="line">Now is better than never.</div><div class="line">Although never is often better than right now.</div><div class="line">If the implementation is hard to explain, it&apos;s a bad idea.</div><div class="line">If the implementation is easy to explain, it may be a good idea.</div><div class="line">Namespaces are one honking great idea -- let&apos;s do more of those!</div></pre></td></tr></table></figure>
+</li>
+<li><p>Python社区</p>
+<ul>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/intro/community.html" target="_blank" rel="external">社区</a></li>
+<li>PEP，中文翻译为Python增强提议。这个词经常在Python学习过程中看到，了解什么是PEP</li>
+<li>PSF，Python Software Foundation, Python软件基金会</li>
+<li>PyCon,<br>每年社区举办的Python开发者大会，youtube上可以找到与会演讲视频</li>
+</ul>
+</li>
+<li><p>了解Python2和Python3的现状</p>
+<ul>
+<li><a href="https://wiki.python.org/moin/Python2orPython3" target="_blank" rel="external">Should I use Python 2 or Python 3 for my development<br>activity?</a></li>
+<li>Python2版本将于2020年正式停止更新维护，Python语言的未来以及最新改进在Python3版本上进行</li>
+<li>新项目应该默认使用Python3进行开发</li>
+<li>现存的大量项目以及第三库使用Python2版本，流行的Python库大多兼容Python2/3版本</li>
+<li>目前公司的项目使用Python2版本</li>
+</ul>
+</li>
+</ol>
+<h3 id="编程环境设置"><a href="#编程环境设置" class="headerlink" title="编程环境设置"></a>编程环境设置</h3><ol>
+<li><p>选择Python解释器</p>
+<p><a href="https://python-guide-pt-br.readthedocs.io/en/latest/starting/which-python/" target="_blank" rel="external">Picking an<br>Interpreter</a></p>
+</li>
+<li><p>安装Python</p>
+<p><a href="https://python-guide-pt-br.readthedocs.io/en/latest/starting/installation/" target="_blank" rel="external">Properly Installing<br>Python</a></p>
+</li>
+<li><p>了解pip</p>
+<p>Python的包管理工具，类比Java语言的Maven工具</p>
+<ul>
+<li><a href="https://xin053.github.io/2016/07/02/pip%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" target="_blank" rel="external">pip包管理器使用详解</a></li>
+<li><a href="https://pip-cn.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="external">文档</a></li>
+</ul>
+</li>
+<li><p>IDE &amp; Editor</p>
+<p>项目组使用PyCharm进行Python开发，请下载安装并熟悉使用</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/259fdc97bfe2" target="_blank" rel="external">介绍</a></li>
+<li><a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="external">官网</a></li>
+</ul>
+<p>前端项目使用VS Code作为开发环境</p>
+<ul>
+<li><a href="https://jeasonstudio.gitbooks.io/vscode-cn-doc/content/md/%E7%BC%96%E8%BE%91%E5%99%A8/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E7%94%A8VSCode.html" target="_blank" rel="external">Why Visual Studio Code? -<br>为什么选用VSCode</a></li>
+<li><a href="https://code.visualstudio.com/" target="_blank" rel="external">官网</a></li>
+</ul>
+</li>
+</ol>
+<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><ul>
+<li>在本地安装设置好Python2.7开发环境</li>
+<li>使用pip安装requests库，<a href="http://docs.python-requests.org/en/master/user/install/" target="_blank" rel="external">参考资料</a></li>
+<li>安装并设置好PyCharm</li>
+<li>使用PyCharm建立项目，编写程序使用requests使用GET请求访问<br><a href="http://www.bing.com" target="_blank" rel="external">http://www.bing.com</a><br>并输出内容，<a href="http://docs.python-requests.org/en/master/user/quickstart/#make-a-request" target="_blank" rel="external">参考资料</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="http://py3readiness.org/" target="_blank" rel="external">Python流行的第三方库支持Python3的情况</a></li>
+<li>前端项目使用<a href="https://standardjs.com/readme-zhcn.html" target="_blank" rel="external">JavaScript Standard<br>Style</a> 作为代码风格标准</li>
+<li><a href="https://pythonclock.org/" target="_blank" rel="external">pythonclock</a></li>
+</ul>
+<h1 id="第2周-开始Python学习"><a href="#第2周-开始Python学习" class="headerlink" title="第2周 开始Python学习"></a>第2周 开始Python学习</h1><h2 id="本周目标-1"><a href="#本周目标-1" class="headerlink" title="本周目标"></a>本周目标</h2><p>本周将进行为期三周的Python语言学习，每周将指定的一些练习题目，请尝试完成（来源于Python<br>Koan项目）。</p>
+<p>阅读材料中将列出一些参考的Python学习教程，学员会有比较充足的时间进行自由的学习。</p>
+<h2 id="Python-Koan项目"><a href="#Python-Koan项目" class="headerlink" title="Python Koan项目"></a>Python Koan项目</h2><p>Python<br>Koan是通过TDD进行Python学习的一个项目，<a href="https://github.com/gregmalcolm/python_koans" target="_blank" rel="external">项目地址</a><br>请下载并按照文档设置，注意我们使用python2文件夹下的代码</p>
+<p>每个题目都关于Python语言的一个特性，完成题目可以帮助掌握这个特性。<br>如遇到题目涉及到的教程中没有提及的概念，可以跳过。 <a href="https://github.com/sourabhv/python-koans-solutions/tree/master/python3/koans" target="_blank" rel="external">Python Koan<br>答案参考</a><br>（注意此答案使用Python3版本）</p>
+<h2 id="阅读材料"><a href="#阅读材料" class="headerlink" title="阅读材料"></a>阅读材料</h2><h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><ul>
+<li><a href="https://stephensugden.com/crash_into_python/" target="_blank" rel="external">写给有经验程序员的Python入门教程</a><br>快速了解Python特性</li>
+<li><a href="https://dzone.com/refcardz/core-python" target="_blank" rel="external">Python 核心特性</a> Section<br>1-11</li>
+</ul>
+<h3 id="请完成以下教程"><a href="#请完成以下教程" class="headerlink" title="请完成以下教程"></a>请完成以下教程</h3><ul>
+<li><a href="https://pymbook.readthedocs.io/en/py2/" target="_blank" rel="external">Welcome to Python for you and<br>me</a> （比较简洁，PEP8<br>Guidelines，Virtualenv及之后章节可跳过)</li>
+</ul>
+<h2 id="编程练习-本周的Python-Koan题目"><a href="#编程练习-本周的Python-Koan题目" class="headerlink" title="编程练习 | 本周的Python Koan题目"></a>编程练习 | 本周的Python Koan题目</h2><ul>
+<li>about~asserts~.py</li>
+<li>about~strings~.py</li>
+<li>about~none~.py</li>
+<li>about~lists~.py</li>
+<li>about~listassignments~.py</li>
+<li>about~dictionaries~.py</li>
+<li>about~stringmanipulation~.py</li>
+<li>about~tuples~.py</li>
+<li>about~methods~.py</li>
+<li>about~controlstatements~.py</li>
+<li>about~trueandfalse~.py</li>
+<li>about~sets~.py</li>
+</ul>
+<h1 id="第3周-继续Python-Koan题目"><a href="#第3周-继续Python-Koan题目" class="headerlink" title="第3周 继续Python Koan题目"></a>第3周 继续Python Koan题目</h1><h2 id="本周目标-2"><a href="#本周目标-2" class="headerlink" title="本周目标"></a>本周目标</h2><h2 id="阅读材料-1"><a href="#阅读材料-1" class="headerlink" title="阅读材料"></a>阅读材料</h2><h3 id="请完成以下教程-1"><a href="#请完成以下教程-1" class="headerlink" title="请完成以下教程"></a>请完成以下教程</h3><ul>
+<li><a href="https://docs.python.org/2.7/tutorial/index.html" target="_blank" rel="external">Python官方入门教程</a><br>(阅读2-9章节即可)</li>
+</ul>
+<h2 id="编程练习-本周的Python-Koan题目-1"><a href="#编程练习-本周的Python-Koan题目-1" class="headerlink" title="编程练习 | 本周的Python Koan题目"></a>编程练习 | 本周的Python Koan题目</h2><ul>
+<li>about~triangleproject~.py</li>
+<li>about~exceptions~.py</li>
+<li>about~triangleproject2~.py</li>
+<li>about~iteration~.py</li>
+<li>about~comprehension~.py</li>
+<li>about~generators~.py</li>
+<li>about~lambdas~.py</li>
+<li>about~scoringproject~.py</li>
+<li>about~classes~.py</li>
+<li>about~newstyleclasses~.py</li>
+<li>about~withstatements~.py</li>
+<li>about~monkeypatching~.py</li>
+<li>about~diceproject~.py</li>
+<li>about~methodbindings~.py</li>
+</ul>
+<h1 id="第4周-decorator-and-context-manager"><a href="#第4周-decorator-and-context-manager" class="headerlink" title="第4周 decorator and context manager"></a>第4周 decorator and context manager</h1><h2 id="本周目标-3"><a href="#本周目标-3" class="headerlink" title="本周目标"></a>本周目标</h2><p>相信大家对编程语言中的基于数据和基于函数的抽象都不陌生，现在来看一下Python对于基于语法的抽象的支持。</p>
+<ul>
+<li>了解Python中装饰器(decorator)的概念</li>
+<li>了解Python中上下文管理器(context manager)的概念</li>
+</ul>
+<h2 id="阅读材料-2"><a href="#阅读材料-2" class="headerlink" title="阅读材料"></a>阅读材料</h2><ul>
+<li><a href="https://www.cnblogs.com/vamei/archive/2013/02/16/2820212.html" target="_blank" rel="external">装饰器</a><br>简短介绍</li>
+<li><a href="https://www.thecodeship.com/patterns/guide-to-python-function-decorators/" target="_blank" rel="external">A guide to Python’s function<br>decorators</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/11/23/2772445.html" target="_blank" rel="external">上下文管理器</a><br>简短介绍</li>
+<li><a href="http://arnavk.com/posts/python-context-managers/" target="_blank" rel="external">Python in the real world: Context<br>Managers</a></li>
+</ul>
+<h2 id="编程练习-本周的Python-Koan题目-2"><a href="#编程练习-本周的Python-Koan题目-2" class="headerlink" title="编程练习 | 本周的Python Koan题目"></a>编程练习 | 本周的Python Koan题目</h2><ul>
+<li>about~decoratingwithfunctions~.py</li>
+<li>about~decoratingwithclasses~.py</li>
+<li>about~inheritance~.py</li>
+<li>about~multipleinheritance~.py</li>
+<li>about~scope~.py</li>
+<li>about~modules~.py</li>
+<li>about~packages~.py</li>
+<li>about~classattributes~.py</li>
+<li>about~attributeaccess~.py</li>
+<li>about~deletingobjects~.py</li>
+<li>about~proxyobjectproject~.py</li>
+<li>about~proxyobjectproject~.py</li>
+<li>about~extracredit~.py</li>
+<li>about~regex~.py</li>
+</ul>
+<h2 id="扩展阅读-1"><a href="#扩展阅读-1" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="https://pymotw.com/2/contextlib/" target="_blank" rel="external">标准库中的context manager工具</a></li>
+</ul>
+<h2 id="参考书目"><a href="#参考书目" class="headerlink" title="参考书目"></a>参考书目</h2><p>学习了两个教程之后对Python语言已经有大致的了解，接下来如果需要深入学习，建议找一些严肃的书籍进行系统性的学习。</p>
+<ul>
+<li><a href="http://fwww.pythonbooks.org" target="_blank" rel="external">python books</a></li>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/intro/learning.html" target="_blank" rel="external">学习Python</a>资源</li>
+<li><a href="https://www.fullstackpython.com/best-python-resources.html" target="_blank" rel="external">Best Python<br>Resources</a><br>Full Stack Python 本身也是很好的学习资源</li>
+</ul>
+<h1 id="第5周-编程风格与命令行开发"><a href="#第5周-编程风格与命令行开发" class="headerlink" title="第5周 编程风格与命令行开发"></a>第5周 编程风格与命令行开发</h1><h2 id="本周目标-4"><a href="#本周目标-4" class="headerlink" title="本周目标"></a>本周目标</h2><p>了解Python编程风格及命令行开发工具.</p>
+<p>Python code style 业界现在有两个标准，PEP8 以及 <a href="https://google.github.io/styleguide/pyguide.html" target="_blank" rel="external">Google Python Style<br>Guide</a><br>项目组采用PEP8标准，对于Google Style可以稍作了解</p>
+<p>除了日常在IDE里进行Python开发，开发人员也应该掌握一些在命令行环境下进行编程和debug的技能</p>
+<h2 id="阅读材料-3"><a href="#阅读材料-3" class="headerlink" title="阅读材料"></a>阅读材料</h2><ul>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/writing/style.html" target="_blank" rel="external">代码风格</a><br><a href="http://docs.python-guide.org/en/latest/writing/style/" target="_blank" rel="external">英文版</a></li>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html" target="_blank" rel="external">虚拟环境</a><br>virtualenv</li>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/pip-virtualenv.html" target="_blank" rel="external">Pip和Virtualenv的更多配置</a></li>
+<li><a href="http://pep8.org/" target="_blank" rel="external">PEP8</a><br>建议阅读这个美化过的排版，<a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="external">原版</a>地址</li>
+<li><a href="https://github.com/google/yapf" target="_blank" rel="external">yapf</a> Google<br>出品的自动化格式代码工具，建议了解一下</li>
+</ul>
+<h3 id="ipython"><a href="#ipython" class="headerlink" title="ipython"></a>ipython</h3><ul>
+<li><a href="https://ipython.org/" target="_blank" rel="external">官网</a></li>
+<li><p>作为一个交互式shell, 用来代替默认的python命令行编程环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 使用以下命令安装python2.7版本的ipython</div><div class="line">pip install &apos;ipython&lt;=6.0.0&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="pdb"><a href="#pdb" class="headerlink" title="pdb"></a>pdb</h3><p>Python debuger, 交互式debug环境。类似于GDB</p>
+<ul>
+<li><a href="https://pymotw.com/2/pdb/index.html" target="_blank" rel="external">使用教程</a></li>
+</ul>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>命令行环境下的编辑器</p>
+<ul>
+<li><a href="http://www.openvim.com/" target="_blank" rel="external">交互式的VIM简短教程</a><br>十分炫酷的简短教程，掌握日常用到的最基本操作</li>
+</ul>
+<h2 id="编程练习-1"><a href="#编程练习-1" class="headerlink" title="编程练习"></a>编程练习</h2><p>本周没有具体的编程练习，请花一点时间熟悉一下pip/virtualenv/ipython/pdb/vim工具。</p>
+<p>编辑器/IDE是非常重要的工具，在工作过程中几乎所有的开发时间都花这上面，所以不<br>论你喜欢vim/emacs/vs code/atom/sublime<br>text，你应该熟悉你的编程器/IDE。花些时间去了解 你喜欢的编程器/IDE</p>
+<p>适当设置好开发环境对于提高开发效率也相当重要，有兴趣可以了解一下扩展阅读里列出的工具</p>
+<h2 id="扩展阅读-2"><a href="#扩展阅读-2" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/env.html" target="_blank" rel="external">你的开发环境</a><br><a href="http://docs.python-guide.org/en/latest/dev/env/" target="_blank" rel="external">英文版</a></li>
+<li><a href="https://aaaaaashu.gitbooks.io/mac-dev-setup/content/index.html" target="_blank" rel="external">Mac<br>开发配置手册</a></li>
+</ul>
+<h3 id="windows开发环境"><a href="#windows开发环境" class="headerlink" title="windows开发环境"></a>windows开发环境</h3><p>个人推荐 Cygwin + ConEmu + zsh + oh-my-shell + CoreUtils</p>
+<ul>
+<li><a href="https://cygwin.com/install.html" target="_blank" rel="external">Cygwin</a></li>
+<li><a href="https://conemu.github.io/" target="_blank" rel="external">ConEmu</a></li>
+<li><a href="http://www.jeffjade.com/2015/07/29/2015-07-29-mac-musthave-software/" target="_blank" rel="external">终极Shell</a><br>在Cygwin环境中也可以使用zsh + oh-my-zsh</li>
+<li><a href="http://gnuwin32.sourceforge.net/packages/coreutils.htm" target="_blank" rel="external">CoreUtils for<br>Windows</a><br>常用的liunx命令windows移植</li>
+<li><a href="http://www.jianshu.com/p/aa19380828bd" target="_blank" rel="external">配置豪华的 Windows 开发环境</a></li>
+</ul>
+<h1 id="第6周-标准库及其它"><a href="#第6周-标准库及其它" class="headerlink" title="第6周 标准库及其它"></a>第6周 标准库及其它</h1><h2 id="本周目标-5"><a href="#本周目标-5" class="headerlink" title="本周目标"></a>本周目标</h2><p>大概了解下Python标准库, 一些第三库/框架</p>
+<h2 id="阅读材料-4"><a href="#阅读材料-4" class="headerlink" title="阅读材料"></a>阅读材料</h2><h3 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h3><ul>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/07/18/2597212.html" target="_blank" rel="external">Python标准库——走马观花</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/08/31/2661870.html" target="_blank" rel="external">Python标准库01 正则表达式<br>(re包)</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/09/05/2671198.html" target="_blank" rel="external">Python标准库03 路径与文件 (os.path包,<br>glob包)</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/09/14/2684775.html" target="_blank" rel="external">Python标准库04 文件管理<br>(部分os包，shutil包)</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/09/23/2698014.html" target="_blank" rel="external">Python标准库06 子进程<br>(subprocess包)</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/10/11/2720042.html" target="_blank" rel="external">Python标准库08 多线程与同步<br>(threading包)</a></li>
+</ul>
+<h3 id="常用库"><a href="#常用库" class="headerlink" title="常用库"></a>常用库</h3><ol>
+<li><p>Oslo</p>
+<p>Oslo<br>是由openstack项目衍生出来的一系列python库，为openstack众多项目提供统一的公共功能。</p>
+<blockquote>
+<p>To produce a set of python libraries containing code shared by<br>OpenStack projects. The APIs provided by these libraries should be<br>high quality, stable, consistent, documented and generally<br>applicable</p>
+</blockquote>
+<ul>
+<li><a href="https://wiki.openstack.org/wiki/Oslo" target="_blank" rel="external">官方Wiki Oslo库列表</a></li>
+</ul>
+<p>阅读使用和配置文档，大概了解这些包是用做什么的即可。</p>
+<ul>
+<li>oslo.cache</li>
+<li>oslo.concurrency</li>
+<li>oslo.config</li>
+<li>oslo.log</li>
+<li>oslo.policy</li>
+<li>pbr</li>
+</ul>
+</li>
+<li><p>SQLAlchemy</p>
+<p>SQLAlchemy 是一个连接数据库的ORM框架 大概了解 SQLAlchemy<br>的简单使用方式，不要求深入了解</p>
+<ul>
+<li><a href="https://www.sqlalchemy.org/" target="_blank" rel="external">官网</a></li>
+<li><a href="http://www.jianshu.com/p/e6bba189fcbd" target="_blank" rel="external">简单介绍</a></li>
+<li><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/0014021031294178f993c85204e4d1b81ab032070641ce5000" target="_blank" rel="external">简单使用教程</a></li>
+</ul>
+</li>
+</ol>
+<h1 id="第7周-开源工具"><a href="#第7周-开源工具" class="headerlink" title="第7周 开源工具"></a>第7周 开源工具</h1><h2 id="本周目标-6"><a href="#本周目标-6" class="headerlink" title="本周目标"></a>本周目标</h2><p>了解一些开源工具及项目开发协作相关工具</p>
+<p>由于列出的工具较多，不要求深入了解</p>
+<h2 id="阅读材料-5"><a href="#阅读材料-5" class="headerlink" title="阅读材料"></a>阅读材料</h2><h3 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h3><p><a href="https://www.fullstackpython.com/markdown.html" target="_blank" rel="external">Markdown语法</a><br>平时写文档时可以使用Markdown语法</p>
+<p>示例网站 <a href="https://maxiang.io/" target="_blank" rel="external">https://maxiang.io/</a><br>可以看到左边为文本内容，右边为渲染后的效果。使用markdown语法，书写文档时不需<br>要关心排版效果，可以专注于内容本身。</p>
+<h3 id="Git-amp-amp-Gerrit"><a href="#Git-amp-amp-Gerrit" class="headerlink" title="Git &amp;&amp; Gerrit"></a>Git &amp;&amp; Gerrit</h3><p>项目组使用Git进行代码版本管理，使用Git是一项必备技能。如果以前没有使用Git的<br>经验，请务必花一些时间学习。</p>
+<ul>
+<li><a href="https://github.com/larrycai/sdcamp/blob/master/contents/1-chapter2-git-gerrit.markdown" target="_blank" rel="external">版本控制Git和代码审阅Gerrit</a></li>
+<li><a href="https://lvwzhen.gitbooks.io/git-tutorial/content/" target="_blank" rel="external">Git教程</a></li>
+<li><a href="https://gerrit-review.googlesource.com/Documentation/intro-quick.html" target="_blank" rel="external">Gerrit Code Review - A Quick<br>Introduction</a></li>
+</ul>
+<h3 id="Jenkins-amp-amp-CI"><a href="#Jenkins-amp-amp-CI" class="headerlink" title="Jenkins &amp;&amp; CI"></a>Jenkins &amp;&amp; CI</h3><ul>
+<li><a href="https://gwpost.gitbooks.io/jenkins-the-definitive-guide/content/Introducting%20Jenkins/jie_shao.html" target="_blank" rel="external">Jenkins与持续集成(CI)介绍</a></li>
+</ul>
+<h3 id="tox"><a href="#tox" class="headerlink" title="tox"></a>tox</h3><ul>
+<li><a href="http://wsfdl.com/python/2015/02/01/Python%E7%9A%84%E6%B5%8B%E8%AF%95%E4%B9%8BTox.html" target="_blank" rel="external">Python 的单元测试之<br>tox</a></li>
+<li><a href="https://tox.readthedocs.io/en/latest/" target="_blank" rel="external">tox官网介绍</a></li>
+</ul>
+<h3 id="运维利器-Ansible"><a href="#运维利器-Ansible" class="headerlink" title="运维利器 Ansible"></a>运维利器 Ansible</h3><p>自动化运维工具，可以稍作了解，日常工作中可能会用到ansible工具来批量运行脚本</p>
+<ul>
+<li><a href="http://www.stay-stupid.com/?p=366" target="_blank" rel="external">Ansible 简介</a><br>阅读简介至ad-hoc部分即可</li>
+<li><a href="https://ansible-tran.readthedocs.io/en/latest/index.html" target="_blank" rel="external">Ansible中文权威指南</a><br>如果有兴趣深入了解</li>
+</ul>
+<h1 id="第8周-实战"><a href="#第8周-实战" class="headerlink" title="第8周 实战"></a>第8周 实战</h1><h2 id="本周目标-7"><a href="#本周目标-7" class="headerlink" title="本周目标"></a>本周目标</h2><p>本周为编程练习，创建一个Python项目，并编程完成要求</p>
+<p>这个项目是完成一个命令行工具，可以通过命令行调用来完成数据库表的CUDR操作</p>
+<h2 id="编程练习-2"><a href="#编程练习-2" class="headerlink" title="编程练习"></a>编程练习</h2><h3 id="申请虚拟机作为开发机，要求CentOS7-2系统"><a href="#申请虚拟机作为开发机，要求CentOS7-2系统" class="headerlink" title="申请虚拟机作为开发机，要求CentOS7.2系统"></a>申请虚拟机作为开发机，要求CentOS7.2系统</h3><h3 id="配置pip文件"><a href="#配置pip文件" class="headerlink" title="配置pip文件"></a>配置pip文件</h3><h3 id="安装并配置PostgreSQL数据库"><a href="#安装并配置PostgreSQL数据库" class="headerlink" title="安装并配置PostgreSQL数据库"></a>安装并配置PostgreSQL数据库</h3><p>tips: 可以使用 NaviCat pgAdmin 等数据库管理工具</p>
+<p>配置数据库密码为 test123456</p>
+<p>创建database, 名称: cudr</p>
+<p>在 cudr 新建表，表名example</p>
+<p>创建 sql 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DROP TABLE IF EXISTS &quot;public&quot;.&quot;example&quot;;</div><div class="line">CREATE TABLE &quot;public&quot;.&quot;example&quot; (</div><div class="line">&quot;name&quot; varchar(127) COLLATE &quot;default&quot; NOT NULL,</div><div class="line">&quot;code&quot; varchar(63) COLLATE &quot;default&quot; NOT NULL</div><div class="line">)</div><div class="line">WITH (OIDS=FALSE)</div><div class="line">;</div><div class="line">ALTER TABLE &quot;public&quot;.&quot;example&quot; ADD PRIMARY KEY (&quot;name&quot;);</div></pre></td></tr></table></figure>
+<h3 id="创建一个Python项目"><a href="#创建一个Python项目" class="headerlink" title="创建一个Python项目"></a>创建一个Python项目</h3><p>项目名称 cudr</p>
+<p>项目结构请阅读<a href="https://pythonguidecn.readthedocs.io/zh/latest/writing/structure.html" target="_blank" rel="external">结构化你的工程</a><br>中仓库的结构一节，关于 Django Applications及之后的章节可跳过</p>
+<p>在 requirements.txt 文件中指定项目依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlalchemy</div><div class="line">click</div></pre></td></tr></table></figure>
+<p>使用pip安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install -r requirements.txt</div></pre></td></tr></table></figure>
+<ol>
+<li><p>click 用于创建命令行工具</p>
+<ul>
+<li><a href="http://click.pocoo.org/5/" target="_blank" rel="external">官网</a></li>
+<li><a href="http://www.jianshu.com/p/d2b61a892c32" target="_blank" rel="external">简单使用教程</a></li>
+</ul>
+</li>
+<li><p>sqlalchemy 数据库ORM工具</p>
+</li>
+</ol>
+<h3 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h3><p>在 cudr/core.py 中完成具体的代码工作</p>
+<p>具体代码实现以及命令行使用参数的设计可以自由发挥</p>
+<p>最终效果要求可以完成类似以下功能(不要求和下面示例代码中一样)</p>
+<ul>
+<li>创建</li>
+<li>读取</li>
+<li>修改</li>
+<li>删除</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 创建一个数据库记录</div><div class="line">python core.py --create name1 code1</div><div class="line"># 读取</div><div class="line">python core.py --read name1</div><div class="line"># 修改 指定主键name1及更新的字段及字段的新值</div><div class="line">python core.py --update name1 name=name2</div><div class="line"># 删除</div><div class="line">python core.py --delete name2</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2017/08/26/python-refactor-patterns/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1636,7 +2058,7 @@ jekyll serve
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1649,7 +2071,7 @@ jekyll serve
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
