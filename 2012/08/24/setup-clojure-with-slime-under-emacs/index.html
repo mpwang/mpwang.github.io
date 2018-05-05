@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Lisp,Clojure,Emacs," />
+  <meta name="keywords" content="Emacs,Lisp,Clojure," />
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="Updated:  Swank Clojure is deprecated in favour of nrepl.el  nrepl.el on Github  Clojure Side Clojure Leiningen  Emcas Side Emcas (normally with SLIME installed) clojure-mode  Basically what you need">
-<meta name="keywords" content="Lisp,Clojure,Emacs">
+<meta name="description" content="Updated:  Swank Clojure is deprecated in favour of nrepl.el  nrepl.el on Github  Clojure Side  Clojure Leiningen  Emcas Side  Emcas (normally with SLIME installed) clojure-mode  Basically what you ne">
+<meta name="keywords" content="Emacs,Lisp,Clojure">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Setup Clojure with SLIME under Emacs">
 <meta property="og:url" content="http://mpwang.github.io/2012/08/24/setup-clojure-with-slime-under-emacs/index.html">
 <meta property="og:site_name" content="Slient Plant">
-<meta property="og:description" content="Updated:  Swank Clojure is deprecated in favour of nrepl.el  nrepl.el on Github  Clojure Side Clojure Leiningen  Emcas Side Emcas (normally with SLIME installed) clojure-mode  Basically what you need">
+<meta property="og:description" content="Updated:  Swank Clojure is deprecated in favour of nrepl.el  nrepl.el on Github  Clojure Side  Clojure Leiningen  Emcas Side  Emcas (normally with SLIME installed) clojure-mode  Basically what you ne">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-05T11:30:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setup Clojure with SLIME under Emacs">
-<meta name="twitter:description" content="Updated:  Swank Clojure is deprecated in favour of nrepl.el  nrepl.el on Github  Clojure Side Clojure Leiningen  Emcas Side Emcas (normally with SLIME installed) clojure-mode  Basically what you need">
+<meta name="twitter:description" content="Updated:  Swank Clojure is deprecated in favour of nrepl.el  nrepl.el on Github  Clojure Side  Clojure Leiningen  Emcas Side  Emcas (normally with SLIME installed) clojure-mode  Basically what you ne">
 
 
 
@@ -360,31 +360,41 @@
 </blockquote>
 <p><a href="https://github.com/kingtim/nrepl.el" target="_blank" rel="external">nrepl.el on Github</a></p>
 <hr>
-<h2 id="Clojure-Side"><a href="#Clojure-Side" class="headerlink" title="Clojure Side"></a>Clojure Side</h2><ul>
+<h2>Clojure Side</h2>
+<ul>
 <li>Clojure</li>
 <li><a href="https://github.com/technomancy/leiningen" target="_blank" rel="external">Leiningen</a></li>
 </ul>
-<h2 id="Emcas-Side"><a href="#Emcas-Side" class="headerlink" title="Emcas Side"></a>Emcas Side</h2><ul>
+<h2>Emcas Side</h2>
+<ul>
 <li>Emcas (normally with SLIME installed)</li>
 <li>clojure-mode</li>
 </ul>
 <p>Basically what you need is leiningen on Clojure side and clojure-mode on Emacs side.</p>
-<h2 id="Setup-lein"><a href="#Setup-lein" class="headerlink" title="Setup lein"></a>Setup lein</h2><p>Install lein according to the instructions on its index.<br>For lein 2.0 add such line into your global user profile <strong>.lein/profiles.clj</strong>.</p>
+<h2>Setup lein</h2>
+<p>Install lein according to the instructions on its index.
+For lein 2.0 add such line into your global user profile <strong>.lein/profiles.clj</strong>.</p>
 <pre><code>{:user {:plugins [[lein-swank &quot;1.4.4&quot;]]}}
-</code></pre><p>If you still use lein 1.x, you need such steps.</p>
+</code></pre>
+<p>If you still use lein 1.x, you need such steps.</p>
 <ul>
 <li>run <code>lein plugin install lein-swank 1.4.4</code></li>
 <li>add <code>:dev-dependencies [[lein-swank &quot;1.4.4&quot;]]</code> to your project.clj</li>
 </ul>
-<h2 id="Setup-clojure-mode"><a href="#Setup-clojure-mode" class="headerlink" title="Setup clojure-mode"></a>Setup clojure-mode</h2><p>Download <a href="https://github.com/technomancy/clojure-mode" target="_blank" rel="external">clojure-mode.el</a>, place it under your emacs load path, add such line to your .emacs file.<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="name">require</span> 'clojure-mode)</div></pre></td></tr></table></figure></p>
+<h2>Setup clojure-mode</h2>
+<p>Download <a href="https://github.com/technomancy/clojure-mode" target="_blank" rel="external">clojure-mode.el</a>, place it under your emacs load path, add such line to your .emacs file.
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="name">require</span> 'clojure-mode)</div></pre></td></tr></table></figure></p>
 <p>You may install <strong>paredit</strong> and <strong>rainbow-delimiters</strong> to enhance experience for writting Clojure code with Emacs.</p>
-<h2 id="Start-up-SLIME-with-Clojure"><a href="#Start-up-SLIME-with-Clojure" class="headerlink" title="Start up SLIME with Clojure"></a>Start up SLIME with Clojure</h2><p>Now</p>
+<h2>Start up SLIME with Clojure</h2>
+<p>Now</p>
 <pre><code>M-x clojure-jack-in
-</code></pre><p><strong>Warn: conflit with inferior-lisp-program</strong></p>
-<p>Sometimes you work under Emacs with Common Lisp before, you may see Emacs pop up with a window of error message when run the command above. That’s might be caused by the previous compiled swank version for common lisp.</p>
+</code></pre>
+<p><strong>Warn: conflit with inferior-lisp-program</strong></p>
+<p>Sometimes you work under Emacs with Common Lisp before, you may see Emacs pop up with a window of error message when run the command above. That's might be caused by the previous compiled swank version for common lisp.</p>
 <p><strong>Comment out</strong> your setup for Common Lisp in your .emacs like below and try again:</p>
 <pre><code>(setq inferior-lisp-program &quot;sbcl --noinform&quot;)
 </code></pre>
+
       
     </div>
     
@@ -401,11 +411,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Emacs/" rel="tag"># Emacs</a>
+          
             <a href="/tags/Lisp/" rel="tag"># Lisp</a>
           
             <a href="/tags/Clojure/" rel="tag"># Clojure</a>
-          
-            <a href="/tags/Emacs/" rel="tag"># Emacs</a>
           
         </div>
       
@@ -589,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Clojure-Side"><span class="nav-number">1.</span> <span class="nav-text">Clojure Side</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Emcas-Side"><span class="nav-number">2.</span> <span class="nav-text">Emcas Side</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup-lein"><span class="nav-number">3.</span> <span class="nav-text">Setup lein</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup-clojure-mode"><span class="nav-number">4.</span> <span class="nav-text">Setup clojure-mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Start-up-SLIME-with-Clojure"><span class="nav-number">5.</span> <span class="nav-text">Start up SLIME with Clojure</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Clojure Side</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Emcas Side</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Setup lein</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Setup clojure-mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Start up SLIME with Clojure</span></a></li></ol></div>
             
 
           </div>

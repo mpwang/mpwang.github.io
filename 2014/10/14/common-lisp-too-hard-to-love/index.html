@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="原文备份 前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。 Lisp目前有两种主要的dialect: Common Lisp和Scheme。 Scheme对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(它">
+<meta name="description" content="原文备份 前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。 Lisp目前有两种主要的dialect: Common Lisp和Scheme。 Scheme 对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(">
 <meta name="keywords" content="Lisp,CommonLisp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Common Lisp - 想说爱你不容易">
 <meta property="og:url" content="http://mpwang.github.io/2014/10/14/common-lisp-too-hard-to-love/index.html">
 <meta property="og:site_name" content="Slient Plant">
-<meta property="og:description" content="原文备份 前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。 Lisp目前有两种主要的dialect: Common Lisp和Scheme。 Scheme对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(它">
+<meta property="og:description" content="原文备份 前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。 Lisp目前有两种主要的dialect: Common Lisp和Scheme。 Scheme 对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-05T11:30:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Common Lisp - 想说爱你不容易">
-<meta name="twitter:description" content="原文备份 前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。 Lisp目前有两种主要的dialect: Common Lisp和Scheme。 Scheme对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(它">
+<meta name="twitter:description" content="原文备份 前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。 Lisp目前有两种主要的dialect: Common Lisp和Scheme。 Scheme 对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(">
 
 
 
@@ -356,10 +356,14 @@
         <p><em><a href="http://www.douban.com/note/227176889/" target="_blank" rel="external">原文</a>备份</em></p>
 <p>前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。</p>
 <p>Lisp目前有两种主要的dialect: Common Lisp和Scheme。</p>
-<p>Scheme<br>对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(它附带了很多教学包)以及非常详细的文档说明，学习期间阅读了&lt;<htdp>&gt;和&lt;<the little="" schemer="">&gt;，在了解Lisp的基本思想之后我发现Scheme很难使用(也许是我没有深入学习），来google了一些Scheme和Common Lisp的比较后，我转向了Common Lisp。</the></htdp></p>
-<h1 id="Welcome-to-Common-Lisp"><a href="#Welcome-to-Common-Lisp" class="headerlink" title="Welcome to Common Lisp"></a>Welcome to Common Lisp</h1><p>首先来看一下CL的实现列表，看一下还真不少啊，商业收费和免费开源都有，想当初为选择哪一个实现好纠结了一段时间。从好的方面说，有这么多的实现可以让人选择在不同环境下用不同的实现，但是这也带来了问题：社区的分化和库的通用性问题。如果不想代码只能在特定的CL实现上运行，写代码的就要考虑不同CL实现之间的通用性，真是让人头疼。</p>
-<h1 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h1><p>写CL用什么IDE呢？google一下你会告诉大家都用Emacs+SLIME(少部分人用Vim+SLIMV，但是我相信Lisp程序员最终还是用回到Emacs的怀抱的）。Eclipse也有CL的插件Cusp，但个人感觉并不好用。</p>
-<p>来看看典型的Common Lisp工作环境：Emacs + SLIME。<br>你需要掌握：</p>
+<p>Scheme
+对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(它附带了很多教学包)以及非常详细的文档说明，学习期间阅读了&lt;&lt;HTDP&gt;&gt;和&lt;&lt;The Little Schemer&gt;&gt;，在了解Lisp的基本思想之后我发现Scheme很难使用(也许是我没有深入学习），来google了一些Scheme和Common Lisp的比较后，我转向了Common Lisp。</p>
+<h1>Welcome to Common Lisp</h1>
+<p>首先来看一下CL的实现列表，看一下还真不少啊，商业收费和免费开源都有，想当初为选择哪一个实现好纠结了一段时间。从好的方面说，有这么多的实现可以让人选择在不同环境下用不同的实现，但是这也带来了问题：社区的分化和库的通用性问题。如果不想代码只能在特定的CL实现上运行，写代码的就要考虑不同CL实现之间的通用性，真是让人头疼。</p>
+<h1>IDE</h1>
+<p>写CL用什么IDE呢？google一下你会告诉大家都用Emacs+SLIME(少部分人用Vim+SLIMV，但是我相信Lisp程序员最终还是用回到Emacs的怀抱的）。Eclipse也有CL的插件Cusp，但个人感觉并不好用。</p>
+<p>来看看典型的Common Lisp工作环境：Emacs + SLIME。
+你需要掌握：</p>
 <ol>
 <li>Common Lisp语言</li>
 <li>Common Lisp实现的特定细节 比如run time options，实现对于CL的扩展等</li>
@@ -369,20 +373,27 @@
 </ol>
 <p>好吧，并不是说Emacs不好，事实上Emcas+SLIME对于熟练的程序员来说是一个非常强力的编程环境，但是对于没有接触过Emacs的程序员来说，在学习CL的过程中就要同时学习使用Emacs，当然长期来说是有好处，但是这么陡峭的学习曲线已经足于让大多数初学者望而止步。</p>
 <p>在这里要提一下，CL是一种比较verbose的语言，有些函数名像multiple-value-bind destructuring-bind是相当的长，没有好的编辑器支持补全功能的话会容易写错。如果没有自动缩进功能的话，lisp code写起来是相当痛苦的。</p>
-<h1 id="Modern-Features"><a href="#Modern-Features" class="headerlink" title="Modern Features"></a>Modern Features</h1><p>Lisp是一门相当古老的语言，资深的Common Lisper会告诉你X语言的Y特性可以在Lisp中找到或者通过Z的方式用Lisp实现，但是不可否认的是Common Lisp语言本身缺少对一些现今重要的编程概念/工具的支持。</p>
+<h1>Modern Features</h1>
+<p>Lisp是一门相当古老的语言，资深的Common Lisper会告诉你X语言的Y特性可以在Lisp中找到或者通过Z的方式用Lisp实现，但是不可否认的是Common Lisp语言本身缺少对一些现今重要的编程概念/工具的支持。</p>
 <p>Common Lisp是在94年完成了标准化，标准给具体的实现留下了相当大的空间，Network programming、Thread、GUI都没有覆盖到。也有人说委员会决定了能够经得起时间考验的核心部分，这些个随时间变动的部分就留给具体的实现。当然这些都可以通过库来支持，但是问题也随之而来，不同的实现+不同的库的选择无疑给程序员带来了难题。(支持不同实现的网络编程库有USOCKET,支持不同实现的线程库有bordeaux-threads，当然它们也不是100% portable的)</p>
 <p>由于历史原因，Common Lisp没有在不同的数据结构之间建立一个统一的抽象，因为一开始CL中所有的数据结构都是用List实现的(Use Lists For Everything - ULFE)。CL有两套分别用于List和Vector的函数，一套用于Sequence抽象(List/Vector/String)的函数，一套用于hash-table的函数。在提供不同数据结构统一的抽象这一点上Clojure做得非常好。</p>
 <p>缺少字面值hash-table(可以通过reader macro在某种程度上实现)，用过Javascript和Clojure的应该都明白它的强大之处，最近Java7也加入了类似的功能。</p>
-<h1 id="Library-amp-Hacker-Culture"><a href="#Library-amp-Hacker-Culture" class="headerlink" title="Library &amp; Hacker Culture"></a>Library &amp; Hacker Culture</h1><p>许多关于CL的抱怨都是关于库的，CL库的数量比较少(相比于Java/C/C++这些主流语言)，而且大多数库都是poor-documented的，缺少详细的说明和例子。写高质量文档对于程序员来说不是件简单轻松的事，而且CL作为一种冷门语言市场上没有太多职位提供给CL程序员，所以也就没有那么人能够得到金钱支持或贡献个人时间来写免费开源的库。我一直听到有人说Lisp是多么多么强大，是的，Lisp非常强大，我知道，但是如果一种编程语言不能容易地与外部世界打交道的话，It doesn’t make sense.</p>
+<h1>Library &amp; Hacker Culture</h1>
+<p>许多关于CL的抱怨都是关于库的，CL库的数量比较少(相比于Java/C/C++这些主流语言)，而且大多数库都是poor-documented的，缺少详细的说明和例子。写高质量文档对于程序员来说不是件简单轻松的事，而且CL作为一种冷门语言市场上没有太多职位提供给CL程序员，所以也就没有那么人能够得到金钱支持或贡献个人时间来写免费开源的库。我一直听到有人说Lisp是多么多么强大，是的，Lisp非常强大，我知道，但是如果一种编程语言不能容易地与外部世界打交道的话，It doesn't make sense.</p>
 <p>举个例子，用Common Lisp来做XML处理，上Cliki找一下发现有不少啊，我应该用哪一个呢？随便点开看看，发现大多数文档中API的说明不太清楚。而且不是资深的CLer的话也缺少相应的知识来回答下面的问题：哪个库更好？这个库可不可以信任？它有没有bugs? 性能怎么样？它是在活跃的开发中还是已经停止维护了(dead-project)？</p>
 <p>为什么会样子，这个现象也与Lisp的Hacker文化有关。Lisp是给Hacker准备的语言，它的强大力量只会在越过了陡峭的学习曲线的某一点后显示出来。因为Common Lisp的表达能力是这么的强大几个人甚至一个smart guy单枪匹马就能够写出足够复杂的程序来，所以大规模的CL hacker合作项目比较少。结果就是每个Hacker都有自己的solution,开发者开发它用来解决的自己工作项目的特定问题，后来开源出来了并不代表它适用于其它用户。Common Lisp的强大反而阻碍了库的标准化，而且Common Lisp也没有类似CPAN for Perl这样的东西存在。</p>
 <p>QuickLisp的出现是一个福音，能够解决库的依赖问题以及自己下载相应的库，目前有700个上下的库。</p>
 <p>Reddit.com讲述了他们从Common Lisp迁移到Python上的原因，主要也是缺少库的问题。</p>
-<h1 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h1><p>在克服了这么多困难之后，你还是选择了Common Lisp，有什么好处呢？</p>
-<h2 id="Macro"><a href="#Macro" class="headerlink" title="Macro"></a>Macro</h2><p>Common Lisp的强大的Macro会让你轻松的扩展CL本身来迎合自己的需求，最终形成一个用来解决你的特定问题的DSL。Lisp语言的Macro提供了语法层次上的抽象，让你可以将反复在程式上出现的模式抽象出来，这也是Lisp强大以及和其它语言区分开来的一个原因。</p>
-<h2 id="多范式"><a href="#多范式" class="headerlink" title="多范式"></a>多范式</h2><p>Common Lisp的多范式编程可以让你自由地表达自己思想，指令式编程？没有问题，面向对象？没有问题，函数式编程？没有问题，混合着一起使用都没有问题。</p>
-<h2 id="REPL（Read-Evaluate-Print-Loop"><a href="#REPL（Read-Evaluate-Print-Loop" class="headerlink" title="REPL（Read-Evaluate-Print-Loop)"></a>REPL（Read-Evaluate-Print-Loop)</h2><p>Lisp为人津津乐道的功能就是它的快速原型开发， 为什么快，因为它全程提供了一个REPL环境，在编译型语言中你需要经历写代码-编译-运行-试错-修改-编译…的流程，而在Lisp语言中你可以实时地更新代码，基本是一边写代码一边在ＲＥＰＬ中测试然后马上修改然后马上得到新的程序然后继续试验，从编写代码到看到代码的输出的循环是如此的短以至于它极高的提高了程序员的生产率（当然这只是理想情况），read-time compile-time run-time基本上是没有区别的（对于macro来说read-time与compile-time有所区别，这里不详谈），这就是用Lisp能够快速开发出软件原型的原因。PG在这篇被CLer反复提到的文章(Beating the Averages)中提到他开发ViaWeb的故事，Common Lisp就是它的秘密武器。可能最后你的程序会迁移到其它语言/平台上，但是你可以快速地构建出软件的雏形。</p>
-<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>Common Lisp真的是让人又爱又恨，不过就算不用CL学习它也用对你有所帮助。新技术层出不穷，而Common Lisp会继续稳定地保持下去，它会继续被用于人工智能领域，研究机构，用于解决复杂度非常高的问题，大公司开发的内部工具。然而对于一般的程序员来说，想用Common Lisp作为自己的首要编程语言真的不太容易。在过去50多年的历史Lisp都没能流行起来，未来也许也不会流行起来。如果问哪种Lisp dialect有可能流行起来的话，Clojure 应该就是其中的佼佼者，作为一门新兴的语言它正在吸引越来越多人的眼光，许多人选择它的程序员有着Rudy/Python/Java/Common Lip的背景，基于JVM平台得益于java ecosystem它天生就解决了库的问题。</p>
+<h1>Advantages</h1>
+<p>在克服了这么多困难之后，你还是选择了Common Lisp，有什么好处呢？</p>
+<h2>Macro</h2>
+<p>Common Lisp的强大的Macro会让你轻松的扩展CL本身来迎合自己的需求，最终形成一个用来解决你的特定问题的DSL。Lisp语言的Macro提供了语法层次上的抽象，让你可以将反复在程式上出现的模式抽象出来，这也是Lisp强大以及和其它语言区分开来的一个原因。</p>
+<h2>多范式</h2>
+<p>Common Lisp的多范式编程可以让你自由地表达自己思想，指令式编程？没有问题，面向对象？没有问题，函数式编程？没有问题，混合着一起使用都没有问题。</p>
+<h2>REPL（Read-Evaluate-Print-Loop)</h2>
+<p>Lisp为人津津乐道的功能就是它的快速原型开发， 为什么快，因为它全程提供了一个REPL环境，在编译型语言中你需要经历写代码-编译-运行-试错-修改-编译...的流程，而在Lisp语言中你可以实时地更新代码，基本是一边写代码一边在ＲＥＰＬ中测试然后马上修改然后马上得到新的程序然后继续试验，从编写代码到看到代码的输出的循环是如此的短以至于它极高的提高了程序员的生产率（当然这只是理想情况），read-time compile-time run-time基本上是没有区别的（对于macro来说read-time与compile-time有所区别，这里不详谈），这就是用Lisp能够快速开发出软件原型的原因。PG在这篇被CLer反复提到的文章(Beating the Averages)中提到他开发ViaWeb的故事，Common Lisp就是它的秘密武器。可能最后你的程序会迁移到其它语言/平台上，但是你可以快速地构建出软件的雏形。</p>
+<h1>End</h1>
+<p>Common Lisp真的是让人又爱又恨，不过就算不用CL学习它也用对你有所帮助。新技术层出不穷，而Common Lisp会继续稳定地保持下去，它会继续被用于人工智能领域，研究机构，用于解决复杂度非常高的问题，大公司开发的内部工具。然而对于一般的程序员来说，想用Common Lisp作为自己的首要编程语言真的不太容易。在过去50多年的历史Lisp都没能流行起来，未来也许也不会流行起来。如果问哪种Lisp dialect有可能流行起来的话，Clojure 应该就是其中的佼佼者，作为一门新兴的语言它正在吸引越来越多人的眼光，许多人选择它的程序员有着Rudy/Python/Java/Common Lip的背景，基于JVM平台得益于java ecosystem它天生就解决了库的问题。</p>
 <p>PS：对于common lisp还有building system和deployment/delivery的问题没有谈，因为没有用CL做过实际项目这些并不了解，但是也知道其中也有被人诟病的地方。</p>
 
       
@@ -591,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Welcome-to-Common-Lisp"><span class="nav-number">1.</span> <span class="nav-text">Welcome to Common Lisp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IDE"><span class="nav-number">2.</span> <span class="nav-text">IDE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Modern-Features"><span class="nav-number">3.</span> <span class="nav-text">Modern Features</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Library-amp-Hacker-Culture"><span class="nav-number">4.</span> <span class="nav-text">Library & Hacker Culture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Advantages"><span class="nav-number">5.</span> <span class="nav-text">Advantages</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Macro"><span class="nav-number">5.1.</span> <span class="nav-text">Macro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多范式"><span class="nav-number">5.2.</span> <span class="nav-text">多范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REPL（Read-Evaluate-Print-Loop"><span class="nav-number">5.3.</span> <span class="nav-text">REPL（Read-Evaluate-Print-Loop)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End"><span class="nav-number">6.</span> <span class="nav-text">End</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Welcome to Common Lisp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">IDE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Modern Features</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Library & Hacker Culture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Advantages</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.1.</span> <span class="nav-text">Macro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.2.</span> <span class="nav-text">多范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.3.</span> <span class="nav-text">REPL（Read-Evaluate-Print-Loop)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">End</span></a></li></ol></div>
             
 
           </div>

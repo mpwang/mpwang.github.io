@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。 安装Emacsmac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装homebrew： ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxcl">
+<meta name="description" content="在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。 安装Emacs mac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装homebrew： ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxc">
 <meta name="keywords" content="Emacs,Mac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="using emacs under mac">
 <meta property="og:url" content="http://mpwang.github.io/2013/08/10/using-emacs-under-mac/index.html">
 <meta property="og:site_name" content="Slient Plant">
-<meta property="og:description" content="在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。 安装Emacsmac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装homebrew： ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxcl">
+<meta property="og:description" content="在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。 安装Emacs mac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装homebrew： ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxc">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-05T11:30:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="using emacs under mac">
-<meta name="twitter:description" content="在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。 安装Emacsmac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装homebrew： ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxcl">
+<meta name="twitter:description" content="在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。 安装Emacs mac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装homebrew： ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxc">
 
 
 
@@ -354,29 +354,35 @@
 
       
         <p>在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。</p>
-<h1 id="安装Emacs"><a href="#安装Emacs" class="headerlink" title="安装Emacs"></a>安装Emacs</h1><p>mac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装<a href="http://brew.sh/" target="_blank" rel="external">homebrew</a>：</p>
+<h1>安装Emacs</h1>
+<p>mac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装<a href="http://brew.sh/" target="_blank" rel="external">homebrew</a>：</p>
 <pre><code>ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;
 # --cocoa选项表示安装带图形化界面的emacs
 brew install emacs --cocoa
-</code></pre><p>安装后brew会提示你可以运行一个命令将emacs 24.3版本链接到/Applications下，这样在应用程序中可以直接双击打开emacs。</p>
-<h1 id="Mac下的设置"><a href="#Mac下的设置" class="headerlink" title="Mac下的设置"></a>Mac下的设置</h1><p>使用emacs可能会遇到键位设置的问题，有些键盘上没有option键只有alt键，使用发现alt键不起作用，用来运用<code>M-x</code>的绑定变成了<code>Esc-x</code>。解决方法如下：</p>
+</code></pre>
+<p>安装后brew会提示你可以运行一个命令将emacs 24.3版本链接到/Applications下，这样在应用程序中可以直接双击打开emacs。</p>
+<h1>Mac下的设置</h1>
+<p>使用emacs可能会遇到键位设置的问题，有些键盘上没有option键只有alt键，使用发现alt键不起作用，用来运用<code>M-x</code>的绑定变成了<code>Esc-x</code>。解决方法如下：</p>
 <p>在自带的终端下使用: 偏好设置 -&gt; 设置 -&gt; 键盘 -&gt; 勾上使用option键作为meta键</p>
 <p>在iterm2下使用:Preferences -&gt; Profiles -&gt; 选择配置文件 -&gt;　keys　-&gt;　在Left/Right option key acts 选项选择 +Esc</p>
 <p>在图形化界面下设置需要在emacs初始文件(~/.emacs.d/init.el)中加上：</p>
-<pre><code>（when (eq system-type &apos;darwin)
-    ;; use option key as meta key
-    (setq mac-option-modifier &apos;meta)）
-</code></pre><h1 id="以daemon的方式使用emacs"><a href="#以daemon的方式使用emacs" class="headerlink" title="以daemon的方式使用emacs"></a>以daemon的方式使用emacs</h1><p>双击Emacs.app每次都会重新打开一个新的进程来跑emacs, 我更喜欢emacs server + emacs client的方式。用<code>emacs --daemon</code>的方式找开一个后台跑的emacs服务进程，再来emacsclient来连接。</p>
+<pre><code>（when (eq system-type 'darwin)
+	;; use option key as meta key
+	(setq mac-option-modifier 'meta)）
+</code></pre>
+<h1>以daemon的方式使用emacs</h1>
+<p>双击Emacs.app每次都会重新打开一个新的进程来跑emacs, 我更喜欢emacs server + emacs client的方式。用<code>emacs --daemon</code>的方式找开一个后台跑的emacs服务进程，再来emacsclient来连接。</p>
 <p>在~/.bash_profile(使用zsh的话就是~/.zshrc)中加入以下alias</p>
 <pre><code># 启动emacs后台进程
 alias emdaemon=&quot;emacs --daemon&quot;
 # 结束emacs后台进程
-alias emkill=&quot;emacsclient -e &apos;(kill-emacs)&apos;&quot;
+alias emkill=&quot;emacsclient -e '(kill-emacs)'&quot;
 # 新建emacs窗口来编辑文件
 alias ec=&quot;emacsclient -c $@&quot;
-</code></pre><p>在init.el中加上</p>
+</code></pre>
+<p>在init.el中加上</p>
 <pre><code>(setq window-system-default-frame-alist
-  &apos;(
+  '(
     ;; if frame created on Macintosh Cocoa display
     (ns
      (menu-bar-lines . 1)
@@ -384,7 +390,7 @@ alias ec=&quot;emacsclient -c $@&quot;
      ;; mouse
      (mouse-wheel-mode . 1)
      (mouse-wheel-follow-mouse . t)
-     (mouse-avoidance-mode . &apos;exile)
+     (mouse-avoidance-mode . 'exile)
      ;; face
      (font . &quot;Monaco 12&quot;)
      ;; frame size
@@ -400,9 +406,11 @@ alias ec=&quot;emacsclient -c $@&quot;
      )
     )
   )
-</code></pre><p><a href="http://emacser.com/daemon.htm" title="使用Emacs daemon" target="_blank" rel="external">Emacs中文网这篇文章</a>有更详细的介绍关于emacsclient新建frame设置的介绍。</p>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
-<li><a href="http://kelly-mclaughlin.com/2012/07/27/emacs-daemon.html" target="_blank" rel="external">Setting up the Emacs daemon on OS X</a> </li>
+</code></pre>
+<p><a href="http://emacser.com/daemon.htm" title="使用Emacs daemon" target="_blank" rel="external">Emacs中文网这篇文章</a>有更详细的介绍关于emacsclient新建frame设置的介绍。</p>
+<h1>参考文章</h1>
+<ul>
+<li><a href="http://kelly-mclaughlin.com/2012/07/27/emacs-daemon.html" target="_blank" rel="external">Setting up the Emacs daemon on OS X</a></li>
 <li><a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html" target="_blank" rel="external">Using Emacs as a Server</a></li>
 </ul>
 
@@ -612,7 +620,7 @@ alias ec=&quot;emacsclient -c $@&quot;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Emacs"><span class="nav-number">1.</span> <span class="nav-text">安装Emacs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac下的设置"><span class="nav-number">2.</span> <span class="nav-text">Mac下的设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以daemon的方式使用emacs"><span class="nav-number">3.</span> <span class="nav-text">以daemon的方式使用emacs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">安装Emacs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Mac下的设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">以daemon的方式使用emacs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
             
 
           </div>
