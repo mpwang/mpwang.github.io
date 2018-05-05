@@ -275,6 +275,144 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/05/construct-sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/05/construct-sql/" itemprop="url">如何使用sqlalchemy构造SQL语句</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T18:14:23+08:00">
+                2018-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/05/construct-sql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/05/construct-sql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>sqlalchemy作为ORM层工具可以方便地编程式操作数据库, 但有时与外部系统交互时需要生成raw sql语句, 利用sqlalchemy可能方便地动态构造成sql语句.</p>
+<p>假设我们有两个类代表User, Address两张表.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String)</div><div class="line">    fullname = Column(String)</div><div class="line">    password = Column(String)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'addresses'</span></div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    email_address = Column(String, nullable=<span class="keyword">False</span>)</div><div class="line">    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</div><div class="line"></div><div class="line">    user = relationship(<span class="string">"User"</span>, lazy=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<p>利用<code>Query</code>构造生需要的语句, 使用<code>compile</code>[^1]输出query代表的sql语句.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> Query</div><div class="line"></div><div class="line">filters = &#123;<span class="string">'user_id'</span>: <span class="number">1</span>&#125;</div><div class="line">query = Query(Address).filter_by(**filters)</div><div class="line">query = query.statement.compile(compile_kwargs=&#123;<span class="string">'literal_binds'</span>: <span class="keyword">True</span>&#125;)</div><div class="line"><span class="keyword">print</span> query</div></pre></td></tr></table></figure></p>
+<p>输出<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT addresses<span class="selector-class">.id</span>, addresses<span class="selector-class">.email_address</span>, addresses<span class="selector-class">.user_id</span>, users_1<span class="selector-class">.id</span>, users_1<span class="selector-class">.name</span>, users_1<span class="selector-class">.fullname</span>, users_1.password</div><div class="line">FROM addresses LEFT OUTER JOIN users AS users_1 ON users_1<span class="selector-class">.id</span> = addresses<span class="selector-class">.user_id</span> </div><div class="line">WHERE addresses<span class="selector-class">.user_id</span> = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>注意输出中包含了<code>Address.user</code>字段代表的join操作, 如果不需要这些字段可以<code>lazyload</code>[^2]取消.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> lazyload</div><div class="line"></div><div class="line">filters = &#123;<span class="string">'user_id'</span>: <span class="number">1</span>&#125;</div><div class="line">query = Query(Address).filter_by(**filters)</div><div class="line">query = query.options(lazyload(<span class="string">'*'</span>))</div><div class="line">query = query.statement.compile(compile_kwargs=&#123;<span class="string">'literal_binds'</span>: <span class="keyword">True</span>&#125;)</div><div class="line"><span class="keyword">print</span> query</div></pre></td></tr></table></figure></p>
+<p>输出<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT addresses<span class="selector-class">.id</span>, addresses<span class="selector-class">.email_address</span>, addresses.user_id</div><div class="line">FROM addresses </div><div class="line">WHERE addresses<span class="selector-class">.user_id</span> = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>[^1]: <a href="http://docs.sqlalchemy.org/en/latest/faq/sqlexpressions.html#how-do-i-render-sql-expressions-as-strings-possibly-with-bound-parameters-inlined" target="_blank" rel="external">How do I render SQL expressions as strings, possibly with bound parameters inlined?</a><br>[^2]: <a href="http://docs.sqlalchemy.org/en/latest/orm/loading_relationships.html#controlling-loading-via-options" target="_blank" rel="external">Controlling Loading via Options</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2017/09/02/python-intro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2058,7 +2196,7 @@ jekyll serve
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2071,7 +2209,7 @@ jekyll serve
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2144,7 +2282,7 @@ jekyll serve
         <div class="copyright" >
   
   &copy;  2012 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
