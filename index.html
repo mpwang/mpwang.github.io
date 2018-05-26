@@ -275,6 +275,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/26/sqlalchemy-custom-query/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/26/sqlalchemy-custom-query/" itemprop="url">SQLAlchemy 使用自定义 Query 类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T17:53:33+08:00">
+                2018-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/26/sqlalchemy-custom-query/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/26/sqlalchemy-custom-query/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>Session.query_property</h1>
+<p>在 SQLAlchemy 中可以使用 session 的方法<code>query_property</code>方便的使用自定义的 query 类 <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<p>以下是官方的示例代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Session = scoped_session(sessionmaker())</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></div><div class="line">    query = Session.query_property()</div><div class="line"></div><div class="line"><span class="comment"># after mappers are defined</span></div><div class="line">result = MyClass.query.filter(MyClass.name==<span class="string">'foo'</span>).all()</div></pre></td></tr></table></figure>
+<p><code>query_property</code>接收一个参数<code>cls</code>, 指定自定义的Query class (用户从<code>sqlalchemy.orm.Query</code>继承的子类), 而不是默认的Query.</p>
+<p>示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> Query</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClassQuery</span><span class="params">(Query)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></div><div class="line">    query = Session.query_property(cls=MyClassQuery)</div><div class="line"></div><div class="line"><span class="comment"># after mappers are defined</span></div><div class="line"><span class="keyword">assert</span> isinstance(MyClass.query, MyClassQuery)</div></pre></td></tr></table></figure>
+<p>以上的方法可以完成一些基本的需求, 但是问题是<code>MyClass.query</code>的类定义时和Session耦合在一起了.</p>
+<p>假如我想使用自定义的Query类, 使用query构造出查询条件后,需要应用到不同的session上
+(也许几个session代表不同的数据库连接), 这就要求<code>My Class.query</code>在定义时需要与
+Session解耦, 最后使用<code>query.with_session</code>方法将query绑定到session上应用查询.</p>
+<h1>自定义Query类, 与Session解耦</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">例子使用了__init_subclass__方法, 要求python3.6+. 3.6之前的版本需要进行相应的修改.</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> (</div><div class="line">    Column,</div><div class="line">    String,</div><div class="line">    Integer,</div><div class="line">    and_,</div><div class="line">    orm,</div><div class="line">    create_engine</div><div class="line">)</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> scoped_session, sessionmaker</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm.base <span class="keyword">import</span> class_mapper, exc <span class="keyword">as</span> orm_exc</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseQuery</span><span class="params">(orm.Query)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, with_default=False, **kwargs)</span>:</span></div><div class="line">        model_cls = self._mapper_zero().class_</div><div class="line">        <span class="keyword">if</span> with_default:</div><div class="line">            filters = model_cls._default_filters()</div><div class="line">            <span class="keyword">if</span> filters <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">                self = self.enable_assertions(<span class="keyword">False</span>).filter(filters)</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserQuery</span><span class="params">(BaseQuery)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueryPropertyMixin</span>:</span></div><div class="line">    query_cls = BaseQuery</div><div class="line">    query: BaseQuery = <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_default_filters</span><span class="params">(cls)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_query_property</span><span class="params">(query_cls)</span>:</span></div><div class="line"></div><div class="line">        <span class="class"><span class="keyword">class</span> <span class="title">query</span><span class="params">(object)</span>:</span></div><div class="line">            <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, instance, owner)</span>:</span></div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    mapper = class_mapper(owner)</div><div class="line">                    <span class="keyword">if</span> mapper:</div><div class="line">                        <span class="comment"># custom query class</span></div><div class="line">                        <span class="keyword">return</span> query_cls(mapper)</div><div class="line">                <span class="keyword">except</span> orm_exc.UnmappedClassError:</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> query()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init_subclass__</span><span class="params">(cls, **kwargs)</span>:</span></div><div class="line">        cls.query = QueryPropertyMixin._query_property(cls.query_cls)</div><div class="line"></div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base, QueryPropertyMixin)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line"></div><div class="line">    query_cls = UserQuery</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_default_filters</span><span class="params">(cls)</span>:</span></div><div class="line">        <span class="keyword">return</span> and_(</div><div class="line">            cls.name != <span class="keyword">None</span>,</div><div class="line">            cls.fullname != <span class="keyword">None</span></div><div class="line">        )</div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String)</div><div class="line">    fullname = Column(String)</div><div class="line">    password = Column(String)</div><div class="line"></div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'sqlite:///:memory:'</span>, echo=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">Session = scoped_session(sessionmaker(bind=engine))</div><div class="line"></div><div class="line">session = Session()</div><div class="line">Base.metadata.create_all(engine)</div><div class="line"></div><div class="line">session.add(User(id=<span class="number">1</span>, name=<span class="string">'name'</span>, fullname=<span class="string">'fullname'</span>))</div><div class="line">session.commit()</div><div class="line"></div><div class="line"><span class="keyword">assert</span> isinstance(User.query, UserQuery)</div><div class="line"></div><div class="line">record = User.query.filter_by(id=<span class="number">1</span>).with_session(session).one()</div><div class="line"><span class="keyword">assert</span> record.id == <span class="number">1</span></div><div class="line"></div><div class="line">query_str = User.query(with_default=<span class="keyword">True</span>)</div><div class="line"><span class="keyword">assert</span> str(query_str).find(<span class="string">'User.name IS NOT NULL'</span>)</div></pre></td></tr></table></figure>
+<p>首先定义自己的Query继承关系, BaseQuery继承<code>orm.Query</code>, 每个model如果需要有自己的特定查询类则继承BaseQuery. 在User中使用<code>query_cls</code>指定特定的查询类, 不定义则使用默认的BaseQuery.</p>
+<p>核心点在于User模型继承了<code>QueryPropertyMixin</code>, 在<code>QueryPropertyMixin</code>使用了<code>__init_subclass__</code>方法控制子类在初始化时生成<code>query</code>对象.这样<code>User.query</code>对象就与session解耦, 在之后就使用<code>with_session</code>与具体session绑定进行查询了.</p>
+<p>例子中还演示了如何在model类定义中一个default_filters, 代表某些情况中需要使用的
+filters, 方便查询特定条件的对象.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="http://docs.sqlalchemy.org/en/latest/orm/contextual.html#sqlalchemy.orm.scoping.scoped_session.query_property" target="_blank" rel="external">SQLAlchemy session query_property</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/05/delete-bootcamp-win10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -528,15 +683,15 @@
           
             <p>sqlalchemy作为ORM层工具可以方便地编程式操作数据库, 但有时与外部系统交互时需要生成raw sql语句, 利用sqlalchemy可能方便地动态构造成sql语句.</p>
 <p>假设我们有两个类代表User, Address两张表.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String)</div><div class="line">    fullname = Column(String)</div><div class="line">    password = Column(String)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'addresses'</span></div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    email_address = Column(String, nullable=<span class="keyword">False</span>)</div><div class="line">    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</div><div class="line"></div><div class="line">    user = relationship(<span class="string">"User"</span>, lazy=<span class="keyword">False</span>)</div></pre></td></tr></table></figure></p>
-<p>利用<code>Query</code>构造生需要的语句, 使用<code>compile</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>输出query代表的sql语句.
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> Query</div><div class="line"></div><div class="line">filters = &#123;<span class="string">'user_id'</span>: <span class="number">1</span>&#125;</div><div class="line">query = Query(Address).filter_by(**filters)</div><div class="line">query = query.statement.compile(compile_kwargs=&#123;<span class="string">'literal_binds'</span>: <span class="keyword">True</span>&#125;)</div><div class="line"><span class="keyword">print</span> query</div></pre></td></tr></table></figure></p>
-<p>输出
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT addresses<span class="selector-class">.id</span>, addresses<span class="selector-class">.email_address</span>, addresses<span class="selector-class">.user_id</span>, users_1<span class="selector-class">.id</span>, users_1<span class="selector-class">.name</span>, users_1<span class="selector-class">.fullname</span>, users_1.password</div><div class="line">FROM addresses LEFT OUTER JOIN users AS users_1 ON users_1<span class="selector-class">.id</span> = addresses<span class="selector-class">.user_id</span> </div><div class="line">WHERE addresses<span class="selector-class">.user_id</span> = <span class="number">1</span></div></pre></td></tr></table></figure></p>
-<p>注意输出中包含了<code>Address.user</code>字段代表的join操作, 如果不需要这些字段可以<code>lazyload</code><sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>取消.
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> lazyload</div><div class="line"></div><div class="line">filters = &#123;<span class="string">'user_id'</span>: <span class="number">1</span>&#125;</div><div class="line">query = Query(Address).filter_by(**filters)</div><div class="line">query = query.options(lazyload(<span class="string">'*'</span>))</div><div class="line">query = query.statement.compile(compile_kwargs=&#123;<span class="string">'literal_binds'</span>: <span class="keyword">True</span>&#125;)</div><div class="line"><span class="keyword">print</span> query</div></pre></td></tr></table></figure></p>
-<p>输出
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT addresses<span class="selector-class">.id</span>, addresses<span class="selector-class">.email_address</span>, addresses.user_id</div><div class="line">FROM addresses </div><div class="line">WHERE addresses<span class="selector-class">.user_id</span> = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String)</div><div class="line">    fullname = Column(String)</div><div class="line">    password = Column(String)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'addresses'</span></div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    email_address = Column(String, nullable=<span class="keyword">False</span>)</div><div class="line">    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</div><div class="line"></div><div class="line">    user = relationship(<span class="string">"User"</span>, lazy=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<p>利用<code>Query</code>构造生需要的语句, 使用<code>compile</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>输出query代表的sql语句.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> Query</div><div class="line"></div><div class="line">filters = &#123;<span class="string">'user_id'</span>: <span class="number">1</span>&#125;</div><div class="line">query = Query(Address).filter_by(**filters)</div><div class="line">query = query.statement.compile(compile_kwargs=&#123;<span class="string">'literal_binds'</span>: <span class="keyword">True</span>&#125;)</div><div class="line"><span class="keyword">print</span> query</div></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT addresses<span class="selector-class">.id</span>, addresses<span class="selector-class">.email_address</span>, addresses<span class="selector-class">.user_id</span>, users_1<span class="selector-class">.id</span>, users_1<span class="selector-class">.name</span>, users_1<span class="selector-class">.fullname</span>, users_1.password</div><div class="line">FROM addresses LEFT OUTER JOIN users AS users_1 ON users_1<span class="selector-class">.id</span> = addresses<span class="selector-class">.user_id</span> </div><div class="line">WHERE addresses<span class="selector-class">.user_id</span> = <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>注意输出中包含了<code>Address.user</code>字段代表的join操作, 如果不需要这些字段可以<code>lazyload</code><sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>取消.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> lazyload</div><div class="line"></div><div class="line">filters = &#123;<span class="string">'user_id'</span>: <span class="number">1</span>&#125;</div><div class="line">query = Query(Address).filter_by(**filters)</div><div class="line">query = query.options(lazyload(<span class="string">'*'</span>))</div><div class="line">query = query.statement.compile(compile_kwargs=&#123;<span class="string">'literal_binds'</span>: <span class="keyword">True</span>&#125;)</div><div class="line"><span class="keyword">print</span> query</div></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT addresses<span class="selector-class">.id</span>, addresses<span class="selector-class">.email_address</span>, addresses.user_id</div><div class="line">FROM addresses </div><div class="line">WHERE addresses<span class="selector-class">.user_id</span> = <span class="number">1</span></div></pre></td></tr></table></figure>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -712,7 +867,7 @@
 <li><a href="https://www.python.org/dev/peps/pep-0020/" target="_blank" rel="external">The Zen of Python</a></li>
 <li><a href="https://wiki.python.org/moin/PythonZenChineseTranslate" target="_blank" rel="external">中文翻译参考</a></li>
 </ul>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">The Zen of Python, by Tim Peters</div><div class="line"></div><div class="line">Beautiful is better than ugly.</div><div class="line">Explicit is better than implicit.</div><div class="line">Simple is better than complex.</div><div class="line">Complex is better than complicated.</div><div class="line">Flat is better than nested.</div><div class="line">Sparse is better than dense.</div><div class="line">Readability counts.</div><div class="line">Special cases aren&apos;t special enough to break the rules.</div><div class="line">Although practicality beats purity.</div><div class="line">Errors should never pass silently.</div><div class="line">Unless explicitly silenced.</div><div class="line">In the face of ambiguity, refuse the temptation to guess.</div><div class="line">There should be one-- and preferably only one --obvious way to do it.</div><div class="line">Although that way may not be obvious at first unless you&apos;re Dutch.</div><div class="line">Now is better than never.</div><div class="line">Although never is often better than right now.</div><div class="line">If the implementation is hard to explain, it&apos;s a bad idea.</div><div class="line">If the implementation is easy to explain, it may be a good idea.</div><div class="line">Namespaces are one honking great idea -- let&apos;s do more of those!</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">The Zen of Python, by Tim Peters</div><div class="line"></div><div class="line">Beautiful is better than ugly.</div><div class="line">Explicit is better than implicit.</div><div class="line">Simple is better than complex.</div><div class="line">Complex is better than complicated.</div><div class="line">Flat is better than nested.</div><div class="line">Sparse is better than dense.</div><div class="line">Readability counts.</div><div class="line">Special cases aren&apos;t special enough to break the rules.</div><div class="line">Although practicality beats purity.</div><div class="line">Errors should never pass silently.</div><div class="line">Unless explicitly silenced.</div><div class="line">In the face of ambiguity, refuse the temptation to guess.</div><div class="line">There should be one-- and preferably only one --obvious way to do it.</div><div class="line">Although that way may not be obvious at first unless you&apos;re Dutch.</div><div class="line">Now is better than never.</div><div class="line">Although never is often better than right now.</div><div class="line">If the implementation is hard to explain, it&apos;s a bad idea.</div><div class="line">If the implementation is easy to explain, it may be a good idea.</div><div class="line">Namespaces are one honking great idea -- let&apos;s do more of those!</div></pre></td></tr></table></figure>
 </li>
 <li>
 <p>Python社区</p>
@@ -928,7 +1083,7 @@ virtualenv</li>
 </li>
 <li>
 <p>作为一个交互式shell, 用来代替默认的python命令行编程环境</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 使用以下命令安装python2.7版本的ipython</div><div class="line">pip install &apos;ipython&lt;=6.0.0&apos;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 使用以下命令安装python2.7版本的ipython</div><div class="line">pip install &apos;ipython&lt;=6.0.0&apos;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3>pdb</h3>
@@ -1072,15 +1227,15 @@ tox</a></li>
 <p>创建database, 名称: cudr</p>
 <p>在 cudr 新建表，表名example</p>
 <p>创建 sql 如下</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DROP TABLE IF EXISTS &quot;public&quot;.&quot;example&quot;;</div><div class="line">CREATE TABLE &quot;public&quot;.&quot;example&quot; (</div><div class="line">&quot;name&quot; varchar(127) COLLATE &quot;default&quot; NOT NULL,</div><div class="line">&quot;code&quot; varchar(63) COLLATE &quot;default&quot; NOT NULL</div><div class="line">)</div><div class="line">WITH (OIDS=FALSE)</div><div class="line">;</div><div class="line">ALTER TABLE &quot;public&quot;.&quot;example&quot; ADD PRIMARY KEY (&quot;name&quot;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DROP TABLE IF EXISTS &quot;public&quot;.&quot;example&quot;;</div><div class="line">CREATE TABLE &quot;public&quot;.&quot;example&quot; (</div><div class="line">&quot;name&quot; varchar(127) COLLATE &quot;default&quot; NOT NULL,</div><div class="line">&quot;code&quot; varchar(63) COLLATE &quot;default&quot; NOT NULL</div><div class="line">)</div><div class="line">WITH (OIDS=FALSE)</div><div class="line">;</div><div class="line">ALTER TABLE &quot;public&quot;.&quot;example&quot; ADD PRIMARY KEY (&quot;name&quot;);</div></pre></td></tr></table></figure>
 <h3>创建一个Python项目</h3>
 <p>项目名称 cudr</p>
 <p>项目结构请阅读<a href="https://pythonguidecn.readthedocs.io/zh/latest/writing/structure.html" target="_blank" rel="external">结构化你的工程</a>
 中仓库的结构一节，关于 Django Applications及之后的章节可跳过</p>
 <p>在 requirements.txt 文件中指定项目依赖库</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlalchemy</div><div class="line">click</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlalchemy</div><div class="line">click</div></pre></td></tr></table></figure>
 <p>使用pip安装依赖</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install -r requirements.txt</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install -r requirements.txt</div></pre></td></tr></table></figure>
 <ol>
 <li>
 <p>click 用于创建命令行工具</p>
@@ -1103,7 +1258,7 @@ tox</a></li>
 <li>修改</li>
 <li>删除</li>
 </ul>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 创建一个数据库记录</div><div class="line">python core.py --create name1 code1</div><div class="line"># 读取</div><div class="line">python core.py --read name1</div><div class="line"># 修改 指定主键name1及更新的字段及字段的新值</div><div class="line">python core.py --update name1 name=name2</div><div class="line"># 删除</div><div class="line">python core.py --delete name2</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 创建一个数据库记录</div><div class="line">python core.py --create name1 code1</div><div class="line"># 读取</div><div class="line">python core.py --read name1</div><div class="line"># 修改 指定主键name1及更新的字段及字段的新值</div><div class="line">python core.py --update name1 name=name2</div><div class="line"># 删除</div><div class="line">python core.py --delete name2</div></pre></td></tr></table></figure>
 
           
         
@@ -1237,61 +1392,61 @@ tox</a></li>
             <p>以下介绍一些<code>python idiom</code>，每当你在代码库中看到以下的模式可以参照以下的建议进行重构，让代码变得更加的<code>pythonic</code>，可读性更好，更容易维护。</p>
 <p>代码示例Python版本为2.7</p>
 <h1>enumerate</h1>
-<p><blockquote class="blockquote-center"><p>需要使用列表的下标时，不要使用C风格的下标遍历</p>
-</blockquote></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lst = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line">i = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> lst:</div><div class="line">    <span class="keyword">print</span> i, <span class="string">'--&gt;'</span>, lst[i]</div><div class="line">    i += <span class="number">1</span></div><div class="line"></div><div class="line"><span class="comment"># OR</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):</div><div class="line">    <span class="keyword">print</span> i, <span class="string">'--&gt;'</span>, lst[i]</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line"><span class="keyword">for</span> idx, item <span class="keyword">in</span> enumerate(lst):</div><div class="line">    <span class="keyword">print</span> idx, <span class="string">'--&gt;'</span>, item</div></pre></td></tr></table></figure></p>
+<blockquote class="blockquote-center"><p>需要使用列表的下标时，不要使用C风格的下标遍历</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lst = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line">i = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> lst:</div><div class="line">    <span class="keyword">print</span> i, <span class="string">'--&gt;'</span>, lst[i]</div><div class="line">    i += <span class="number">1</span></div><div class="line"></div><div class="line"><span class="comment"># OR</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):</div><div class="line">    <span class="keyword">print</span> i, <span class="string">'--&gt;'</span>, lst[i]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line"><span class="keyword">for</span> idx, item <span class="keyword">in</span> enumerate(lst):</div><div class="line">    <span class="keyword">print</span> idx, <span class="string">'--&gt;'</span>, item</div></pre></td></tr></table></figure>
 <h1>zip/izip</h1>
-<p><blockquote class="blockquote-center"><p>同时遍历两个列表时，不要使用C风格的下标遍历</p>
-</blockquote></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lst1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</div><div class="line">lst2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst1)):</div><div class="line">    <span class="keyword">print</span> lst1[i]</div><div class="line">    <span class="keyword">print</span> lst2[i]</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line"><span class="keyword">for</span> lst1_item, lst2_item <span class="keyword">in</span> zip(lst1, lst2):</div><div class="line">    <span class="keyword">print</span> lst1_item</div><div class="line">    <span class="keyword">print</span> lst2_item</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BETTER</span></div><div class="line"><span class="comment"># 不需要在内存中生成包含lst, lst2的第三个列表</span></div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> izip</div><div class="line"><span class="keyword">for</span> lst1_item, lst2_item <span class="keyword">in</span> izip(lst1, lst2):</div><div class="line">    <span class="keyword">print</span> lst1_item</div><div class="line">    <span class="keyword">print</span> lst2_item</div></pre></td></tr></table></figure></p>
+<blockquote class="blockquote-center"><p>同时遍历两个列表时，不要使用C风格的下标遍历</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lst1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</div><div class="line">lst2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst1)):</div><div class="line">    <span class="keyword">print</span> lst1[i]</div><div class="line">    <span class="keyword">print</span> lst2[i]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line"><span class="keyword">for</span> lst1_item, lst2_item <span class="keyword">in</span> zip(lst1, lst2):</div><div class="line">    <span class="keyword">print</span> lst1_item</div><div class="line">    <span class="keyword">print</span> lst2_item</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BETTER</span></div><div class="line"><span class="comment"># 不需要在内存中生成包含lst, lst2的第三个列表</span></div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> izip</div><div class="line"><span class="keyword">for</span> lst1_item, lst2_item <span class="keyword">in</span> izip(lst1, lst2):</div><div class="line">    <span class="keyword">print</span> lst1_item</div><div class="line">    <span class="keyword">print</span> lst2_item</div></pre></td></tr></table></figure>
 <h1>unpacking tuple</h1>
 <h2>swap</h2>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="number">10</span></div><div class="line">y = <span class="number">-10</span></div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line">tmp = x</div><div class="line">x = y</div><div class="line">y = tmp</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line">x, y = y, x</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = <span class="number">10</span></div><div class="line">y = <span class="number">-10</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line">tmp = x</div><div class="line">x = y</div><div class="line">y = tmp</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line">x, y = y, x</div></pre></td></tr></table></figure>
 <h2>get element from tuple</h2>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">words = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'cat'</span>]</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line">foo = words[<span class="number">0</span>]</div><div class="line">bar = words[<span class="number">1</span>]</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line">foo, bar, _ = words <span class="comment"># 使用 _ 如果你不需要这个值</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">words = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'cat'</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line">foo = words[<span class="number">0</span>]</div><div class="line">bar = words[<span class="number">1</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line">foo, bar, _ = words <span class="comment"># 使用 _ 如果你不需要这个值</span></div></pre></td></tr></table></figure>
 <h1>Dict.setdefault/defaultdict</h1>
-<p><blockquote class="blockquote-center"><p>处理字典中key不存在时的默认值</p>
-</blockquote></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># group words by frequency</span></div><div class="line">words = [(<span class="number">1</span>, <span class="string">'apple'</span>), (<span class="number">2</span>, <span class="string">'banana'</span>), (<span class="number">1</span>, <span class="string">'cat'</span>)]</div><div class="line">frequency = &#123;&#125;</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">if</span> freq <span class="keyword">not</span> <span class="keyword">in</span> frequency:</div><div class="line">        frequency[freq] = []</div><div class="line">    frequency[freq].append(word)</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</div><div class="line">    frequency.setdefault(freq, []).append(word)</div></pre></td></tr></table></figure></p>
-<p>如果你知道自己在做什么，use <a href="https://docs.python.org/2/library/collections.html#collections.defaultdict" target="_blank" rel="external">defaultdict</a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BETTER</span></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line">frequency = defaultdict(list)</div><div class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</div><div class="line">    frequency[freq].append(word)</div></pre></td></tr></table></figure></p>
+<blockquote class="blockquote-center"><p>处理字典中key不存在时的默认值</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># group words by frequency</span></div><div class="line">words = [(<span class="number">1</span>, <span class="string">'apple'</span>), (<span class="number">2</span>, <span class="string">'banana'</span>), (<span class="number">1</span>, <span class="string">'cat'</span>)]</div><div class="line">frequency = &#123;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">if</span> freq <span class="keyword">not</span> <span class="keyword">in</span> frequency:</div><div class="line">        frequency[freq] = []</div><div class="line">    frequency[freq].append(word)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</div><div class="line">    frequency.setdefault(freq, []).append(word)</div></pre></td></tr></table></figure>
+<p>如果你知道自己在做什么，use <a href="https://docs.python.org/2/library/collections.html#collections.defaultdict" target="_blank" rel="external">defaultdict</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BETTER</span></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line">frequency = defaultdict(list)</div><div class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</div><div class="line">    frequency[freq].append(word)</div></pre></td></tr></table></figure>
 <h1>Dict.iteritems</h1>
-<p><blockquote class="blockquote-center"><p>遍历字典</p>
-</blockquote></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">words = &#123;<span class="string">'apple'</span>: <span class="number">1</span>, <span class="string">'banana'</span>: <span class="number">2</span>, <span class="string">'cat'</span>: <span class="number">3</span>&#125;</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># OK</span></div><div class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, words[word] <span class="comment"># 需要计算word的hash值</span></div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GOOD</span></div><div class="line"><span class="keyword">for</span> word, freq <span class="keyword">in</span> words.items():</div><div class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, freq</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BETTER</span></div><div class="line"><span class="comment"># 不需要在内存中生存包含words所有元素的中间结果</span></div><div class="line"><span class="keyword">for</span> word, freq <span class="keyword">in</span> words.iteritems():</div><div class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, freq</div></pre></td></tr></table></figure></p>
+<blockquote class="blockquote-center"><p>遍历字典</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">words = &#123;<span class="string">'apple'</span>: <span class="number">1</span>, <span class="string">'banana'</span>: <span class="number">2</span>, <span class="string">'cat'</span>: <span class="number">3</span>&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># OK</span></div><div class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, words[word] <span class="comment"># 需要计算word的hash值</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GOOD</span></div><div class="line"><span class="keyword">for</span> word, freq <span class="keyword">in</span> words.items():</div><div class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, freq</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BETTER</span></div><div class="line"><span class="comment"># 不需要在内存中生存包含words所有元素的中间结果</span></div><div class="line"><span class="keyword">for</span> word, freq <span class="keyword">in</span> words.iteritems():</div><div class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, freq</div></pre></td></tr></table></figure>
 <h1>for...else</h1>
-<p><blockquote class="blockquote-center"><p>break and nobreak</p>
-</blockquote></p>
+<blockquote class="blockquote-center"><p>break and nobreak</p>
+</blockquote>
 <p>使用<code>for...else</code>模式处理遍历列表时搜索符合某些条件的元素<code>break</code>以及搜索不到符合条件元素时的情况。</p>
 <p>有些人会认为<code>for...else</code>的语义让人迷惑所以不建议使用，但是正确地使用<code>for...else</code>模式会让代码的结构更加清晰。</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># search if a word match some condition exists</span></div><div class="line">words = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'cat'</span>]</div><div class="line">condition = <span class="keyword">lambda</span> word: len(word) == <span class="number">1</span></div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line">found = <span class="keyword">False</span></div><div class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">if</span> condition(word):</div><div class="line">        <span class="keyword">print</span> <span class="string">'Found'</span></div><div class="line">        found = <span class="keyword">True</span></div><div class="line">        <span class="keyword">break</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> found:</div><div class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">if</span> condition(word):</div><div class="line">        <span class="comment"># 处理存在符合condition的元素的情况</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'Found'</span></div><div class="line">        <span class="keyword">break</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="comment"># 处理没有符合condition元素的情况</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># search if a word match some condition exists</span></div><div class="line">words = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'cat'</span>]</div><div class="line">condition = <span class="keyword">lambda</span> word: len(word) == <span class="number">1</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DON'T</span></div><div class="line">found = <span class="keyword">False</span></div><div class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">if</span> condition(word):</div><div class="line">        <span class="keyword">print</span> <span class="string">'Found'</span></div><div class="line">        found = <span class="keyword">True</span></div><div class="line">        <span class="keyword">break</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> found:</div><div class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DO</span></div><div class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">if</span> condition(word):</div><div class="line">        <span class="comment"># 处理存在符合condition的元素的情况</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'Found'</span></div><div class="line">        <span class="keyword">break</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="comment"># 处理没有符合condition元素的情况</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></div></pre></td></tr></table></figure>
 <p><code>else</code>在<code>for...else</code>语法里的语义是<code>如果没有break发生</code>，也即是列表被完全遍历的情况。代码清晰地分成了两部分，你可以明确地看到他们属于同一个结构。</p>
 <p><code>for...else</code>语法让人迷惑的地方就是在于<code>else</code>这个名字，根据python核心开发者Raymond Hettinger的说法，如果他们有机会回到过去修改这一语法的话，他们会将<code>else</code>修改为<code>nobreak</code>。</p>
-<p>事实上如果不需要处理搜索到符合condition元素时的情况，只需要检查符合condition元素是否存在时，使用<code>any</code>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">existed = any(map(condition, words))</div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> existed:</div><div class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></div></pre></td></tr></table></figure></p>
+<p>事实上如果不需要处理搜索到符合condition元素时的情况，只需要检查符合condition元素是否存在时，使用<code>any</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">existed = any(map(condition, words))</div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> existed:</div><div class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></div></pre></td></tr></table></figure>
 <h1>try...except...else</h1>
-<p><blockquote class="blockquote-center"><p>分开异常处理与正常情况</p>
-</blockquote></p>
+<blockquote class="blockquote-center"><p>分开异常处理与正常情况</p>
+</blockquote>
 <p><code>try...except</code>语法大家都不陌生，大多数情况下简单地使用地<code>try...except...else</code>语法将臃肿的try block重构就可以让代码的结构更加清晰，将异常处理和正常情况清晰地区分开来。</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_external_json</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"maybe valid json, maybe some plain text of error"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_something_with</span><span class="params">(result)</span>:</span></div><div class="line">    <span class="keyword">print</span> result</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_error</span><span class="params">(e)</span>:</span></div><div class="line">    <span class="comment"># maybe log exception trace</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'Oops'</span></div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GOOD</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    result = json.loads(get_external_json())</div><div class="line">    do_something_with(result)</div><div class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">    handle_error(e)</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BETTER</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="comment"># 异常可能抛出点</span></div><div class="line">    result = json.loads(get_external_json())</div><div class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">    <span class="comment"># 异常处理</span></div><div class="line">    handle_error(e)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="comment"># 正常情况</span></div><div class="line">    do_something_with(result)</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_external_json</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"maybe valid json, maybe some plain text of error"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_something_with</span><span class="params">(result)</span>:</span></div><div class="line">    <span class="keyword">print</span> result</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_error</span><span class="params">(e)</span>:</span></div><div class="line">    <span class="comment"># maybe log exception trace</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'Oops'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GOOD</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    result = json.loads(get_external_json())</div><div class="line">    do_something_with(result)</div><div class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">    handle_error(e)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BETTER</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="comment"># 异常可能抛出点</span></div><div class="line">    result = json.loads(get_external_json())</div><div class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">    <span class="comment"># 异常处理</span></div><div class="line">    handle_error(e)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="comment"># 正常情况</span></div><div class="line">    do_something_with(result)</div></pre></td></tr></table></figure>
 <p><code>try...except...else</code>这个结构清晰地区分了异常可能的抛出点，异常处理及正常情况三种情况。</p>
 
           
@@ -1424,16 +1579,16 @@ tox</a></li>
         
           
             <h1>硬件</h1>
-<p><blockquote class="blockquote-center"><p>投资硬件是最简单直接的提高工作效率的方法</p>
-</blockquote></p>
+<blockquote class="blockquote-center"><p>投资硬件是最简单直接的提高工作效率的方法</p>
+</blockquote>
 <p>屏幕与键鼠是程序员与电脑之间的输出输入设置，是程序员每天工作接触时间最长的东西，硬件上的提升可以直接提高工作效率以及每天工作的心情。</p>
 <h2>键盘的选择</h2>
-<p><blockquote><p><a href="http://xahlee.info/kbd/keyboard_switch_mechanisms.html" target="_blank" rel="external">认识薄膜键盘，机械键盘与静电电容键盘</a></p>
-</blockquote></p>
+<blockquote><p><a href="http://xahlee.info/kbd/keyboard_switch_mechanisms.html" target="_blank" rel="external">认识薄膜键盘，机械键盘与静电电容键盘</a></p>
+</blockquote>
 <h3>不差钱直接上静电电容键盘</h3>
 <h3>机械键盘</h3>
-<p><blockquote><p><a href="http://www.zhihu.com/question/23105050" target="_blank" rel="external">先说结论：只选红轴。</a></p>
-</blockquote></p>
+<blockquote><p><a href="http://www.zhihu.com/question/23105050" target="_blank" rel="external">先说结论：只选红轴。</a></p>
+</blockquote>
 <p>键盘这东西最好一步到位一发退烧，不需要反复投入。就机械键盘说来，</p>
 <ul>
 <li>红轴与黑轴无冲，适合游戏玩家，不同的是按到底所需的力度红轴较小黑轴较大</li>
@@ -1462,8 +1617,8 @@ tox</a></li>
 <h2>Emacs中文与英文对齐</h2>
 <p><a href="https://github.com/tumashu/cnfonts" target="_blank" rel="external">chinese-fonts-setup</a> 分别设置Emacs显示中英文时使用不同的字体和大小，帮助你对齐中英文，在我看来在写org文档时这是一个必备的扩展。在使用org-mode table对齐时特别有用。</p>
 <h1>编辑器: Emacs</h1>
-<p><blockquote class="blockquote-center"><p>Why it's worth to learn emacs, because the experience will not go away</p>
-</blockquote></p>
+<blockquote class="blockquote-center"><p>Why it's worth to learn emacs, because the experience will not go away</p>
+</blockquote>
 <p>Emacs的学习曲线是比较陡峭，但是长期来说投资在Emacs上的时间是值得的。逻辑非常简单：</p>
 <ul>
 <li>程序员的工作需要进行大量的文本编辑工作</li>
@@ -1937,7 +2092,7 @@ tox</a></li>
 <p>前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。</p>
 <p>Lisp目前有两种主要的dialect: Common Lisp和Scheme。</p>
 <p>Scheme
-对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(它附带了很多教学包)以及非常详细的文档说明，学习期间阅读了&lt;&lt;HTDP&gt;&gt;和&lt;&lt;The Little Schemer&gt;&gt;，在了解Lisp的基本思想之后我发现Scheme很难使用(也许是我没有深入学习），来google了一些Scheme和Common Lisp的比较后，我转向了Common Lisp。</p>
+对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(它附带了很多教学包)以及非常详细的文档说明，学习期间阅读了&lt;<htdp>&gt;和&lt;<the little="" schemer="">&gt;，在了解Lisp的基本思想之后我发现Scheme很难使用(也许是我没有深入学习），来google了一些Scheme和Common Lisp的比较后，我转向了Common Lisp。</the></htdp></p>
 <h1>Welcome to Common Lisp</h1>
 <p>首先来看一下CL的实现列表，看一下还真不少啊，商业收费和免费开源都有，想当初为选择哪一个实现好纠结了一段时间。从好的方面说，有这么多的实现可以让人选择在不同环境下用不同的实现，但是这也带来了问题：社区的分化和库的通用性问题。如果不想代码只能在特定的CL实现上运行，写代码的就要考虑不同CL实现之间的通用性，真是让人头疼。</p>
 <h1>IDE</h1>
@@ -2200,192 +2355,6 @@ alias ec=&quot;emacsclient -c $@&quot;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2013/08/08/windowsjekyll/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randall Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Slient Plant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/08/08/windowsjekyll/" itemprop="url">windows下搭建jekyll环境</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-08-08T00:00:00+08:00">
-                2013-08-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/08/08/windowsjekyll/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/08/08/windowsjekyll/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>安装Ruby</h1>
-<p>Jekyll是基于Ruby的静态网页生成工具，使用rubyinstaller在windows下安装Ruby. <a href="http://rubyinstaller.org/downloads/" target="_blank" rel="external">下载链接</a>.
-在RubyInstallersArchives下选择合适的版本，64位系统选择(x64)结尾的安装文件。</p>
-<p>安装rubyinstaller到D:\Ruby200. 确保安装时在安装界面中选中添加ruby到环境变量的选项。</p>
-<h2>安装Ruby DevKit</h2>
-<p><a href="http://rubyinstaller.org/downloads/" target="_blank" rel="external">下载链接</a>.在Development Kit下选择合适版本。
-下回来的文件是个7z的自解压包，解压到D:\Rubydevkit. 运行</p>
-<pre><code>ruby dk.rb init
-ruby hk.rb install
-</code></pre>
-<h1>安装jekyll</h1>
-<p>理论到直接运行</p>
-<pre><code>gem install jekyll
-</code></pre>
-<p>就可以安装jekyll了，但是国内的网络环境（你懂的）可能访问不到rubygems，因为
-rubygem的服务使用了Amazon的云服务器。但是可以使用淘宝的国内镜像：<a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a>.</p>
-<pre><code>$ gem sources --remove https://rubygems.org/
-$ gem sources -a http://ruby.taobao.org/
-$ gem sources -l
-*** CURRENT SOURCES ***
-
-http://ruby.taobao.org
-# 请确保只有 ruby.taobao.org	
-</code></pre>
-<p>先用<code>gem sources -l</code>看看，有些情况下是默认使用http://rubygems.org 而不是https://rubygems.org</p>
-<pre><code>gem install jekyll
-</code></pre>
-<p>下载jekyll</p>
-<p>至此jekyll就成功安装并且可以使用了。</p>
-<h1>安装Python</h1>
-<p>Jekyll使用Pygments在高亮代码，而Pygments是基于Python的。首先安装Python, windows上选用<a href="http://portablepython.com/wiki/PortablePython3.2.1.1/" target="_blank" rel="external">Portable Python</a>。安装到D:\Portable_Python</p>
-<p>然后将Portable Python下的App\Scripts和App目录添加到环境变量PATH中。</p>
-<h2>安装easy install</h2>
-<p>easy install是Python库的管理软件，类似于gem对于Ruby。我们安装easy install来安装Pygments. <a href="https://pypi.python.org/pypi/setuptools/0.9.8#windows" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools/0.9.8#windows</a>,在python官网这一节介绍中可以找到怎么在windows下安装easy installer的说明，保存<a href="https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py" target="_blank" rel="external">ez_setup.py</a>到本地，比如说D:\</p>
-<pre><code>python ez_setup.py
-</code></pre>
-<h2>安装Pygments#</h2>
-<pre><code>easy_install Pygments
-</code></pre>
-<h1>安装git</h1>
-<p>用jekyll写博客少不了用git啦，下载安装<a href="http://msysgit.github.io/" target="_blank" rel="external">msysgit</a>.把安装界面上的选项全部勾上，选项全部默认就好。</p>
-<h1>第一个模板</h1>
-<p>现在jekyll环境已经成功搭建了，下个jekyll bootstrap模板体验一下。在开始菜单中找开git bash.</p>
-<pre><code>cd /D
-git clone https://github.com/jekyllbootstrap/theme-the-program.git
-cd theme-the-program
-jekyll serve
-</code></pre>
-<p>访问http://localhost:4040</p>
-<h1>深入了解jekyll</h1>
-<p>了解jekyll的配置和各个文件的作用，这篇文章是个很好的入门：<a href="jiyeqian.github.io/2012/07/host-your-pages-at-github-using-jekyll/">基于jekyll的github建站指南</a></p>
-<h1>参考文章</h1>
-<ul>
-<li><a href="http://blog.chengyunfeng.com/?p=437" target="_blank" rel="external">在Windows系统配置Jekyll</a></li>
-<li><a href="jiyeqian.github.io/2012/07/host-your-pages-at-github-using-jekyll/">基于jekyll的github建站指南</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2436,7 +2405,7 @@ jekyll serve
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,SQLAlchemy," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Slient Plant" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Session.query_property 在 SQLAlchemy 中可以使用 session 的方法query_property方便的使用自定义的 query 类 [1]. 以下是官方的示例代码 1234567Session = scoped_session(sessionmaker())class MyClass(object):    query = Session.query_prop">
+<meta name="keywords" content="Python,SQLAlchemy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLAlchemy 使用自定义 Query 类">
+<meta property="og:url" content="http://mpwang.github.io/2018/05/26/sqlalchemy-custom-query/index.html">
+<meta property="og:site_name" content="Slient Plant">
+<meta property="og:description" content="Session.query_property 在 SQLAlchemy 中可以使用 session 的方法query_property方便的使用自定义的 query 类 [1]. 以下是官方的示例代码 1234567Session = scoped_session(sessionmaker())class MyClass(object):    query = Session.query_prop">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-26T10:51:09.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQLAlchemy 使用自定义 Query 类">
+<meta name="twitter:description" content="Session.query_property 在 SQLAlchemy 中可以使用 session 的方法query_property方便的使用自定义的 query 类 [1]. 以下是官方的示例代码 1234567Session = scoped_session(sessionmaker())class MyClass(object):    query = Session.query_prop">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mpwang.github.io/2018/05/26/sqlalchemy-custom-query/"/>
+
+
+
+
+
+  <title>SQLAlchemy 使用自定义 Query 类 | Slient Plant</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Slient Plant</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/26/sqlalchemy-custom-query/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SQLAlchemy 使用自定义 Query 类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T17:53:33+08:00">
+                2018-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/26/sqlalchemy-custom-query/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/26/sqlalchemy-custom-query/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>Session.query_property</h1>
+<p>在 SQLAlchemy 中可以使用 session 的方法<code>query_property</code>方便的使用自定义的 query 类 <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<p>以下是官方的示例代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Session = scoped_session(sessionmaker())</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></div><div class="line">    query = Session.query_property()</div><div class="line"></div><div class="line"><span class="comment"># after mappers are defined</span></div><div class="line">result = MyClass.query.filter(MyClass.name==<span class="string">'foo'</span>).all()</div></pre></td></tr></table></figure>
+<p><code>query_property</code>接收一个参数<code>cls</code>, 指定自定义的Query class (用户从<code>sqlalchemy.orm.Query</code>继承的子类), 而不是默认的Query.</p>
+<p>示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> Query</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClassQuery</span><span class="params">(Query)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></div><div class="line">    query = Session.query_property(cls=MyClassQuery)</div><div class="line"></div><div class="line"><span class="comment"># after mappers are defined</span></div><div class="line"><span class="keyword">assert</span> isinstance(MyClass.query, MyClassQuery)</div></pre></td></tr></table></figure>
+<p>以上的方法可以完成一些基本的需求, 但是问题是<code>MyClass.query</code>的类定义时和Session耦合在一起了.</p>
+<p>假如我想使用自定义的Query类, 使用query构造出查询条件后,需要应用到不同的session上
+(也许几个session代表不同的数据库连接), 这就要求<code>My Class.query</code>在定义时需要与
+Session解耦, 最后使用<code>query.with_session</code>方法将query绑定到session上应用查询.</p>
+<h1>自定义Query类, 与Session解耦</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">例子使用了__init_subclass__方法, 要求python3.6+. 3.6之前的版本需要进行相应的修改.</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> (</div><div class="line">    Column,</div><div class="line">    String,</div><div class="line">    Integer,</div><div class="line">    and_,</div><div class="line">    orm,</div><div class="line">    create_engine</div><div class="line">)</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> scoped_session, sessionmaker</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm.base <span class="keyword">import</span> class_mapper, exc <span class="keyword">as</span> orm_exc</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseQuery</span><span class="params">(orm.Query)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, with_default=False, **kwargs)</span>:</span></div><div class="line">        model_cls = self._mapper_zero().class_</div><div class="line">        <span class="keyword">if</span> with_default:</div><div class="line">            filters = model_cls._default_filters()</div><div class="line">            <span class="keyword">if</span> filters <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">                self = self.enable_assertions(<span class="keyword">False</span>).filter(filters)</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserQuery</span><span class="params">(BaseQuery)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueryPropertyMixin</span>:</span></div><div class="line">    query_cls = BaseQuery</div><div class="line">    query: BaseQuery = <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_default_filters</span><span class="params">(cls)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_query_property</span><span class="params">(query_cls)</span>:</span></div><div class="line"></div><div class="line">        <span class="class"><span class="keyword">class</span> <span class="title">query</span><span class="params">(object)</span>:</span></div><div class="line">            <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, instance, owner)</span>:</span></div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    mapper = class_mapper(owner)</div><div class="line">                    <span class="keyword">if</span> mapper:</div><div class="line">                        <span class="comment"># custom query class</span></div><div class="line">                        <span class="keyword">return</span> query_cls(mapper)</div><div class="line">                <span class="keyword">except</span> orm_exc.UnmappedClassError:</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> query()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init_subclass__</span><span class="params">(cls, **kwargs)</span>:</span></div><div class="line">        cls.query = QueryPropertyMixin._query_property(cls.query_cls)</div><div class="line"></div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base, QueryPropertyMixin)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line"></div><div class="line">    query_cls = UserQuery</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_default_filters</span><span class="params">(cls)</span>:</span></div><div class="line">        <span class="keyword">return</span> and_(</div><div class="line">            cls.name != <span class="keyword">None</span>,</div><div class="line">            cls.fullname != <span class="keyword">None</span></div><div class="line">        )</div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String)</div><div class="line">    fullname = Column(String)</div><div class="line">    password = Column(String)</div><div class="line"></div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'sqlite:///:memory:'</span>, echo=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">Session = scoped_session(sessionmaker(bind=engine))</div><div class="line"></div><div class="line">session = Session()</div><div class="line">Base.metadata.create_all(engine)</div><div class="line"></div><div class="line">session.add(User(id=<span class="number">1</span>, name=<span class="string">'name'</span>, fullname=<span class="string">'fullname'</span>))</div><div class="line">session.commit()</div><div class="line"></div><div class="line"><span class="keyword">assert</span> isinstance(User.query, UserQuery)</div><div class="line"></div><div class="line">record = User.query.filter_by(id=<span class="number">1</span>).with_session(session).one()</div><div class="line"><span class="keyword">assert</span> record.id == <span class="number">1</span></div><div class="line"></div><div class="line">query_str = User.query(with_default=<span class="keyword">True</span>)</div><div class="line"><span class="keyword">assert</span> str(query_str).find(<span class="string">'User.name IS NOT NULL'</span>)</div></pre></td></tr></table></figure>
+<p>首先定义自己的Query继承关系, BaseQuery继承<code>orm.Query</code>, 每个model如果需要有自己的特定查询类则继承BaseQuery. 在User中使用<code>query_cls</code>指定特定的查询类, 不定义则使用默认的BaseQuery.</p>
+<p>核心点在于User模型继承了<code>QueryPropertyMixin</code>, 在<code>QueryPropertyMixin</code>使用了<code>__init_subclass__</code>方法控制子类在初始化时生成<code>query</code>对象.这样<code>User.query</code>对象就与session解耦, 在之后就使用<code>with_session</code>与具体session绑定进行查询了.</p>
+<p>例子中还演示了如何在model类定义中一个default_filters, 代表某些情况中需要使用的
+filters, 方便查询特定条件的对象.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="http://docs.sqlalchemy.org/en/latest/orm/contextual.html#sqlalchemy.orm.scoping.scoped_session.query_property" target="_blank" rel="external">SQLAlchemy session query_property</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/SQLAlchemy/" rel="tag"># SQLAlchemy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/05/delete-bootcamp-win10/" rel="next" title="Mac High Sierra 彻底删除bootcamp分区">
+                <i class="fa fa-chevron-left"></i> Mac High Sierra 彻底删除bootcamp分区
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460"
+               alt="Randall Wang" />
+          <p class="site-author-name" itemprop="name">Randall Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Just another coder . Heavy Emacs user</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mpwang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/asbalckswings" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Douban
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Session.query_property</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">自定义Query类, 与Session解耦</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randall Wang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://slientplant.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://mpwang.github.io/2018/05/26/sqlalchemy-custom-query/';
+          this.page.identifier = '2018/05/26/sqlalchemy-custom-query/';
+          this.page.title = 'SQLAlchemy 使用自定义 Query 类';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://slientplant.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
