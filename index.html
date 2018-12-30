@@ -275,6 +275,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/12/31/python-replace-url-host/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/31/python-replace-url-host/" itemprop="url">How to easily replace host:port of a url</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T00:16:13+08:00">
+                2018-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/31/python-replace-url-host/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/31/python-replace-url-host/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>for python3</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlparse</div><div class="line"></div><div class="line">url = <span class="string">"http://example.com/about"</span></div><div class="line">parsed = urlparse(a)</div><div class="line">parsed = parsed._replace(netloc=<span class="string">"localhost:8000"</span>).geturl()</div><div class="line">print(parsed)</div><div class="line"><span class="comment"># 'http://localhost:8000/about'</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/26/sqlalchemy-custom-query/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2165,196 +2296,6 @@ tox</a></li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2013/08/10/using-emacs-under-mac/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randall Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Slient Plant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/08/10/using-emacs-under-mac/" itemprop="url">using emacs under mac</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-08-10T00:00:00+08:00">
-                2013-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/08/10/using-emacs-under-mac/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2013/08/10/using-emacs-under-mac/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。</p>
-<h1>安装Emacs</h1>
-<p>mac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装<a href="http://brew.sh/" target="_blank" rel="external">homebrew</a>：</p>
-<pre><code>ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;
-# --cocoa选项表示安装带图形化界面的emacs
-brew install emacs --cocoa
-</code></pre>
-<p>安装后brew会提示你可以运行一个命令将emacs 24.3版本链接到/Applications下，这样在应用程序中可以直接双击打开emacs。</p>
-<h1>Mac下的设置</h1>
-<p>使用emacs可能会遇到键位设置的问题，有些键盘上没有option键只有alt键，使用发现alt键不起作用，用来运用<code>M-x</code>的绑定变成了<code>Esc-x</code>。解决方法如下：</p>
-<p>在自带的终端下使用: 偏好设置 -&gt; 设置 -&gt; 键盘 -&gt; 勾上使用option键作为meta键</p>
-<p>在iterm2下使用:Preferences -&gt; Profiles -&gt; 选择配置文件 -&gt;　keys　-&gt;　在Left/Right option key acts 选项选择 +Esc</p>
-<p>在图形化界面下设置需要在emacs初始文件(~/.emacs.d/init.el)中加上：</p>
-<pre><code>（when (eq system-type 'darwin)
-	;; use option key as meta key
-	(setq mac-option-modifier 'meta)）
-</code></pre>
-<h1>以daemon的方式使用emacs</h1>
-<p>双击Emacs.app每次都会重新打开一个新的进程来跑emacs, 我更喜欢emacs server + emacs client的方式。用<code>emacs --daemon</code>的方式找开一个后台跑的emacs服务进程，再来emacsclient来连接。</p>
-<p>在~/.bash_profile(使用zsh的话就是~/.zshrc)中加入以下alias</p>
-<pre><code># 启动emacs后台进程
-alias emdaemon=&quot;emacs --daemon&quot;
-# 结束emacs后台进程
-alias emkill=&quot;emacsclient -e '(kill-emacs)'&quot;
-# 新建emacs窗口来编辑文件
-alias ec=&quot;emacsclient -c $@&quot;
-</code></pre>
-<p>在init.el中加上</p>
-<pre><code>(setq window-system-default-frame-alist
-  '(
-    ;; if frame created on Macintosh Cocoa display
-    (ns
-     (menu-bar-lines . 1)
-     (tool-bar-lines . nil)
-     ;; mouse
-     (mouse-wheel-mode . 1)
-     (mouse-wheel-follow-mouse . t)
-     (mouse-avoidance-mode . 'exile)
-     ;; face
-     (font . &quot;Monaco 12&quot;)
-     ;; frame size
-     (width . 96)
-     (height . 60)
-     )
-    ;; if on term
-    (nil
-     (menu-bar-lines . 0)
-     (tool-bar-lines . 0)
-     ;; (background-color . &quot;black&quot;)
-     ;; (foreground-color . &quot;white&quot;)
-     )
-    )
-  )
-</code></pre>
-<p><a href="http://emacser.com/daemon.htm" title="使用Emacs daemon" target="_blank" rel="external">Emacs中文网这篇文章</a>有更详细的介绍关于emacsclient新建frame设置的介绍。</p>
-<h1>参考文章</h1>
-<ul>
-<li><a href="http://kelly-mclaughlin.com/2012/07/27/emacs-daemon.html" target="_blank" rel="external">Setting up the Emacs daemon on OS X</a></li>
-<li><a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html" target="_blank" rel="external">Using Emacs as a Server</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2405,7 +2346,7 @@ alias ec=&quot;emacsclient -c $@&quot;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
