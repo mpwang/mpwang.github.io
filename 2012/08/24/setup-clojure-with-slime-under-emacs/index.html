@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -39,7 +39,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -73,23 +73,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Lisp,Clojure,Emacs," />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Slient Plant" type="application/atom+xml" />
+  <meta name="keywords" content="Emacs,Lisp,Clojure,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+  <link rel="alternate" href="/atom.xml" title="Slient Plant" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -97,7 +97,7 @@
 
 
 <meta name="description" content="Updated:  Swank Clojure is deprecated in favour of nrepl.el  nrepl.el on Github  Clojure Side  Clojure Leiningen  Emcas Side  Emcas (normally with SLIME installed) clojure-mode  Basically what you ne">
-<meta name="keywords" content="Lisp,Clojure,Emacs">
+<meta name="keywords" content="Emacs,Lisp,Clojure">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Setup Clojure with SLIME under Emacs">
 <meta property="og:url" content="http://mpwang.github.io/2012/08/24/setup-clojure-with-slime-under-emacs/index.html">
@@ -136,7 +136,7 @@
 
 
 
-  <link rel="canonical" href="http://mpwang.github.io/2012/08/24/setup-clojure-with-slime-under-emacs/"/>
+  <link rel="canonical" href="http://mpwang.github.io/2012/08/24/setup-clojure-with-slime-under-emacs/">
 
 
 
@@ -160,7 +160,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -170,13 +170,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Slient Plant</span>
         <span class="logo-line-after"><i></i></span>
@@ -206,7 +206,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -216,7 +216,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -226,7 +226,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -236,7 +236,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -270,20 +270,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2012/08/24/setup-clojure-with-slime-under-emacs/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randall Wang">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Slient Plant">
     </span>
 
@@ -324,8 +324,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2012/08/24/setup-clojure-with-slime-under-emacs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2012/08/24/setup-clojure-with-slime-under-emacs/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2012/08/24/setup-clojure-with-slime-under-emacs/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -358,12 +357,12 @@
 <blockquote>
 <p>Swank Clojure is deprecated in favour of nrepl.el</p>
 </blockquote>
-<p><a href="https://github.com/kingtim/nrepl.el" target="_blank" rel="external">nrepl.el on Github</a></p>
+<p><a href="https://github.com/kingtim/nrepl.el" target="_blank" rel="noopener">nrepl.el on Github</a></p>
 <hr>
 <h2>Clojure Side</h2>
 <ul>
 <li>Clojure</li>
-<li><a href="https://github.com/technomancy/leiningen" target="_blank" rel="external">Leiningen</a></li>
+<li><a href="https://github.com/technomancy/leiningen" target="_blank" rel="noopener">Leiningen</a></li>
 </ul>
 <h2>Emcas Side</h2>
 <ul>
@@ -382,8 +381,8 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
 <li>add <code>:dev-dependencies [[lein-swank &quot;1.4.4&quot;]]</code> to your project.clj</li>
 </ul>
 <h2>Setup clojure-mode</h2>
-<p>Download <a href="https://github.com/technomancy/clojure-mode" target="_blank" rel="external">clojure-mode.el</a>, place it under your emacs load path, add such line to your .emacs file.</p>
-<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="name">require</span> 'clojure-mode)</div></pre></td></tr></table></figure>
+<p>Download <a href="https://github.com/technomancy/clojure-mode" target="_blank" rel="noopener">clojure-mode.el</a>, place it under your emacs load path, add such line to your .emacs file.</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">require</span> 'clojure-mode)</span><br></pre></td></tr></table></figure>
 <p>You may install <strong>paredit</strong> and <strong>rainbow-delimiters</strong> to enhance experience for writting Clojure code with Emacs.</p>
 <h2>Start up SLIME with Clojure</h2>
 <p>Now</p>
@@ -411,11 +410,11 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
       
         <div class="post-tags">
           
+            <a href="/tags/Emacs/" rel="tag"># Emacs</a>
+          
             <a href="/tags/Lisp/" rel="tag"># Lisp</a>
           
             <a href="/tags/Clojure/" rel="tag"># Clojure</a>
-          
-            <a href="/tags/Emacs/" rel="tag"># Emacs</a>
           
         </div>
       
@@ -496,7 +495,7 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -506,10 +505,8 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460"
-               alt="Randall Wang" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460" alt="Randall Wang">
           <p class="site-author-name" itemprop="name">Randall Wang</p>
            
               <p class="site-description motion-element" itemprop="description">Just another coder . Heavy Emacs user</p>
@@ -520,7 +517,7 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -533,7 +530,7 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -619,10 +616,10 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2012 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
