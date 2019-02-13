@@ -324,6 +324,256 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2013/08/08/windowsjekyll/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2013/08/08/windowsjekyll/" class="post-title-link" itemprop="url">windows下搭建jekyll环境</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2013-08-08 00:00:00" itemprop="dateCreated datePublished" datetime="2013-08-08T00:00:00+08:00">2013-08-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-08-05 19:30:25" itemprop="dateModified" datetime="2017-08-05T19:30:25+08:00">2017-08-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2013/08/08/windowsjekyll/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/08/08/windowsjekyll/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>安装Ruby</h1>
+<p>Jekyll是基于Ruby的静态网页生成工具，使用rubyinstaller在windows下安装Ruby. <a href="http://rubyinstaller.org/downloads/" target="_blank" rel="noopener">下载链接</a>.
+在RubyInstallersArchives下选择合适的版本，64位系统选择(x64)结尾的安装文件。</p>
+<p>安装rubyinstaller到D:\Ruby200. 确保安装时在安装界面中选中添加ruby到环境变量的选项。</p>
+<h2>安装Ruby DevKit</h2>
+<p><a href="http://rubyinstaller.org/downloads/" target="_blank" rel="noopener">下载链接</a>.在Development Kit下选择合适版本。
+下回来的文件是个7z的自解压包，解压到D:\Rubydevkit. 运行</p>
+<pre><code>ruby dk.rb init
+ruby hk.rb install
+</code></pre>
+<h1>安装jekyll</h1>
+<p>理论到直接运行</p>
+<pre><code>gem install jekyll
+</code></pre>
+<p>就可以安装jekyll了，但是国内的网络环境（你懂的）可能访问不到rubygems，因为
+rubygem的服务使用了Amazon的云服务器。但是可以使用淘宝的国内镜像：<a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a>.</p>
+<pre><code>$ gem sources --remove https://rubygems.org/
+$ gem sources -a http://ruby.taobao.org/
+$ gem sources -l
+*** CURRENT SOURCES ***
+
+http://ruby.taobao.org
+# 请确保只有 ruby.taobao.org	
+</code></pre>
+<p>先用<code>gem sources -l</code>看看，有些情况下是默认使用http://rubygems.org 而不是https://rubygems.org</p>
+<pre><code>gem install jekyll
+</code></pre>
+<p>下载jekyll</p>
+<p>至此jekyll就成功安装并且可以使用了。</p>
+<h1>安装Python</h1>
+<p>Jekyll使用Pygments在高亮代码，而Pygments是基于Python的。首先安装Python, windows上选用<a href="http://portablepython.com/wiki/PortablePython3.2.1.1/" target="_blank" rel="noopener">Portable Python</a>。安装到D:\Portable_Python</p>
+<p>然后将Portable Python下的App\Scripts和App目录添加到环境变量PATH中。</p>
+<h2>安装easy install</h2>
+<p>easy install是Python库的管理软件，类似于gem对于Ruby。我们安装easy install来安装Pygments. <a href="https://pypi.python.org/pypi/setuptools/0.9.8#windows" target="_blank" rel="noopener">https://pypi.python.org/pypi/setuptools/0.9.8#windows</a>,在python官网这一节介绍中可以找到怎么在windows下安装easy installer的说明，保存<a href="https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py" target="_blank" rel="noopener">ez_setup.py</a>到本地，比如说D:\</p>
+<pre><code>python ez_setup.py
+</code></pre>
+<h2>安装Pygments#</h2>
+<pre><code>easy_install Pygments
+</code></pre>
+<h1>安装git</h1>
+<p>用jekyll写博客少不了用git啦，下载安装<a href="http://msysgit.github.io/" target="_blank" rel="noopener">msysgit</a>.把安装界面上的选项全部勾上，选项全部默认就好。</p>
+<h1>第一个模板</h1>
+<p>现在jekyll环境已经成功搭建了，下个jekyll bootstrap模板体验一下。在开始菜单中找开git bash.</p>
+<pre><code>cd /D
+git clone https://github.com/jekyllbootstrap/theme-the-program.git
+cd theme-the-program
+jekyll serve
+</code></pre>
+<p>访问http://localhost:4040</p>
+<h1>深入了解jekyll</h1>
+<p>了解jekyll的配置和各个文件的作用，这篇文章是个很好的入门：<a href="jiyeqian.github.io/2012/07/host-your-pages-at-github-using-jekyll/">基于jekyll的github建站指南</a></p>
+<h1>参考文章</h1>
+<ul>
+<li><a href="http://blog.chengyunfeng.com/?p=437" target="_blank" rel="noopener">在Windows系统配置Jekyll</a></li>
+<li><a href="jiyeqian.github.io/2012/07/host-your-pages-at-github-using-jekyll/">基于jekyll的github建站指南</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2012/08/24/setup-clojure-with-slime-under-emacs/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -593,7 +843,7 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -636,7 +886,9 @@ For lein 2.0 add such line into your global user profile <strong>.lein/profiles.
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
