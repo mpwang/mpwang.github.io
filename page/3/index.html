@@ -324,6 +324,869 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2017/09/02/python-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/09/02/python-intro/" class="post-title-link" itemprop="url">Python项目入门培训文档</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-09-02 00:42:02 / 修改时间：01:09:40" itemprop="dateCreated datePublished" datetime="2017-09-02T00:42:02+08:00">2017-09-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2017/09/02/python-intro/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/02/python-intro/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">7.5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">7 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>Intro</h1>
+<p>本篇文档是由近期给公司校招的新人（没有Python背景）准备的培训资料整理而来，学习计
+划以学员的自学为主。根据实践平均每周学员需要花费1-2天的时间，每周再加上一个小时
+跟踪和讲解相关内容。</p>
+<p>教程并不是单纯的Python语言培训，侧重点在于让新人快速参与项目开发。</p>
+<h1>Python学习计划</h1>
+<h2>受众</h2>
+<p>假定学员熟悉基本的编程概念，使用过Java/C/C++其中一门语言，有一定项目开发经验</p>
+<h2>目标</h2>
+<p>预计为期8周的阅读及学习计划，以完成每周设定的任务的方式引导学习Python语言以及
+相关开发知识，帮助学员进行Python项目开发</p>
+<p>需要完成的任务包括：</p>
+<ul>
+<li>完成参考资料的阅读（扩展阅读不作要求）</li>
+<li>完成一些具体的编程练习</li>
+<li>阅读一些库的文档并编写例子初步掌握使用</li>
+</ul>
+<h2>进度反馈及跟踪</h2>
+<p>每周会有例会跟踪进度，平时的反馈我们可以通过邮件交流</p>
+<p>randall.wjz@gmail.com</p>
+<h1>第1周 Intro</h1>
+<h2>本周目标</h2>
+<p>在开始学习Python语言的具体知识细节前了解一些背景知识，以及设置一个Python开发环境</p>
+<h2>请完成以下材料的阅读</h2>
+<h3>背景知识了解</h3>
+<ol>
+<li>
+<p>简单的Python历史介绍</p>
+<p><a href="https://www.15yan.com/story/1JKTBQvVk5e/" target="_blank" rel="noopener">人生苦短，我用Python</a></p>
+</li>
+<li>
+<p>Python语言的设计哲学</p>
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0020/" target="_blank" rel="noopener">The Zen of Python</a></li>
+<li><a href="https://wiki.python.org/moin/PythonZenChineseTranslate" target="_blank" rel="noopener">中文翻译参考</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">The Zen of Python, by Tim Peters</span><br><span class="line"></span><br><span class="line">Beautiful is better than ugly.</span><br><span class="line">Explicit is better than implicit.</span><br><span class="line">Simple is better than complex.</span><br><span class="line">Complex is better than complicated.</span><br><span class="line">Flat is better than nested.</span><br><span class="line">Sparse is better than dense.</span><br><span class="line">Readability counts.</span><br><span class="line">Special cases aren&apos;t special enough to break the rules.</span><br><span class="line">Although practicality beats purity.</span><br><span class="line">Errors should never pass silently.</span><br><span class="line">Unless explicitly silenced.</span><br><span class="line">In the face of ambiguity, refuse the temptation to guess.</span><br><span class="line">There should be one-- and preferably only one --obvious way to do it.</span><br><span class="line">Although that way may not be obvious at first unless you&apos;re Dutch.</span><br><span class="line">Now is better than never.</span><br><span class="line">Although never is often better than right now.</span><br><span class="line">If the implementation is hard to explain, it&apos;s a bad idea.</span><br><span class="line">If the implementation is easy to explain, it may be a good idea.</span><br><span class="line">Namespaces are one honking great idea -- let&apos;s do more of those!</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Python社区</p>
+<ul>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/intro/community.html" target="_blank" rel="noopener">社区</a></li>
+<li>PEP，中文翻译为Python增强提议。这个词经常在Python学习过程中看到，了解什么是PEP</li>
+<li>PSF，Python Software Foundation, Python软件基金会</li>
+<li>PyCon,
+每年社区举办的Python开发者大会，youtube上可以找到与会演讲视频</li>
+</ul>
+</li>
+<li>
+<p>了解Python2和Python3的现状</p>
+<ul>
+<li><a href="https://wiki.python.org/moin/Python2orPython3" target="_blank" rel="noopener">Should I use Python 2 or Python 3 for my development
+activity?</a></li>
+<li>Python2版本将于2020年正式停止更新维护，Python语言的未来以及最新改进在Python3版本上进行</li>
+<li>新项目应该默认使用Python3进行开发</li>
+<li>现存的大量项目以及第三库使用Python2版本，流行的Python库大多兼容Python2/3版本</li>
+<li>目前公司的项目使用Python2版本</li>
+</ul>
+</li>
+</ol>
+<h3>编程环境设置</h3>
+<ol>
+<li>
+<p>选择Python解释器</p>
+<p><a href="https://python-guide-pt-br.readthedocs.io/en/latest/starting/which-python/" target="_blank" rel="noopener">Picking an
+Interpreter</a></p>
+</li>
+<li>
+<p>安装Python</p>
+<p><a href="https://python-guide-pt-br.readthedocs.io/en/latest/starting/installation/" target="_blank" rel="noopener">Properly Installing
+Python</a></p>
+</li>
+<li>
+<p>了解pip</p>
+<p>Python的包管理工具，类比Java语言的Maven工具</p>
+<ul>
+<li><a href="https://xin053.github.io/2016/07/02/pip%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" target="_blank" rel="noopener">pip包管理器使用详解</a></li>
+<li><a href="https://pip-cn.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="noopener">文档</a></li>
+</ul>
+</li>
+<li>
+<p>IDE &amp; Editor</p>
+<p>项目组使用PyCharm进行Python开发，请下载安装并熟悉使用</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/259fdc97bfe2" target="_blank" rel="noopener">介绍</a></li>
+<li><a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">官网</a></li>
+</ul>
+<p>前端项目使用VS Code作为开发环境</p>
+<ul>
+<li><a href="https://jeasonstudio.gitbooks.io/vscode-cn-doc/content/md/%E7%BC%96%E8%BE%91%E5%99%A8/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E7%94%A8VSCode.html" target="_blank" rel="noopener">Why Visual Studio Code? -
+为什么选用VSCode</a></li>
+<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">官网</a></li>
+</ul>
+</li>
+</ol>
+<h1>编程练习</h1>
+<ul>
+<li>在本地安装设置好Python2.7开发环境</li>
+<li>使用pip安装requests库，<a href="http://docs.python-requests.org/en/master/user/install/" target="_blank" rel="noopener">参考资料</a></li>
+<li>安装并设置好PyCharm</li>
+<li>使用PyCharm建立项目，编写程序使用requests使用GET请求访问
+<a href="http://www.bing.com" target="_blank" rel="noopener">http://www.bing.com</a>
+并输出内容，<a href="http://docs.python-requests.org/en/master/user/quickstart/#make-a-request" target="_blank" rel="noopener">参考资料</a></li>
+</ul>
+<h2>扩展阅读</h2>
+<ul>
+<li><a href="http://py3readiness.org/" target="_blank" rel="noopener">Python流行的第三方库支持Python3的情况</a></li>
+<li>前端项目使用<a href="https://standardjs.com/readme-zhcn.html" target="_blank" rel="noopener">JavaScript Standard
+Style</a> 作为代码风格标准</li>
+<li><a href="https://pythonclock.org/" target="_blank" rel="noopener">pythonclock</a></li>
+</ul>
+<h1>第2周 开始Python学习</h1>
+<h2>本周目标</h2>
+<p>本周将进行为期三周的Python语言学习，每周将指定的一些练习题目，请尝试完成（来源于Python
+Koan项目）。</p>
+<p>阅读材料中将列出一些参考的Python学习教程，学员会有比较充足的时间进行自由的学习。</p>
+<h2>Python Koan项目</h2>
+<p>Python
+Koan是通过TDD进行Python学习的一个项目，<a href="https://github.com/gregmalcolm/python_koans" target="_blank" rel="noopener">项目地址</a>
+请下载并按照文档设置，注意我们使用python2文件夹下的代码</p>
+<p>每个题目都关于Python语言的一个特性，完成题目可以帮助掌握这个特性。
+如遇到题目涉及到的教程中没有提及的概念，可以跳过。 <a href="https://github.com/sourabhv/python-koans-solutions/tree/master/python3/koans" target="_blank" rel="noopener">Python Koan
+答案参考</a>
+（注意此答案使用Python3版本）</p>
+<h2>阅读材料</h2>
+<h3>快速入门</h3>
+<ul>
+<li><a href="https://stephensugden.com/crash_into_python/" target="_blank" rel="noopener">写给有经验程序员的Python入门教程</a>
+快速了解Python特性</li>
+<li><a href="https://dzone.com/refcardz/core-python" target="_blank" rel="noopener">Python 核心特性</a> Section
+1-11</li>
+</ul>
+<h3>请完成以下教程</h3>
+<ul>
+<li><a href="https://pymbook.readthedocs.io/en/py2/" target="_blank" rel="noopener">Welcome to Python for you and
+me</a> （比较简洁，PEP8
+Guidelines，Virtualenv及之后章节可跳过)</li>
+</ul>
+<h2>编程练习 | 本周的Python Koan题目</h2>
+<ul>
+<li>about~asserts~.py</li>
+<li>about~strings~.py</li>
+<li>about~none~.py</li>
+<li>about~lists~.py</li>
+<li>about~listassignments~.py</li>
+<li>about~dictionaries~.py</li>
+<li>about~stringmanipulation~.py</li>
+<li>about~tuples~.py</li>
+<li>about~methods~.py</li>
+<li>about~controlstatements~.py</li>
+<li>about~trueandfalse~.py</li>
+<li>about~sets~.py</li>
+</ul>
+<h1>第3周 继续Python Koan题目</h1>
+<h2>本周目标</h2>
+<h2>阅读材料</h2>
+<h3>请完成以下教程</h3>
+<ul>
+<li><a href="https://docs.python.org/2.7/tutorial/index.html" target="_blank" rel="noopener">Python官方入门教程</a>
+(阅读2-9章节即可)</li>
+</ul>
+<h2>编程练习 | 本周的Python Koan题目</h2>
+<ul>
+<li>about~triangleproject~.py</li>
+<li>about~exceptions~.py</li>
+<li>about~triangleproject2~.py</li>
+<li>about~iteration~.py</li>
+<li>about~comprehension~.py</li>
+<li>about~generators~.py</li>
+<li>about~lambdas~.py</li>
+<li>about~scoringproject~.py</li>
+<li>about~classes~.py</li>
+<li>about~newstyleclasses~.py</li>
+<li>about~withstatements~.py</li>
+<li>about~monkeypatching~.py</li>
+<li>about~diceproject~.py</li>
+<li>about~methodbindings~.py</li>
+</ul>
+<h1>第4周 decorator and context manager</h1>
+<h2>本周目标</h2>
+<p>相信大家对编程语言中的基于数据和基于函数的抽象都不陌生，现在来看一下Python对于基于语法的抽象的支持。</p>
+<ul>
+<li>了解Python中装饰器(decorator)的概念</li>
+<li>了解Python中上下文管理器(context manager)的概念</li>
+</ul>
+<h2>阅读材料</h2>
+<ul>
+<li><a href="https://www.cnblogs.com/vamei/archive/2013/02/16/2820212.html" target="_blank" rel="noopener">装饰器</a>
+简短介绍</li>
+<li><a href="https://www.thecodeship.com/patterns/guide-to-python-function-decorators/" target="_blank" rel="noopener">A guide to Python's function
+decorators</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/11/23/2772445.html" target="_blank" rel="noopener">上下文管理器</a>
+简短介绍</li>
+<li><a href="http://arnavk.com/posts/python-context-managers/" target="_blank" rel="noopener">Python in the real world: Context
+Managers</a></li>
+</ul>
+<h2>编程练习 | 本周的Python Koan题目</h2>
+<ul>
+<li>about~decoratingwithfunctions~.py</li>
+<li>about~decoratingwithclasses~.py</li>
+<li>about~inheritance~.py</li>
+<li>about~multipleinheritance~.py</li>
+<li>about~scope~.py</li>
+<li>about~modules~.py</li>
+<li>about~packages~.py</li>
+<li>about~classattributes~.py</li>
+<li>about~attributeaccess~.py</li>
+<li>about~deletingobjects~.py</li>
+<li>about~proxyobjectproject~.py</li>
+<li>about~proxyobjectproject~.py</li>
+<li>about~extracredit~.py</li>
+<li>about~regex~.py</li>
+</ul>
+<h2>扩展阅读</h2>
+<ul>
+<li><a href="https://pymotw.com/2/contextlib/" target="_blank" rel="noopener">标准库中的context manager工具</a></li>
+</ul>
+<h2>参考书目</h2>
+<p>学习了两个教程之后对Python语言已经有大致的了解，接下来如果需要深入学习，建议找一些严肃的书籍进行系统性的学习。</p>
+<ul>
+<li><a href="http://fwww.pythonbooks.org" target="_blank" rel="noopener">python books</a></li>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/intro/learning.html" target="_blank" rel="noopener">学习Python</a>资源</li>
+<li><a href="https://www.fullstackpython.com/best-python-resources.html" target="_blank" rel="noopener">Best Python
+Resources</a>
+Full Stack Python 本身也是很好的学习资源</li>
+</ul>
+<h1>第5周 编程风格与命令行开发</h1>
+<h2>本周目标</h2>
+<p>了解Python编程风格及命令行开发工具.</p>
+<p>Python code style 业界现在有两个标准，PEP8 以及 <a href="https://google.github.io/styleguide/pyguide.html" target="_blank" rel="noopener">Google Python Style
+Guide</a>
+项目组采用PEP8标准，对于Google Style可以稍作了解</p>
+<p>除了日常在IDE里进行Python开发，开发人员也应该掌握一些在命令行环境下进行编程和debug的技能</p>
+<h2>阅读材料</h2>
+<ul>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/writing/style.html" target="_blank" rel="noopener">代码风格</a>
+<a href="http://docs.python-guide.org/en/latest/writing/style/" target="_blank" rel="noopener">英文版</a></li>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html" target="_blank" rel="noopener">虚拟环境</a>
+virtualenv</li>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/pip-virtualenv.html" target="_blank" rel="noopener">Pip和Virtualenv的更多配置</a></li>
+<li><a href="http://pep8.org/" target="_blank" rel="noopener">PEP8</a>
+建议阅读这个美化过的排版，<a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">原版</a>地址</li>
+<li><a href="https://github.com/google/yapf" target="_blank" rel="noopener">yapf</a> Google
+出品的自动化格式代码工具，建议了解一下</li>
+</ul>
+<h3>ipython</h3>
+<ul>
+<li>
+<p><a href="https://ipython.org/" target="_blank" rel="noopener">官网</a></p>
+</li>
+<li>
+<p>作为一个交互式shell, 用来代替默认的python命令行编程环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 使用以下命令安装python2.7版本的ipython</span><br><span class="line">pip install &apos;ipython&lt;=6.0.0&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3>pdb</h3>
+<p>Python debuger, 交互式debug环境。类似于GDB</p>
+<ul>
+<li><a href="https://pymotw.com/2/pdb/index.html" target="_blank" rel="noopener">使用教程</a></li>
+</ul>
+<h3>vim</h3>
+<p>命令行环境下的编辑器</p>
+<ul>
+<li><a href="http://www.openvim.com/" target="_blank" rel="noopener">交互式的VIM简短教程</a>
+十分炫酷的简短教程，掌握日常用到的最基本操作</li>
+</ul>
+<h2>编程练习</h2>
+<p>本周没有具体的编程练习，请花一点时间熟悉一下pip/virtualenv/ipython/pdb/vim工具。</p>
+<p>编辑器/IDE是非常重要的工具，在工作过程中几乎所有的开发时间都花这上面，所以不
+论你喜欢vim/emacs/vs code/atom/sublime
+text，你应该熟悉你的编程器/IDE。花些时间去了解 你喜欢的编程器/IDE</p>
+<p>适当设置好开发环境对于提高开发效率也相当重要，有兴趣可以了解一下扩展阅读里列出的工具</p>
+<h2>扩展阅读</h2>
+<ul>
+<li><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/env.html" target="_blank" rel="noopener">你的开发环境</a>
+<a href="http://docs.python-guide.org/en/latest/dev/env/" target="_blank" rel="noopener">英文版</a></li>
+<li><a href="https://aaaaaashu.gitbooks.io/mac-dev-setup/content/index.html" target="_blank" rel="noopener">Mac
+开发配置手册</a></li>
+</ul>
+<h3>windows开发环境</h3>
+<p>个人推荐 Cygwin + ConEmu + zsh + oh-my-shell + CoreUtils</p>
+<ul>
+<li><a href="https://cygwin.com/install.html" target="_blank" rel="noopener">Cygwin</a></li>
+<li><a href="https://conemu.github.io/" target="_blank" rel="noopener">ConEmu</a></li>
+<li><a href="http://www.jeffjade.com/2015/07/29/2015-07-29-mac-musthave-software/" target="_blank" rel="noopener">终极Shell</a>
+在Cygwin环境中也可以使用zsh + oh-my-zsh</li>
+<li><a href="http://gnuwin32.sourceforge.net/packages/coreutils.htm" target="_blank" rel="noopener">CoreUtils for
+Windows</a>
+常用的liunx命令windows移植</li>
+<li><a href="http://www.jianshu.com/p/aa19380828bd" target="_blank" rel="noopener">配置豪华的 Windows 开发环境</a></li>
+</ul>
+<h1>第6周 标准库及其它</h1>
+<h2>本周目标</h2>
+<p>大概了解下Python标准库, 一些第三库/框架</p>
+<h2>阅读材料</h2>
+<h3>标准库</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/07/18/2597212.html" target="_blank" rel="noopener">Python标准库——走马观花</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/08/31/2661870.html" target="_blank" rel="noopener">Python标准库01 正则表达式
+(re包)</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/09/05/2671198.html" target="_blank" rel="noopener">Python标准库03 路径与文件 (os.path包,
+glob包)</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/09/14/2684775.html" target="_blank" rel="noopener">Python标准库04 文件管理
+(部分os包，shutil包)</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/09/23/2698014.html" target="_blank" rel="noopener">Python标准库06 子进程
+(subprocess包)</a></li>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/10/11/2720042.html" target="_blank" rel="noopener">Python标准库08 多线程与同步
+(threading包)</a></li>
+</ul>
+<h3>常用库</h3>
+<ol>
+<li>
+<p>Oslo</p>
+<p>Oslo
+是由openstack项目衍生出来的一系列python库，为openstack众多项目提供统一的公共功能。</p>
+<blockquote>
+<p>To produce a set of python libraries containing code shared by
+OpenStack projects. The APIs provided by these libraries should be
+high quality, stable, consistent, documented and generally
+applicable</p>
+</blockquote>
+<ul>
+<li><a href="https://wiki.openstack.org/wiki/Oslo" target="_blank" rel="noopener">官方Wiki Oslo库列表</a></li>
+</ul>
+<p>阅读使用和配置文档，大概了解这些包是用做什么的即可。</p>
+<ul>
+<li>oslo.cache</li>
+<li>oslo.concurrency</li>
+<li>oslo.config</li>
+<li>oslo.log</li>
+<li>oslo.policy</li>
+<li>pbr</li>
+</ul>
+</li>
+<li>
+<p>SQLAlchemy</p>
+<p>SQLAlchemy 是一个连接数据库的ORM框架 大概了解 SQLAlchemy
+的简单使用方式，不要求深入了解</p>
+<ul>
+<li><a href="https://www.sqlalchemy.org/" target="_blank" rel="noopener">官网</a></li>
+<li><a href="http://www.jianshu.com/p/e6bba189fcbd" target="_blank" rel="noopener">简单介绍</a></li>
+<li><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/0014021031294178f993c85204e4d1b81ab032070641ce5000" target="_blank" rel="noopener">简单使用教程</a></li>
+</ul>
+</li>
+</ol>
+<h1>第7周 开源工具</h1>
+<h2>本周目标</h2>
+<p>了解一些开源工具及项目开发协作相关工具</p>
+<p>由于列出的工具较多，不要求深入了解</p>
+<h2>阅读材料</h2>
+<h3>Markdown</h3>
+<p><a href="https://www.fullstackpython.com/markdown.html" target="_blank" rel="noopener">Markdown语法</a>
+平时写文档时可以使用Markdown语法</p>
+<p>示例网站 <a href="https://maxiang.io/" target="_blank" rel="noopener">https://maxiang.io/</a>
+可以看到左边为文本内容，右边为渲染后的效果。使用markdown语法，书写文档时不需
+要关心排版效果，可以专注于内容本身。</p>
+<h3>Git &amp;&amp; Gerrit</h3>
+<p>项目组使用Git进行代码版本管理，使用Git是一项必备技能。如果以前没有使用Git的
+经验，请务必花一些时间学习。</p>
+<ul>
+<li><a href="https://github.com/larrycai/sdcamp/blob/master/contents/1-chapter2-git-gerrit.markdown" target="_blank" rel="noopener">版本控制Git和代码审阅Gerrit</a></li>
+<li><a href="https://lvwzhen.gitbooks.io/git-tutorial/content/" target="_blank" rel="noopener">Git教程</a></li>
+<li><a href="https://gerrit-review.googlesource.com/Documentation/intro-quick.html" target="_blank" rel="noopener">Gerrit Code Review - A Quick
+Introduction</a></li>
+</ul>
+<h3>Jenkins &amp;&amp; CI</h3>
+<ul>
+<li><a href="https://gwpost.gitbooks.io/jenkins-the-definitive-guide/content/Introducting%20Jenkins/jie_shao.html" target="_blank" rel="noopener">Jenkins与持续集成(CI)介绍</a></li>
+</ul>
+<h3>tox</h3>
+<ul>
+<li><a href="http://wsfdl.com/python/2015/02/01/Python%E7%9A%84%E6%B5%8B%E8%AF%95%E4%B9%8BTox.html" target="_blank" rel="noopener">Python 的单元测试之
+tox</a></li>
+<li><a href="https://tox.readthedocs.io/en/latest/" target="_blank" rel="noopener">tox官网介绍</a></li>
+</ul>
+<h3>运维利器 Ansible</h3>
+<p>自动化运维工具，可以稍作了解，日常工作中可能会用到ansible工具来批量运行脚本</p>
+<ul>
+<li><a href="http://www.stay-stupid.com/?p=366" target="_blank" rel="noopener">Ansible 简介</a>
+阅读简介至ad-hoc部分即可</li>
+<li><a href="https://ansible-tran.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">Ansible中文权威指南</a>
+如果有兴趣深入了解</li>
+</ul>
+<h1>第8周 实战</h1>
+<h2>本周目标</h2>
+<p>本周为编程练习，创建一个Python项目，并编程完成要求</p>
+<p>这个项目是完成一个命令行工具，可以通过命令行调用来完成数据库表的CUDR操作</p>
+<h2>编程练习</h2>
+<h3>申请虚拟机作为开发机，要求CentOS7.2系统</h3>
+<h3>配置pip文件</h3>
+<h3>安装并配置PostgreSQL数据库</h3>
+<p>tips: 可以使用 NaviCat pgAdmin 等数据库管理工具</p>
+<p>配置数据库密码为 test123456</p>
+<p>创建database, 名称: cudr</p>
+<p>在 cudr 新建表，表名example</p>
+<p>创建 sql 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS &quot;public&quot;.&quot;example&quot;;</span><br><span class="line">CREATE TABLE &quot;public&quot;.&quot;example&quot; (</span><br><span class="line">&quot;name&quot; varchar(127) COLLATE &quot;default&quot; NOT NULL,</span><br><span class="line">&quot;code&quot; varchar(63) COLLATE &quot;default&quot; NOT NULL</span><br><span class="line">)</span><br><span class="line">WITH (OIDS=FALSE)</span><br><span class="line">;</span><br><span class="line">ALTER TABLE &quot;public&quot;.&quot;example&quot; ADD PRIMARY KEY (&quot;name&quot;);</span><br></pre></td></tr></table></figure>
+<h3>创建一个Python项目</h3>
+<p>项目名称 cudr</p>
+<p>项目结构请阅读<a href="https://pythonguidecn.readthedocs.io/zh/latest/writing/structure.html" target="_blank" rel="noopener">结构化你的工程</a>
+中仓库的结构一节，关于 Django Applications及之后的章节可跳过</p>
+<p>在 requirements.txt 文件中指定项目依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlalchemy</span><br><span class="line">click</span><br></pre></td></tr></table></figure>
+<p>使用pip安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+<ol>
+<li>
+<p>click 用于创建命令行工具</p>
+<ul>
+<li><a href="http://click.pocoo.org/5/" target="_blank" rel="noopener">官网</a></li>
+<li><a href="http://www.jianshu.com/p/d2b61a892c32" target="_blank" rel="noopener">简单使用教程</a></li>
+</ul>
+</li>
+<li>
+<p>sqlalchemy 数据库ORM工具</p>
+</li>
+</ol>
+<h3>编程</h3>
+<p>在 cudr/core.py 中完成具体的代码工作</p>
+<p>具体代码实现以及命令行使用参数的设计可以自由发挥</p>
+<p>最终效果要求可以完成类似以下功能(不要求和下面示例代码中一样)</p>
+<ul>
+<li>创建</li>
+<li>读取</li>
+<li>修改</li>
+<li>删除</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个数据库记录</span><br><span class="line">python core.py --create name1 code1</span><br><span class="line"># 读取</span><br><span class="line">python core.py --read name1</span><br><span class="line"># 修改 指定主键name1及更新的字段及字段的新值</span><br><span class="line">python core.py --update name1 name=name2</span><br><span class="line"># 删除</span><br><span class="line">python core.py --delete name2</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2017/08/26/python-refactor-patterns/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/08/26/python-refactor-patterns/" class="post-title-link" itemprop="url">Python重构代码的一些模式</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-26 22:02:56" itemprop="dateCreated datePublished" datetime="2017-08-26T22:02:56+08:00">2017-08-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-08-30 09:44:02" itemprop="dateModified" datetime="2017-08-30T09:44:02+08:00">2017-08-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2017/08/26/python-refactor-patterns/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/26/python-refactor-patterns/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以下介绍一些<code>python idiom</code>，每当你在代码库中看到以下的模式可以参照以下的建议进行重构，让代码变得更加的<code>pythonic</code>，可读性更好，更容易维护。</p>
+<p>代码示例Python版本为2.7</p>
+<h1>enumerate</h1>
+<blockquote class="blockquote-center"><p>需要使用列表的下标时，不要使用C风格的下标遍历</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lst = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DON'T</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> lst:</span><br><span class="line">    <span class="keyword">print</span> i, <span class="string">'--&gt;'</span>, lst[i]</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):</span><br><span class="line">    <span class="keyword">print</span> i, <span class="string">'--&gt;'</span>, lst[i]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DO</span></span><br><span class="line"><span class="keyword">for</span> idx, item <span class="keyword">in</span> enumerate(lst):</span><br><span class="line">    <span class="keyword">print</span> idx, <span class="string">'--&gt;'</span>, item</span><br></pre></td></tr></table></figure>
+<h1>zip/izip</h1>
+<blockquote class="blockquote-center"><p>同时遍历两个列表时，不要使用C风格的下标遍历</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lst1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">lst2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DON'T</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst1)):</span><br><span class="line">    <span class="keyword">print</span> lst1[i]</span><br><span class="line">    <span class="keyword">print</span> lst2[i]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DO</span></span><br><span class="line"><span class="keyword">for</span> lst1_item, lst2_item <span class="keyword">in</span> zip(lst1, lst2):</span><br><span class="line">    <span class="keyword">print</span> lst1_item</span><br><span class="line">    <span class="keyword">print</span> lst2_item</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BETTER</span></span><br><span class="line"><span class="comment"># 不需要在内存中生成包含lst, lst2的第三个列表</span></span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> izip</span><br><span class="line"><span class="keyword">for</span> lst1_item, lst2_item <span class="keyword">in</span> izip(lst1, lst2):</span><br><span class="line">    <span class="keyword">print</span> lst1_item</span><br><span class="line">    <span class="keyword">print</span> lst2_item</span><br></pre></td></tr></table></figure>
+<h1>unpacking tuple</h1>
+<h2>swap</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span></span><br><span class="line">y = <span class="number">-10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DON'T</span></span><br><span class="line">tmp = x</span><br><span class="line">x = y</span><br><span class="line">y = tmp</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DO</span></span><br><span class="line">x, y = y, x</span><br></pre></td></tr></table></figure>
+<h2>get element from tuple</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'cat'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DON'T</span></span><br><span class="line">foo = words[<span class="number">0</span>]</span><br><span class="line">bar = words[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DO</span></span><br><span class="line">foo, bar, _ = words <span class="comment"># 使用 _ 如果你不需要这个值</span></span><br></pre></td></tr></table></figure>
+<h1>Dict.setdefault/defaultdict</h1>
+<blockquote class="blockquote-center"><p>处理字典中key不存在时的默认值</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># group words by frequency</span></span><br><span class="line">words = [(<span class="number">1</span>, <span class="string">'apple'</span>), (<span class="number">2</span>, <span class="string">'banana'</span>), (<span class="number">1</span>, <span class="string">'cat'</span>)]</span><br><span class="line">frequency = &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DON'T</span></span><br><span class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</span><br><span class="line">    <span class="keyword">if</span> freq <span class="keyword">not</span> <span class="keyword">in</span> frequency:</span><br><span class="line">        frequency[freq] = []</span><br><span class="line">    frequency[freq].append(word)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DO</span></span><br><span class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</span><br><span class="line">    frequency.setdefault(freq, []).append(word)</span><br></pre></td></tr></table></figure>
+<p>如果你知道自己在做什么，use <a href="https://docs.python.org/2/library/collections.html#collections.defaultdict" target="_blank" rel="noopener">defaultdict</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BETTER</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line">frequency = defaultdict(list)</span><br><span class="line"><span class="keyword">for</span> freq, word <span class="keyword">in</span> words:</span><br><span class="line">    frequency[freq].append(word)</span><br></pre></td></tr></table></figure>
+<h1>Dict.iteritems</h1>
+<blockquote class="blockquote-center"><p>遍历字典</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words = &#123;<span class="string">'apple'</span>: <span class="number">1</span>, <span class="string">'banana'</span>: <span class="number">2</span>, <span class="string">'cat'</span>: <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># OK</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, words[word] <span class="comment"># 需要计算word的hash值</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GOOD</span></span><br><span class="line"><span class="keyword">for</span> word, freq <span class="keyword">in</span> words.items():</span><br><span class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, freq</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BETTER</span></span><br><span class="line"><span class="comment"># 不需要在内存中生存包含words所有元素的中间结果</span></span><br><span class="line"><span class="keyword">for</span> word, freq <span class="keyword">in</span> words.iteritems():</span><br><span class="line">    <span class="keyword">print</span> word, <span class="string">'--&gt;'</span>, freq</span><br></pre></td></tr></table></figure>
+<h1>for...else</h1>
+<blockquote class="blockquote-center"><p>break and nobreak</p>
+</blockquote>
+<p>使用<code>for...else</code>模式处理遍历列表时搜索符合某些条件的元素<code>break</code>以及搜索不到符合条件元素时的情况。</p>
+<p>有些人会认为<code>for...else</code>的语义让人迷惑所以不建议使用，但是正确地使用<code>for...else</code>模式会让代码的结构更加清晰。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># search if a word match some condition exists</span></span><br><span class="line">words = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'cat'</span>]</span><br><span class="line">condition = <span class="keyword">lambda</span> word: len(word) == <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DON'T</span></span><br><span class="line">found = <span class="keyword">False</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    <span class="keyword">if</span> condition(word):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Found'</span></span><br><span class="line">        found = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> found:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DO</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    <span class="keyword">if</span> condition(word):</span><br><span class="line">        <span class="comment"># 处理存在符合condition的元素的情况</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Found'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 处理没有符合condition元素的情况</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></span><br></pre></td></tr></table></figure>
+<p><code>else</code>在<code>for...else</code>语法里的语义是<code>如果没有break发生</code>，也即是列表被完全遍历的情况。代码清晰地分成了两部分，你可以明确地看到他们属于同一个结构。</p>
+<p><code>for...else</code>语法让人迷惑的地方就是在于<code>else</code>这个名字，根据python核心开发者Raymond Hettinger的说法，如果他们有机会回到过去修改这一语法的话，他们会将<code>else</code>修改为<code>nobreak</code>。</p>
+<p>事实上如果不需要处理搜索到符合condition元素时的情况，只需要检查符合condition元素是否存在时，使用<code>any</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">existed = any(map(condition, words))</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> existed:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Not found'</span></span><br></pre></td></tr></table></figure>
+<h1>try...except...else</h1>
+<blockquote class="blockquote-center"><p>分开异常处理与正常情况</p>
+</blockquote>
+<p><code>try...except</code>语法大家都不陌生，大多数情况下简单地使用地<code>try...except...else</code>语法将臃肿的try block重构就可以让代码的结构更加清晰，将异常处理和正常情况清晰地区分开来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_external_json</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"maybe valid json, maybe some plain text of error"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_something_with</span><span class="params">(result)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_error</span><span class="params">(e)</span>:</span></span><br><span class="line">    <span class="comment"># maybe log exception trace</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Oops'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GOOD</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    result = json.loads(get_external_json())</span><br><span class="line">    do_something_with(result)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    handle_error(e)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BETTER</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 异常可能抛出点</span></span><br><span class="line">    result = json.loads(get_external_json())</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="comment"># 异常处理</span></span><br><span class="line">    handle_error(e)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 正常情况</span></span><br><span class="line">    do_something_with(result)</span><br></pre></td></tr></table></figure>
+<p><code>try...except...else</code>这个结构清晰地区分了异常可能的抛出点，异常处理及正常情况三种情况。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2014/11/12/emcas-and-productivity/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1011,496 +1874,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2014/10/14/common-lisp-too-hard-to-love/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randall Wang">
-      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Slient Plant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2014/10/14/common-lisp-too-hard-to-love/" class="post-title-link" itemprop="url">Common Lisp - 想说爱你不容易</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2014-10-14 00:00:00" itemprop="dateCreated datePublished" datetime="2014-10-14T00:00:00+08:00">2014-10-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-08-05 19:30:25" itemprop="dateModified" datetime="2017-08-05T19:30:25+08:00">2017-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2014/10/14/common-lisp-too-hard-to-love/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/10/14/common-lisp-too-hard-to-love/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">3.8k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">3 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><em><a href="http://www.douban.com/note/227176889/" target="_blank" rel="noopener">原文</a>备份</em></p>
-<p>前阵子由阮一峰翻译出版的黑客与画家一书似乎激起了不少人对于Lisp的兴趣，出于个人兴趣开始学习Lisp有一段时间，在这里写写自己接触Lisp过程的感想。</p>
-<p>Lisp目前有两种主要的dialect: Common Lisp和Scheme。</p>
-<p>Scheme
-对于Scheme我了解不深只用过其中一种dialect: Racket一段时间。Racket有一个非常方便使用的IDE: DrRacket(它附带了很多教学包)以及非常详细的文档说明，学习期间阅读了&lt;<htdp>&gt;和&lt;<the little="" schemer="">&gt;，在了解Lisp的基本思想之后我发现Scheme很难使用(也许是我没有深入学习），来google了一些Scheme和Common Lisp的比较后，我转向了Common Lisp。</the></htdp></p>
-<h1>Welcome to Common Lisp</h1>
-<p>首先来看一下CL的实现列表，看一下还真不少啊，商业收费和免费开源都有，想当初为选择哪一个实现好纠结了一段时间。从好的方面说，有这么多的实现可以让人选择在不同环境下用不同的实现，但是这也带来了问题：社区的分化和库的通用性问题。如果不想代码只能在特定的CL实现上运行，写代码的就要考虑不同CL实现之间的通用性，真是让人头疼。</p>
-<h1>IDE</h1>
-<p>写CL用什么IDE呢？google一下你会告诉大家都用Emacs+SLIME(少部分人用Vim+SLIMV，但是我相信Lisp程序员最终还是用回到Emacs的怀抱的）。Eclipse也有CL的插件Cusp，但个人感觉并不好用。</p>
-<p>来看看典型的Common Lisp工作环境：Emacs + SLIME。
-你需要掌握：</p>
-<ol>
-<li>Common Lisp语言</li>
-<li>Common Lisp实现的特定细节 比如run time options，实现对于CL的扩展等</li>
-<li>Emacs: 包括基本操作，配置初始文件(.emcas or .emacs.d/init.el)设置好SLIME</li>
-<li>Paredit: Emcas的extension，用于方便地编辑括号与Lisp表达式</li>
-<li>SLIME: 基本操作</li>
-</ol>
-<p>好吧，并不是说Emacs不好，事实上Emcas+SLIME对于熟练的程序员来说是一个非常强力的编程环境，但是对于没有接触过Emacs的程序员来说，在学习CL的过程中就要同时学习使用Emacs，当然长期来说是有好处，但是这么陡峭的学习曲线已经足于让大多数初学者望而止步。</p>
-<p>在这里要提一下，CL是一种比较verbose的语言，有些函数名像multiple-value-bind destructuring-bind是相当的长，没有好的编辑器支持补全功能的话会容易写错。如果没有自动缩进功能的话，lisp code写起来是相当痛苦的。</p>
-<h1>Modern Features</h1>
-<p>Lisp是一门相当古老的语言，资深的Common Lisper会告诉你X语言的Y特性可以在Lisp中找到或者通过Z的方式用Lisp实现，但是不可否认的是Common Lisp语言本身缺少对一些现今重要的编程概念/工具的支持。</p>
-<p>Common Lisp是在94年完成了标准化，标准给具体的实现留下了相当大的空间，Network programming、Thread、GUI都没有覆盖到。也有人说委员会决定了能够经得起时间考验的核心部分，这些个随时间变动的部分就留给具体的实现。当然这些都可以通过库来支持，但是问题也随之而来，不同的实现+不同的库的选择无疑给程序员带来了难题。(支持不同实现的网络编程库有USOCKET,支持不同实现的线程库有bordeaux-threads，当然它们也不是100% portable的)</p>
-<p>由于历史原因，Common Lisp没有在不同的数据结构之间建立一个统一的抽象，因为一开始CL中所有的数据结构都是用List实现的(Use Lists For Everything - ULFE)。CL有两套分别用于List和Vector的函数，一套用于Sequence抽象(List/Vector/String)的函数，一套用于hash-table的函数。在提供不同数据结构统一的抽象这一点上Clojure做得非常好。</p>
-<p>缺少字面值hash-table(可以通过reader macro在某种程度上实现)，用过Javascript和Clojure的应该都明白它的强大之处，最近Java7也加入了类似的功能。</p>
-<h1>Library &amp; Hacker Culture</h1>
-<p>许多关于CL的抱怨都是关于库的，CL库的数量比较少(相比于Java/C/C++这些主流语言)，而且大多数库都是poor-documented的，缺少详细的说明和例子。写高质量文档对于程序员来说不是件简单轻松的事，而且CL作为一种冷门语言市场上没有太多职位提供给CL程序员，所以也就没有那么人能够得到金钱支持或贡献个人时间来写免费开源的库。我一直听到有人说Lisp是多么多么强大，是的，Lisp非常强大，我知道，但是如果一种编程语言不能容易地与外部世界打交道的话，It doesn't make sense.</p>
-<p>举个例子，用Common Lisp来做XML处理，上Cliki找一下发现有不少啊，我应该用哪一个呢？随便点开看看，发现大多数文档中API的说明不太清楚。而且不是资深的CLer的话也缺少相应的知识来回答下面的问题：哪个库更好？这个库可不可以信任？它有没有bugs? 性能怎么样？它是在活跃的开发中还是已经停止维护了(dead-project)？</p>
-<p>为什么会样子，这个现象也与Lisp的Hacker文化有关。Lisp是给Hacker准备的语言，它的强大力量只会在越过了陡峭的学习曲线的某一点后显示出来。因为Common Lisp的表达能力是这么的强大几个人甚至一个smart guy单枪匹马就能够写出足够复杂的程序来，所以大规模的CL hacker合作项目比较少。结果就是每个Hacker都有自己的solution,开发者开发它用来解决的自己工作项目的特定问题，后来开源出来了并不代表它适用于其它用户。Common Lisp的强大反而阻碍了库的标准化，而且Common Lisp也没有类似CPAN for Perl这样的东西存在。</p>
-<p>QuickLisp的出现是一个福音，能够解决库的依赖问题以及自己下载相应的库，目前有700个上下的库。</p>
-<p>Reddit.com讲述了他们从Common Lisp迁移到Python上的原因，主要也是缺少库的问题。</p>
-<h1>Advantages</h1>
-<p>在克服了这么多困难之后，你还是选择了Common Lisp，有什么好处呢？</p>
-<h2>Macro</h2>
-<p>Common Lisp的强大的Macro会让你轻松的扩展CL本身来迎合自己的需求，最终形成一个用来解决你的特定问题的DSL。Lisp语言的Macro提供了语法层次上的抽象，让你可以将反复在程式上出现的模式抽象出来，这也是Lisp强大以及和其它语言区分开来的一个原因。</p>
-<h2>多范式</h2>
-<p>Common Lisp的多范式编程可以让你自由地表达自己思想，指令式编程？没有问题，面向对象？没有问题，函数式编程？没有问题，混合着一起使用都没有问题。</p>
-<h2>REPL（Read-Evaluate-Print-Loop)</h2>
-<p>Lisp为人津津乐道的功能就是它的快速原型开发， 为什么快，因为它全程提供了一个REPL环境，在编译型语言中你需要经历写代码-编译-运行-试错-修改-编译...的流程，而在Lisp语言中你可以实时地更新代码，基本是一边写代码一边在ＲＥＰＬ中测试然后马上修改然后马上得到新的程序然后继续试验，从编写代码到看到代码的输出的循环是如此的短以至于它极高的提高了程序员的生产率（当然这只是理想情况），read-time compile-time run-time基本上是没有区别的（对于macro来说read-time与compile-time有所区别，这里不详谈），这就是用Lisp能够快速开发出软件原型的原因。PG在这篇被CLer反复提到的文章(Beating the Averages)中提到他开发ViaWeb的故事，Common Lisp就是它的秘密武器。可能最后你的程序会迁移到其它语言/平台上，但是你可以快速地构建出软件的雏形。</p>
-<h1>End</h1>
-<p>Common Lisp真的是让人又爱又恨，不过就算不用CL学习它也用对你有所帮助。新技术层出不穷，而Common Lisp会继续稳定地保持下去，它会继续被用于人工智能领域，研究机构，用于解决复杂度非常高的问题，大公司开发的内部工具。然而对于一般的程序员来说，想用Common Lisp作为自己的首要编程语言真的不太容易。在过去50多年的历史Lisp都没能流行起来，未来也许也不会流行起来。如果问哪种Lisp dialect有可能流行起来的话，Clojure 应该就是其中的佼佼者，作为一门新兴的语言它正在吸引越来越多人的眼光，许多人选择它的程序员有着Rudy/Python/Java/Common Lip的背景，基于JVM平台得益于java ecosystem它天生就解决了库的问题。</p>
-<p>PS：对于common lisp还有building system和deployment/delivery的问题没有谈，因为没有用CL做过实际项目这些并不了解，但是也知道其中也有被人诟病的地方。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2013/08/10/using-emacs-under-mac/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randall Wang">
-      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Slient Plant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2013/08/10/using-emacs-under-mac/" class="post-title-link" itemprop="url">using emacs under mac</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2013-08-10 00:00:00" itemprop="dateCreated datePublished" datetime="2013-08-10T00:00:00+08:00">2013-08-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-08-05 19:30:25" itemprop="dateModified" datetime="2017-08-05T19:30:25+08:00">2017-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2013/08/10/using-emacs-under-mac/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/08/10/using-emacs-under-mac/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.8k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">2 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在mac下折腾了emacs有一段时间了，写点经验分享一下，顺便一提，mac下cocoa应用全局的emacs按键绑定太舒服了。</p>
-<h1>安装Emacs</h1>
-<p>mac默认安装了emacs的，不过版本比较旧(22.x)，而且只能在终端下使用，这里选用homebrew来安装Emacs, 首先安装<a href="http://brew.sh/" target="_blank" rel="noopener">homebrew</a>：</p>
-<pre><code>ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;
-# --cocoa选项表示安装带图形化界面的emacs
-brew install emacs --cocoa
-</code></pre>
-<p>安装后brew会提示你可以运行一个命令将emacs 24.3版本链接到/Applications下，这样在应用程序中可以直接双击打开emacs。</p>
-<h1>Mac下的设置</h1>
-<p>使用emacs可能会遇到键位设置的问题，有些键盘上没有option键只有alt键，使用发现alt键不起作用，用来运用<code>M-x</code>的绑定变成了<code>Esc-x</code>。解决方法如下：</p>
-<p>在自带的终端下使用: 偏好设置 -&gt; 设置 -&gt; 键盘 -&gt; 勾上使用option键作为meta键</p>
-<p>在iterm2下使用:Preferences -&gt; Profiles -&gt; 选择配置文件 -&gt;　keys　-&gt;　在Left/Right option key acts 选项选择 +Esc</p>
-<p>在图形化界面下设置需要在emacs初始文件(~/.emacs.d/init.el)中加上：</p>
-<pre><code>（when (eq system-type 'darwin)
-	;; use option key as meta key
-	(setq mac-option-modifier 'meta)）
-</code></pre>
-<h1>以daemon的方式使用emacs</h1>
-<p>双击Emacs.app每次都会重新打开一个新的进程来跑emacs, 我更喜欢emacs server + emacs client的方式。用<code>emacs --daemon</code>的方式找开一个后台跑的emacs服务进程，再来emacsclient来连接。</p>
-<p>在~/.bash_profile(使用zsh的话就是~/.zshrc)中加入以下alias</p>
-<pre><code># 启动emacs后台进程
-alias emdaemon=&quot;emacs --daemon&quot;
-# 结束emacs后台进程
-alias emkill=&quot;emacsclient -e '(kill-emacs)'&quot;
-# 新建emacs窗口来编辑文件
-alias ec=&quot;emacsclient -c $@&quot;
-</code></pre>
-<p>在init.el中加上</p>
-<pre><code>(setq window-system-default-frame-alist
-  '(
-    ;; if frame created on Macintosh Cocoa display
-    (ns
-     (menu-bar-lines . 1)
-     (tool-bar-lines . nil)
-     ;; mouse
-     (mouse-wheel-mode . 1)
-     (mouse-wheel-follow-mouse . t)
-     (mouse-avoidance-mode . 'exile)
-     ;; face
-     (font . &quot;Monaco 12&quot;)
-     ;; frame size
-     (width . 96)
-     (height . 60)
-     )
-    ;; if on term
-    (nil
-     (menu-bar-lines . 0)
-     (tool-bar-lines . 0)
-     ;; (background-color . &quot;black&quot;)
-     ;; (foreground-color . &quot;white&quot;)
-     )
-    )
-  )
-</code></pre>
-<p><a href="http://emacser.com/daemon.htm" title="使用Emacs daemon" target="_blank" rel="noopener">Emacs中文网这篇文章</a>有更详细的介绍关于emacsclient新建frame设置的介绍。</p>
-<h1>参考文章</h1>
-<ul>
-<li><a href="http://kelly-mclaughlin.com/2012/07/27/emacs-daemon.html" target="_blank" rel="noopener">Setting up the Emacs daemon on OS X</a></li>
-<li><a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html" target="_blank" rel="noopener">Using Emacs as a Server</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1550,7 +1923,7 @@ alias ec=&quot;emacsclient -c $@&quot;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
