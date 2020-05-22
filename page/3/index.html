@@ -324,6 +324,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/05/construct-sql/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/05/construct-sql/" class="post-title-link" itemprop="url">如何使用sqlalchemy构造SQL语句</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-05 18:14:23 / 修改时间：22:03:44" itemprop="dateCreated datePublished" datetime="2018-05-05T18:14:23+08:00">2018-05-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/05/05/construct-sql/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/05/05/construct-sql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.8k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>sqlalchemy作为ORM层工具可以方便地编程式操作数据库, 但有时与外部系统交互时需要生成raw sql语句, 利用sqlalchemy可能方便地动态构造成sql语句.</p>
+<p>假设我们有两个类代表User, Address两张表.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"></span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'users'</span></span><br><span class="line"></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String)</span><br><span class="line">    fullname = Column(String)</span><br><span class="line">    password = Column(String)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'addresses'</span></span><br><span class="line"></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    email_address = Column(String, nullable=<span class="keyword">False</span>)</span><br><span class="line">    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</span><br><span class="line"></span><br><span class="line">    user = relationship(<span class="string">"User"</span>, lazy=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<p>利用<code>Query</code>构造生需要的语句, 使用<code>compile</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>输出query代表的sql语句.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> Query</span><br><span class="line"></span><br><span class="line">filters = &#123;<span class="string">'user_id'</span>: <span class="number">1</span>&#125;</span><br><span class="line">query = Query(Address).filter_by(**filters)</span><br><span class="line">query = query.statement.compile(compile_kwargs=&#123;<span class="string">'literal_binds'</span>: <span class="keyword">True</span>&#125;)</span><br><span class="line"><span class="keyword">print</span> query</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT addresses<span class="selector-class">.id</span>, addresses<span class="selector-class">.email_address</span>, addresses<span class="selector-class">.user_id</span>, users_1<span class="selector-class">.id</span>, users_1<span class="selector-class">.name</span>, users_1<span class="selector-class">.fullname</span>, users_1.password</span><br><span class="line">FROM addresses LEFT OUTER JOIN users AS users_1 ON users_1<span class="selector-class">.id</span> = addresses<span class="selector-class">.user_id</span> </span><br><span class="line">WHERE addresses<span class="selector-class">.user_id</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>注意输出中包含了<code>Address.user</code>字段代表的join操作, 如果不需要这些字段可以<code>lazyload</code><sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>取消.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> lazyload</span><br><span class="line"></span><br><span class="line">filters = &#123;<span class="string">'user_id'</span>: <span class="number">1</span>&#125;</span><br><span class="line">query = Query(Address).filter_by(**filters)</span><br><span class="line">query = query.options(lazyload(<span class="string">'*'</span>))</span><br><span class="line">query = query.statement.compile(compile_kwargs=&#123;<span class="string">'literal_binds'</span>: <span class="keyword">True</span>&#125;)</span><br><span class="line"><span class="keyword">print</span> query</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT addresses<span class="selector-class">.id</span>, addresses<span class="selector-class">.email_address</span>, addresses.user_id</span><br><span class="line">FROM addresses </span><br><span class="line">WHERE addresses<span class="selector-class">.user_id</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="http://docs.sqlalchemy.org/en/latest/faq/sqlexpressions.html#how-do-i-render-sql-expressions-as-strings-possibly-with-bound-parameters-inlined" target="_blank" rel="noopener">How do I render SQL expressions as strings, possibly with bound parameters inlined?</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="http://docs.sqlalchemy.org/en/latest/orm/loading_relationships.html#controlling-loading-via-options" target="_blank" rel="noopener">Controlling Loading via Options</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2017/09/02/python-intro/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1650,230 +1852,6 @@ tox</a></li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2014/10/15/chitchat---way-to-programming/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randall Wang">
-      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Slient Plant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2014/10/15/chitchat---way-to-programming/" class="post-title-link" itemprop="url">编程的技艺, 禅与道</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2014-10-15 00:00:00" itemprop="dateCreated datePublished" datetime="2014-10-15T00:00:00+08:00">2014-10-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-08-05 19:30:25" itemprop="dateModified" datetime="2017-08-05T19:30:25+08:00">2017-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2014/10/15/chitchat---way-to-programming/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/10/15/chitchat---way-to-programming/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">4.3k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">4 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><em><a href="http://www.douban.com/note/383111983/" target="_blank" rel="noopener">原文</a>备份</em></p>
-<h1>风潮</h1>
-<p>题目起得很大,实则谈的只是一点个人的随想. 首先要说文中并不过多涉及技术细节, 本人更不是什么大牛, 只是浅谈自己的一些不成熟并带有个人色彩的认识, 难免会有偏颇之处. 说得不对说得不好, 不要削我.</p>
-<p>现在似乎有一股风潮(或者说近来有越吹越烈的趋势?), 与计算机, 软件开发或编程相关的事物有时会带上一些有宗教或艺术色彩的文字.
-来看看一些例子:</p>
-<ul>
-<li>流行的Javascript框架: Dojo(道场)</li>
-<li>流行的PHP框架: Zend PHP(阿维斯陀经注解, 网上解释这是波斯琐罗亚斯德教的圣书, 不太知道应该怎么翻译)</li>
-<li>来自外星人科技Lisp家族的杰作: 编程语言Qi(气)以及他的后继者Shen(神)</li>
-<li>网站设计领域的著名网站: CSS Zen Garden(CSS禅意花园)</li>
-<li>在寓言中暗喻程序员修仙之道的好书: The Tao of programming(编程之道)</li>
-<li>硅谷创业之父Paul Graham文集, 畅销书: 黑客与画家</li>
-<li>计算机领域中当之无愧的传世经典, 被有些好玩的程序员供起来上香奉养的神书: The Art of Computer Programming(计算机程序设计艺术)</li>
-</ul>
-<p>他们起这些名字难道是因为名字带上了宗教与艺术相关的词汇之后显得高大上(可以提升逼格)? 答案肯定是否定的. 以上的例子都是饱含智慧结晶的杰作, 不是随随便便被创作出来. 他们的作者似乎都认为编程是一门技艺, 到了相当的程度之后已经是一种境界一种艺术, 追求的事物用中国文化中代表无上境界的文字来说就是: 禅与道. 不闻乎古人有言: 技可进乎道, 艺可通乎神.</p>
-<p>曾经看过MIT关于SICP的远古上课视频, 记忆深刻的是在第一课上那个教授在黑板上写下大大的两个单词: Computer Science, 然后回过头来对学生们说了一句话, 大意是We are going to learn computer science, but it's not about computer and not about science. 那么究竟是about what? 这么深奥的说法今天还是无法参透啊, 但是可以作为类比吧, 编程究竟又是关于什么的呢. 编程也不仅仅是像程序们自嘲的那样: 我们程序员只是IT民工, 工地搬砖的. 即使是搬砖的, 还是可以有点小追求的.</p>
-<p>在围棋领域中说棋士追求下棋的境界, 人们不会觉得那是他们在扯谈, 而画画, 写作, 作诗, 编曲更是直接与艺术挂钩了. 即使在工程学领域, 作为外行人也曾听闻建筑学上有&quot;建筑是凝固的音乐&quot;这一说法. 它们都有一个共同点, 那就是它们都是一种创造性活动. 而编程作为一种创造性活动, 也是一门技艺. 想写出让人赞叹的程序需要有高超的技巧以及相当的审美观, 如何组织程序, 写出优美的代码, 处理问题逻辑, 考虑系统架构, 设计解决方案就好像画家画画, 作家写书, 同样需要有创造性与灵感以及问题领域的专业知识, 充满挑战与乐趣, 可以称作是工程与美学的结合. 而软件开发更是关于方法论与如何组织人的活动的学问, 研究的是比较玄乎的东西, 不是硬梆梆冷冰冰的计算机硬件. 不同于建筑学此等可以用百年为单位来计数有着悠久历史的学科, 编程或者说是软件开发作为一个行业的历史比较短, 毕竟计算机的大规模普及也只是近代的事情. 关于软件开发没有人知道什么方式是最好的, 所有人都在摸索中前进. 与木匠厨师等职业的经验类似, 前人总结的best practice都是在实践中累积下来的经验之谈, 关于怎么开发软件与编程没有最好的定式, 只有合适实用与否之分. 你没见过厨师做菜的时候切菜要精确到厘米, 下佐料要精确毫克的吧, 即使是有, 这样做出来的菜可以适应不同的食材, 满足不同人的口味吗?</p>
-<p>既然编程是一门技艺, 那么就可以去追求它. 在提升思维质量以及累积领域特定的专业知识之外, 编程这个活动还带有强烈的个人色彩, 其中有得审美因素的影响. 在大量的实践与博识之后, 在编程中就会带上个人的品味. 而品味的形成又会促使技艺的提高, 毕竟口味变刁了, 就会对代码有种精神洁癖或者变成细节控, 逼使自己去让程序变得更符合自己的审美, 在打磨的过程中让程序的品质得到提高. 所以要提高自己的技艺就要努力地形成以及提高自己的品味, 而品味的形成离不开大量的实践与广泛的见识. 写程序与写书本质上非常类似, 不同的是用的是编程语言而不是自然语言. 说起编程语言为什么叫做语言呢, 那是因为在计算机的虚拟世界里, 程序员们在用一种机器可以理解的&quot;语言&quot;来和计算机交流, 告诉他外面的世界是怎么样的, 想要让机器如何运作, 自由地进行创造, 所以称作为&quot;语言&quot;. 但是随着计算机性能的提高以及编译器理论的发展, 在离开与硬件紧密相连的领域, 现在的程序员越来越重视代码的可读性, 编程有着社交属性, 代码还是写给人看的, 翻译成机器指令的工作就交给编译器.</p>
-<p>程序员是工程师, 是problem solver, 问题解决者. 编程员使用工具, 创造工具, 开发软件, 解决问题. 在选择什么工具, 如何创造工具, 如何开发软件, 怎么解决问题的过程中不可避免因为各自审美观与方法论的不同, 各自的答案就会带上个人色彩, 程序员圈子存在着的许多争论就因此而生. 说起来程序员在某些问题上立场鲜明, 与现实中不同党派的支持者政见不同非常类似. 最出名的莫过于Vi与Emacs哪个是最好编辑器之争(顺利一提我是Emacs党, 这篇文章就是在Emacs下写的), 最常见的就各种编程语言支持者之间的争论, 还有类unix vs. Windows, 各种IDE, 解决同个问题的不同库之间的争论等等, 程序员的圈子多姿多彩, 很热闹的啊.</p>
-<p>程序员都是高级的工具使用者与方法论者, 个人觉得实践出真知, 程序员应该抱着实用主义的心态, 不人云亦云地去盲目迷信某种方法论与崇拜某种工具. 在这里说一说个人的一些看法:</p>
-<h1>大规模应用要用云服务器</h1>
-<p>现在这个云服务器概念非常热门, 谷歌的GAE和亚马逊的AWS就不用说了, 国内的大互联网公司都在开展自己的云服务器服务(新浪云, 阿里云, 腾讯云, 百度云, 就连京东也来掺一脚). 但是不是现在大规模的应用和网站就得要用云服务器了? It depends. 提供一个<a href="http://highscalability.com/blog/2014/7/21/stackoverflow-update-560m-pageviews-a-month-25-servers-and-i.html" target="_blank" rel="noopener">例子</a>, StackExchange由100多个网站构成，其中包括了Alexa排名第54的StackOverflow(相信这个网站不会陌生)。StackExchang有400万用户，每月5.6亿PV，但只用25台服务器. 它的Windows服务器运行的操作系统版本是Windows 2012 R2，Linux服务器运行Centos 6.4.
-5.6亿PV, 25台服务器, 其中有11台运行的Web服务器是微软的IIS. 好像现在一提Web服务器就想起Apache和Nginx, 微软家的IIS不太受欢迎, 但是SO的例子还是说IIS很好用的.</p>
-<h1>设计模式很牛逼</h1>
-<p>听说面试经常会问到? 诚然了解各种设计模式的概念并在合适的地方使用它是有益的. 但是反对将它捧得太高, 在代码中为了用它而用它, 好像用了设计模式代码就闪闪发光, 品质立马提高. 了解设计模式之后, 反而会破除对它的迷信. 可能有人会提<a href="http://coolshell.cn/articles/3320.html" target="_blank" rel="noopener">JDK源码里面用了23种设计模式的例子</a>来支持使用设计模式, 但是个人觉得如果你同时了解Java和设计模式, 你就会发现设计模式的使用正是因为Java这种语言比较冗余缺乏表达力, 所以需求显式地使用设计模式来弥补它的不足. 谷歌的研究主管Peter Norvig在一篇1998年的<a href="http://norvig.com/design-patterns/" target="_blank" rel="noopener">文章</a>中就讨论了动态语言中设计模式, 你可以看到在表达能力比较强的动态语言(还可以推广到一些强类型的函数式语言)中有些设计模式已经被隐式地包含了, 不需要显式地去使用它. 但是理解各种设计模式的概念能够让你在代码中将它们识别出来, 并在必要的合适的地方使用它们来绕过语言的缺憾来达到目的. 就像Head First Design pattern一书说的, 不能去强行修改代码来迎合某种设计模式. 八封一下, 王垠大神在博客中也有说过每当他在代码中清除一个设计模式, 他的代码就变得更加简洁, 更加容易理解(此等境界, 目前仰望中).</p>
-<h1>哪种编程语言最好</h1>
-<p>各种争论之中, 编程语言之争好像是最激烈的, 到处都可以看到不同语言之间的支持者在掐架. 我是right tool for the right job的支持者, 我不会用C来写生成动态网页的程序, 也不会用Haskell来做系统管理的任务. 如果有一种编程语言是最好的, 那一种编程语言就足够了, 那为什么会有这么多编程语言, 而且新语言还在不停地诞生? 近来比较热门的新语言有Go, Rust, JVM平台上的Ceylon, 编译成C的Nimrod, Erlan平台(BVM)上的Elixir. 答案就是没有最好的编程语言, 只有合适的编程语言. 要完成特定的任务就选用特定的语言与相应的工具. 新语言的出现是因为编程语言的理论研究(像新的类型系统)在发展, 程序员的需求在同样也变化, 而越是热门的语言变化就越慢, 当有人感到现在的语言满足不了需要时, 新的编程语言就被创造出来. 多了解几门语言之后就会发现, 类似的编程概念与经验在各种语言之间是相通的, 不同是各种编程语言各自独有的特性与概念. 八卦一下垠神在博客中有说过他不羡慕各种编程语言的特性, 因为他了解背后编译器是怎么实现它们的, 如果他想要他就可以做出来. 他貌似写过很多编译器当乐趣消遣. 他最近加入了<a href="http://sourcegraph.com/" target="_blank" rel="noopener">sourcegraph</a>, 其中对Python/Ruby代码的分析就是以他的工作为基础的.</p>
-<h1>敏捷开发</h1>
-<p>推荐<a href="http://coolshell.cn/articles/3745.html" target="_blank" rel="noopener">一篇陈皓的文章</a>. 在我离开之前的公司时, 公司内部有着推广敏捷开发的氛围, 各种各样的讲座,分享会, 在团队内部推行daily stand-up meeting, 但是即使是使用了scrum, story, rapid iteration等概念, 实际工作中字官僚主义横行, 项目的流程还是老一套的样子, 只学其形不见其真意. 个人就不多说, 只想说方法论只是方法论, 能不能够真正去使用这种哲学做出好东西来才是重点. 原教旨主义绝对不可取.</p>
-<p>作为一个普通的程序员, 想成为一个好的程序员还有太多东西需要学习啊.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1923,7 +1901,7 @@ tox</a></li>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2047,7 +2025,7 @@ tox</a></li>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

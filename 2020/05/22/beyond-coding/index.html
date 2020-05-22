@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1. &amp;#x4EE3;&amp;#x7801;&amp;#x4E4B;&amp;#x5916;&amp;#x7684;&amp;#x529F;&amp;#x592B;  2. &amp;#x4FE1;&amp;#x606F;&amp;#x7684;&amp;#x4FE1;&amp;#x566A;&amp;#x6BD4;  3. &amp;#x63D0;&amp;#x9AD8;&amp;#x641C;&amp;#x7D22;&amp;#x4FE1;&amp;#x606F;&amp;#x7684;&amp;#x6548;&amp;#x7387;  4. &amp;#">
+<meta name="keywords" content="Python,生产力">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码之外的功夫">
+<meta property="og:url" content="http://mpwang.github.io/2020/05/22/beyond-coding/index.html">
+<meta property="og:site_name" content="Slient Plant">
+<meta property="og:description" content="1. &amp;#x4EE3;&amp;#x7801;&amp;#x4E4B;&amp;#x5916;&amp;#x7684;&amp;#x529F;&amp;#x592B;  2. &amp;#x4FE1;&amp;#x606F;&amp;#x7684;&amp;#x4FE1;&amp;#x566A;&amp;#x6BD4;  3. &amp;#x63D0;&amp;#x9AD8;&amp;#x641C;&amp;#x7D22;&amp;#x4FE1;&amp;#x606F;&amp;#x7684;&amp;#x6548;&amp;#x7387;  4. &amp;#">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://mpwang.github.io/2020/05/22/beyond-coding/2020-05-22_17-02-15_6386ebc5477f7d735f01e8791183620c_b.jpg">
+<meta property="og:updated_time" content="2020-05-22T10:44:59.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码之外的功夫">
+<meta name="twitter:description" content="1. &amp;#x4EE3;&amp;#x7801;&amp;#x4E4B;&amp;#x5916;&amp;#x7684;&amp;#x529F;&amp;#x592B;  2. &amp;#x4FE1;&amp;#x606F;&amp;#x7684;&amp;#x4FE1;&amp;#x566A;&amp;#x6BD4;  3. &amp;#x63D0;&amp;#x9AD8;&amp;#x641C;&amp;#x7D22;&amp;#x4FE1;&amp;#x606F;&amp;#x7684;&amp;#x6548;&amp;#x7387;  4. &amp;#">
+<meta name="twitter:image" content="http://mpwang.github.io/2020/05/22/beyond-coding/2020-05-22_17-02-15_6386ebc5477f7d735f01e8791183620c_b.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Slient Plant" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://mpwang.github.io/2020/05/22/beyond-coding/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>代码之外的功夫 | Slient Plant</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Slient Plant</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2020/05/22/beyond-coding/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">代码之外的功夫
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-22 16:53:11 / 修改时间：18:44:59" itemprop="dateCreated datePublished" datetime="2020-05-22T16:53:11+08:00">2020-05-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2020/05/22/beyond-coding/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/22/beyond-coding/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">10k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">9 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="content">
+<div class="tabs" id="org-toc" style="font-size: 12px;">
+<ul class="nav-tabs">
+<li class="tab">
+<a class="btn" href="#tab-org98ea780">1. &#x4EE3;&#x7801;&#x4E4B;&#x5916;&#x7684;&#x529F;&#x592B;</a></li>
+<li class="tab">
+<a class="btn" href="#tab-orgbb99c9c">2. &#x4FE1;&#x606F;&#x7684;&#x4FE1;&#x566A;&#x6BD4;</a></li>
+<li class="tab">
+<a class="btn" href="#tab-org44c6b0e">3. &#x63D0;&#x9AD8;&#x641C;&#x7D22;&#x4FE1;&#x606F;&#x7684;&#x6548;&#x7387;</a></li>
+<li class="tab">
+<a class="btn" href="#tab-org6a38103">4. &#x77E5;&#x8BC6;&#x7EC4;&#x7EC7;&#x7684;&#x6B65;&#x9AA4;</a></li>
+<li class="tab">
+<a class="btn" href="#tab-orgb3efd48">5. &#x5584;&#x7528;&#x5DE5;&#x5177;</a></li>
+<li class="tab">
+<a class="btn" href="#tab-orge7f417e">6. &#x5B66;&#x4E60;</a></li>
+</ul><div class="tab-content">
+<div class="tab-pane" id="tab-org98ea780">
+<ul>
+<a href="#org98ea780">1. &#x4EE3;&#x7801;&#x4E4B;&#x5916;&#x7684;&#x529F;&#x592B;</a></ul>
+</div>
+<div class="tab-pane" id="tab-orgbb99c9c">
+<ul>
+<a href="#orgbb99c9c">2. &#x4FE1;&#x606F;&#x7684;&#x4FE1;&#x566A;&#x6BD4;</a><li>
+<a href="#org16fdfa6">2.1. &#x4FE1;&#x606F;&#x4E0D;&#x518D;&#x8D2B;&#x4E4F;</a></li>
+<li>
+<a href="#org684331b">2.2. &#x8BA4;&#x77E5;&#x79D1;&#x5B66;: &#x5927;&#x8111;&#x7684;&#x4E3B;&#x52A8;&#x8BC6;&#x522B;&#x6A21;&#x5F0F;</a></li>
+<li>
+<a href="#org9edd2ba">2.3. &#x63D0;&#x9AD8;&#x4FE1;&#x606F;&#x6765;&#x6E90;&#x7684;&#x8D28;&#x91CF;</a></li>
+<li>
+<a href="#orgec51a64">2.4. &#x9AD8;&#x8D28;&#x91CF;&#x7684;&#x4FE1;&#x606F;&#x6765;&#x6E90;</a></li></ul>
+</div>
+<div class="tab-pane" id="tab-org44c6b0e">
+<ul>
+<a href="#org44c6b0e">3. &#x63D0;&#x9AD8;&#x641C;&#x7D22;&#x4FE1;&#x606F;&#x7684;&#x6548;&#x7387;</a><li>
+<a href="#orga3ed141">3.1. &#x65F6;&#x4EE3;&#x7684;&#x6539;&#x53D8;</a></li>
+<li>
+<a href="#org402606c">3.2. &#x6B63;&#x786E;&#x5730;&#x4F7F;&#x7528;&#x641C;&#x7D22;&#x5F15;&#x64CE;</a></li>
+<li>
+<a href="#orge0c97b2">3.3. &#x641C;&#x7D22;&#x5F15;&#x64CE;&#x4E4B;&#x5916;</a></li></ul>
+</div>
+<div class="tab-pane" id="tab-org6a38103">
+<ul>
+<a href="#org6a38103">4. &#x77E5;&#x8BC6;&#x7EC4;&#x7EC7;&#x7684;&#x6B65;&#x9AA4;</a><li>
+<a href="#org44a4a71">4.1. &#x5B66;&#x4E60;&#x8BA1;&#x5212;&#x7684;&#x5236;&#x5B9A;&#x548C;&#x5B89;&#x6392;</a></li>
+<li>
+<a href="#orgfaf91d1">4.2. &#x5B66;&#x4E60;&#x6750;&#x6599;&#x7684;&#x6536;&#x96C6;&#x548C;&#x50A8;&#x5B58;</a></li>
+<li>
+<a href="#org4edae83">4.3. &#x8D44;&#x6599;&#x7684;&#x9605;&#x8BFB;&#x548C;&#x6D88;&#x5316;</a></li>
+<li>
+<a href="#org1d6ec75">4.4. &#x77E5;&#x8BC6;&#x7684;&#x601D;&#x8003;&#x548C;&#x4EA7;&#x51FA;</a></li></ul>
+</div>
+<div class="tab-pane" id="tab-orgb3efd48">
+<ul>
+<a href="#orgb3efd48">5. &#x5584;&#x7528;&#x5DE5;&#x5177;</a><li>
+<a href="#org44363c1">5.1. &#x4F60;&#x662F;&#x5DE5;&#x5177;&#x589E;&#x5F3A;&#x8FC7;&#x7684;&#x4EBA;&#x7C7B;</a></li>
+<li>
+<a href="#orgbed20a3">5.2. &#x4F7F;&#x7528;&#x597D;&#x7684;&#x5DE5;&#x5177;</a></li></ul>
+</div>
+<div class="tab-pane" id="tab-orge7f417e">
+<ul>
+<a href="#orge7f417e">6. &#x5B66;&#x4E60;</a><li>
+<a href="#org6e1286e">6.1. &#x77E5;&#x8BC6;&#x66F4;&#x65B0;&#x901F;&#x5EA6;&#x5FEB;</a></li>
+<li>
+<a href="#org381c295">6.2. &#x52A8;&#x673A;</a></li>
+<li>
+<a href="#org29fbbee">6.3. &#x65B9;&#x5F0F;</a></li>
+<li>
+<a href="#org2191d3c">6.4. &#x81EA;&#x6211;&#x6559;&#x80B2;</a></li></ul></div></div>
+</div>
+
+<div id="outline-container-org98ea780" class="outline-2">
+<h2 id="org98ea780"><span class="section-number-2">1</span> &#x4EE3;&#x7801;&#x4E4B;&#x5916;&#x7684;&#x529F;&#x592B;</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+&#x6839;&#x636E;&#x6211;&#x5728;&#x516C;&#x53F8;&#x7684;&#x5206;&#x4EAB;&#x6750;&#x6599;&#x6574;&#x7406;, &#x7EC6;&#x8282;&#x5927;&#x591A;&#x9760;&#x81EA;&#x5DF1;&#x53E3;&#x5934;&#x8868;&#x8FF0;, &#x6B64;&#x5904;&#x53EA;&#x5217;&#x51FA;&#x5927;&#x7EB2;
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbb99c9c" class="outline-2">
+<h2 id="orgbb99c9c"><span class="section-number-2">2</span> &#x4FE1;&#x606F;&#x7684;&#x4FE1;&#x566A;&#x6BD4;</h2>
+<div class="outline-text-2" id="text-2">
+<blockquote>
+<p>
+&#x5728;&#x4ECA;&#x5929;&#x7684;&#x4E2D;&#x56FD;,&#x4F60;&#x57FA;&#x672C;&#x4E0A;&#x4E0D;&#x7528;&#x505A;&#x4EC0;&#x4E48;,&#x53EA;&#x9700;&#x8981;&#x4E0D;&#x4F7F;&#x7528;&#x4E2D;&#x56FD;&#x4E92;&#x8054;&#x7F51;,&#x4F60;&#x5C31;&#x5F88;&#x81EA;&#x7136;&#x5730;&#x8D85;&#x8FC7;&#x5927;&#x591A;&#x6570;&#x4EBA;&#x4E86;
+</p>
+</blockquote>
+<p>
+<a href="https://coolshell.cn/articles/19464.html" target="_blank" rel="noopener">&#x5982;&#x4F55;&#x8D85;&#x8FC7;&#x5927;&#x591A;&#x6570;&#x4EBA; <i class="fa fa-external-link" aria-hidden="true"></i></a>
+</p>
+</div>
+
+<div id="outline-container-org16fdfa6" class="outline-3">
+<h3 id="org16fdfa6"><span class="section-number-3">2.1</span> &#x4FE1;&#x606F;&#x4E0D;&#x518D;&#x8D2B;&#x4E4F;</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+&#x968F;&#x624B;&#x53EF;&#x53CA;&#x7684;&#x4FE1;&#x606F;
+</p>
+<ul class="org-ul">
+<li>&#x72EC;&#x7ACB;&#x535A;&#x5BA2;</li>
+<li>&#x64AD;&#x5BA2;</li>
+<li>&#x805A;&#x5408;&#x7C7B;&#x7F51;&#x7AD9;</li>
+<li>&#x5E94;&#x7528;</li>
+<li>&#x793E;&#x4EA4;&#x7F51;&#x7AD9;</li>
+</ul>
+
+<p>
+&#x7F3A;&#x4E4F;&#x7684;&#x662F;&#x6709;&#x6548;&#x7684;&#x641C;&#x7D22;&#x4FE1;&#x606F;&#x4EE5;&#x53CA;&#x5FEB;&#x901F;&#x4ECE;&#x5927;&#x91CF;&#x7684;&#x4FE1;&#x606F;&#x4E2D;&#x63D0;&#x53D6;&#x6709;&#x7528;&#x4FE1;&#x606F;&#x7684;&#x6280;&#x80FD;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org684331b" class="outline-3">
+<h3 id="org684331b"><span class="section-number-3">2.2</span> &#x8BA4;&#x77E5;&#x79D1;&#x5B66;: &#x5927;&#x8111;&#x7684;&#x4E3B;&#x52A8;&#x8BC6;&#x522B;&#x6A21;&#x5F0F;</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<img src="/2020/05/22/beyond-coding/2020-05-22_17-02-15_6386ebc5477f7d735f01e8791183620c_b.jpg">
+</p>
+
+
+<blockquote>
+<p>
+&#x4E00;&#x4E2A;&#x89C6;&#x9519;&#x89C9;&#x7684;&#x7ECF;&#x5178;&#x4F8B;&#x5B50;: &#x6B63;&#x65B9;&#x5F62;&#x7684;&#x8F6E;&#x5ED3;&#x7EBF;&#x5E76;&#x6CA1;&#x6709;&#x88AB;&#x76F4;&#x63A5;&#x63CF;&#x753B;&#x51FA;&#x6765;&#xFF0C;&#x4F46;&#x662F;&#x4EBA;&#x773C;&#x80FD;&#x591F;&#x7ACB;&#x523B;&#x4ECE;&#x80CC;&#x666F;&#x4E2D;&#x8BC6;&#x522B;&#x51FA;&#x4E00;&#x4E2A;&#x767D;&#x8272;&#x7684;&#x6B63;&#x65B9;&#x5F62;&#x5F62;&#x72B6;
+</p>
+</blockquote>
+
+<p>
+&#x4FE1;&#x606F;&#x8D28;&#x91CF;&#x5F88;&#x91CD;&#x8981;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9edd2ba" class="outline-3">
+<h3 id="org9edd2ba"><span class="section-number-3">2.3</span> &#x63D0;&#x9AD8;&#x4FE1;&#x606F;&#x6765;&#x6E90;&#x7684;&#x8D28;&#x91CF;</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>&#x62D2;&#x7EDD;&#x52A3;&#x8D28;&#x6D88;&#x606F;&#x6765;&#x6E90;</li>
+<li>&#x670B;&#x53CB;&#x5708;/&#x5FAE;&#x535A;/&#x6296;&#x97F3;&#x4E0D;&#x662F;&#x5B66;&#x4E60;&#x7684;&#x597D;&#x5730;&#x65B9;</li>
+<li>&#x9605;&#x8BFB;&#x7B2C;&#x4E00;&#x624B;&#x8D44;&#x6599;(&#x6743;&#x5A01;&#x6765;&#x6E90;,&#x5B98;&#x65B9;&#x6587;&#x6863;,&#x77E5;&#x540D;&#x516C;&#x53F8;&#x6280;&#x672F;&#x535A;&#x5BA2;,&#x539F;&#x59CB;&#x51FA;&#x5904;&#x7684;&#x4E66;&#x7C4D;&#x548C;&#x6587;&#x7AE0;)</li>
+<li>&#x9605;&#x8BFB;&#x82F1;&#x6587;&#x6587;&#x6863;(&#x4E2D;&#x6587;&#x7FFB;&#x8BD1;&#x53EF;&#x80FD;&#x6EDE;&#x540E;)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgec51a64" class="outline-3">
+<h3 id="orgec51a64"><span class="section-number-3">2.4</span> &#x9AD8;&#x8D28;&#x91CF;&#x7684;&#x4FE1;&#x606F;&#x6765;&#x6E90;</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+&#x51FA;&#x7248;&#x793E;
+O&apos;Reilly / No Starch Press / The Pragmatic Bookshelf / Manning Publications
+</p>
+
+<p>
+&#x805A;&#x5408;&#x7C7B;&#x7F51;&#x7AD9;
+InfoQ / Solidot / Plannet Python / Hacker News
+</p>
+
+<p>
+&#x6280;&#x672F;&#x535A;&#x5BA2;
+coolshell &#x6E7E;&#x533A;&#x65E5;&#x62A5;
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org44c6b0e" class="outline-2">
+<h2 id="org44c6b0e"><span class="section-number-2">3</span> &#x63D0;&#x9AD8;&#x641C;&#x7D22;&#x4FE1;&#x606F;&#x7684;&#x6548;&#x7387;</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orga3ed141" class="outline-3">
+<h3 id="orga3ed141"><span class="section-number-3">3.1</span> &#x65F6;&#x4EE3;&#x7684;&#x6539;&#x53D8;</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x6539;&#x53D8;&#x4E86;&#x4EBA;&#x7C7B;&#x8BB0;&#x5FC6;&#x548C;&#x641C;&#x7D22;&#x77E5;&#x8BC6;&#x7684;&#x65B9;&#x5F0F;
+</p>
+
+<p>
+&#x767E;&#x79D1;&#x5168;&#x4E66;&#x5F0F;&#x7684;&#x8BB0;&#x5FC6;&#x91CD;&#x8981;&#x6027;&#x4E0B;&#x964D;&#x4E86;
+</p>
+
+<p>
+&#x91CD;&#x89C6;&#x77E5;&#x8BC6;&#x7684;&#x7EC4;&#x7EC7;&#x548C;&#x8054;&#x7CFB;
+</p>
+</div>
+</div>
+<div id="outline-container-org402606c" class="outline-3">
+<h3 id="org402606c"><span class="section-number-3">3.2</span> &#x6B63;&#x786E;&#x5730;&#x4F7F;&#x7528;&#x641C;&#x7D22;&#x5F15;&#x64CE;</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+&#x638C;&#x63E1;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x7684;&#x9AD8;&#x7EA7;&#x641C;&#x7D22;&#x6280;&#x5DE7; (&#x81EA;&#x884C; Google)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge0c97b2" class="outline-3">
+<h3 id="orge0c97b2"><span class="section-number-3">3.3</span> &#x641C;&#x7D22;&#x5F15;&#x64CE;&#x4E4B;&#x5916;</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+&#x5782;&#x76F4;&#x7EC6;&#x5206;&#x9886;&#x57DF;
+</p>
+
+<ul class="org-ul">
+<li>stackoverflow / stackexchange / segmentfault</li>
+<li>github (&#x5F88;&#x591A;&#x4EBA;&#x610F;&#x6599;&#x4E4B;&#x5916;,&#x5728; github &#x5176;&#x5B9E;&#x53EF;&#x80FD;&#x641C;&#x51FA;&#x5F88;&#x6709;&#x7528;&#x7684;&#x4FE1;&#x606F;)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6a38103" class="outline-2">
+<h2 id="org6a38103"><span class="section-number-2">4</span> &#x77E5;&#x8BC6;&#x7EC4;&#x7EC7;&#x7684;&#x6B65;&#x9AA4;</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>&#x5B66;&#x4E60;&#x8BA1;&#x5212;&#x7684;&#x5236;&#x5B9A;&#x548C;&#x5B89;&#x6392;</li>
+<li>&#x5B66;&#x4E60;&#x6750;&#x6599;&#x7684;&#x6536;&#x96C6;&#x548C;&#x50A8;&#x5B58;</li>
+<li>&#x8D44;&#x6599;&#x7684;&#x9605;&#x8BFB;&#x548C;&#x6D88;&#x5316;</li>
+<li>&#x77E5;&#x8BC6;&#x7684;&#x601D;&#x8003;&#x548C;&#x4EA7;&#x51FA;</li>
+</ul>
+</div>
+
+<div id="outline-container-org44a4a71" class="outline-3">
+<h3 id="org44a4a71"><span class="section-number-3">4.1</span> &#x5B66;&#x4E60;&#x8BA1;&#x5212;&#x7684;&#x5236;&#x5B9A;&#x548C;&#x5B89;&#x6392;</h3>
+</div>
+<div id="outline-container-orgfaf91d1" class="outline-3">
+<h3 id="orgfaf91d1"><span class="section-number-3">4.2</span> &#x5B66;&#x4E60;&#x6750;&#x6599;&#x7684;&#x6536;&#x96C6;&#x548C;&#x50A8;&#x5B58;</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+&#x77E5;&#x8BC6;&#x7684;&#x83B7;&#x53D6; &#x6765;&#x6E90;
+</p>
+<ul class="org-ul">
+<li>RSS</li>
+<li>BLOG</li>
+<li>Podcasts</li>
+</ul>
+
+<p>
+&#x5E94;&#x7528;
+</p>
+<ul class="org-ul">
+<li>Pocket</li>
+<li>Evernote / Notion</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4edae83" class="outline-3">
+<h3 id="org4edae83"><span class="section-number-3">4.3</span> &#x8D44;&#x6599;&#x7684;&#x9605;&#x8BFB;&#x548C;&#x6D88;&#x5316;</h3>
+<div class="outline-text-3" id="text-4-3">
+<blockquote>
+<p>
+&#x597D;&#x8BB0;&#x6027;&#x4E0D;&#x5982;&#x70C2;&#x7B14;&#x5934;
+</p>
+</blockquote>
+
+<p>
+&#x77E5;&#x8BC6;&#x7684;&#x52A0;&#x5DE5;&#x548C;&#x7EC4;&#x7EC7;
+&#x5904;&#x7406;&#x77E5;&#x8BC6;,&#x52A0;&#x6DF1;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x8FDE;&#x63A5;
+</p>
+
+<p>
+&#x7EB8;&#x548C;&#x7B14;
+&#x91CD;&#x89C6;&#x7EB8;&#x548C;&#x7B14;,&#x6210;&#x672C;&#x6700;&#x4F4E;,&#x81EA;&#x7531;&#x5EA6;&#x6700;&#x9AD8;,&#x4F7F;&#x7528;&#x6700;&#x4FBF;&#x5229;
+</p>
+
+<p>
+&#x5E94;&#x7528;
+</p>
+<ul class="org-ul">
+<li>PDF &#x9605;&#x8BFB;&#x8F6F;&#x4EF6; MarginNote3</li>
+<li>&#x5E73;&#x677F; iPad/Surface</li>
+<li>&#x601D;&#x7EF4;&#x5BFC;&#x56FE;</li>
+</ul>
+
+<p>
+&#x5EB7;&#x5948;&#x5C14;&#x7B14;&#x8BB0;&#x6CD5;: &#x7528;&#x81EA;&#x5DF1;&#x7684;&#x8BDD;&#x8FDB;&#x884C;&#x590D;&#x8FF0;,&#x5217;&#x51FA;&#x5927;&#x7EB2;,&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7684;&#x7406;&#x89E3;
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org1d6ec75" class="outline-3">
+<h3 id="org1d6ec75"><span class="section-number-3">4.4</span> &#x77E5;&#x8BC6;&#x7684;&#x601D;&#x8003;&#x548C;&#x4EA7;&#x51FA;</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+&#x4EA7;&#x51FA; &#x8BB0;&#x5F55;
+</p>
+
+
+<p>
+<a href="http://hexo.io" target="_blank" rel="noopener">hexo <i class="fa fa-external-link" aria-hidden="true"></i></a> static website generator
+</p>
+
+<p>
+<a href="https://pages.github.com" target="_blank" rel="noopener">github pages websites for you and your projects <i class="fa fa-external-link" aria-hidden="true"></i></a>
+</p>
+
+<p>
+markdown
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb3efd48" class="outline-2">
+<h2 id="orgb3efd48"><span class="section-number-2">5</span> &#x5584;&#x7528;&#x5DE5;&#x5177;</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org44363c1" class="outline-3">
+<h3 id="org44363c1"><span class="section-number-3">5.1</span> &#x4F60;&#x662F;&#x5DE5;&#x5177;&#x589E;&#x5F3A;&#x8FC7;&#x7684;&#x4EBA;&#x7C7B;</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+&#x4F60;&#x624B;&#x4E0A;&#x7684;&#x624B;&#x673A;&#x7684;&#x7B97;&#x529B;&#x8D85;&#x8FC7; 50 &#x5E74;&#x524D; 1969 &#x5E74;&#x7F8E;&#x56FD;&#x6267;&#x884C;&#x767B;&#x6708;&#x884C;&#x52A8;&#x65F6;&#x6574;&#x4E2A; NASA &#x7684;&#x8BA1;&#x7B97;&#x80FD;&#x529B;
+</p>
+
+<p>
+&#x8BBE;&#x60F3;&#x81EA;&#x5DF1;&#x5728;&#x6CA1;&#x6709;&#x667A;&#x80FD;&#x624B;&#x673A;&#x548C;&#x7B14;&#x8BB0;&#x672C;&#x60C5;&#x51B5;&#x4E0B;&#x7684;&#x751F;&#x4EA7;&#x529B;
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbed20a3" class="outline-3">
+<h3 id="orgbed20a3"><span class="section-number-3">5.2</span> &#x4F7F;&#x7528;&#x597D;&#x7684;&#x5DE5;&#x5177;</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>&#x9AD8;&#x6548;&#x7684;&#x5DE5;&#x4F5C;&#x73AF;&#x5883; ( ConEmu / zsh / FreeCommander / PyCharm )</li>
+<li>&#x719F;&#x6089;&#x4F60;&#x7684;&#x5DE5;&#x5177; &#x638C;&#x63E1;&#x6BCF;&#x5929;&#x90FD;&#x4F7F;&#x7528;&#x7684;&#x5DE5;&#x5177;&#x662F;&#x63D0;&#x9AD8;&#x6548;&#x7387;&#x7684;&#x91CD;&#x8981;&#x90E8;&#x5206;</li>
+<li>&#x6295;&#x8D44;&#x786C;&#x4EF6; (&#x5C4F;&#x5E55;/&#x952E;&#x76D8;/&#x5DE5;&#x4F5C;&#x53F0;/&#x8F68;&#x8FF9;&#x7403;)</li>
+</ul>
+
+<p>
+&#x6700;&#x91CD;&#x8981;&#x7684;&#x662F;,&#x7528;&#x597D;&#x624B;&#x4E0A;&#x7684;&#x5DE5;&#x5177;,&#x6BD4;&#x76F2;&#x76EE;&#x8FFD;&#x6C42;&#x597D;&#x5DE5;&#x5177;/&#x65B0;&#x5DE5;&#x5177;&#x91CD;&#x8981;
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge7f417e" class="outline-2">
+<h2 id="orge7f417e"><span class="section-number-2">6</span> &#x5B66;&#x4E60;</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org6e1286e" class="outline-3">
+<h3 id="org6e1286e"><span class="section-number-3">6.1</span> &#x77E5;&#x8BC6;&#x66F4;&#x65B0;&#x901F;&#x5EA6;&#x5FEB;</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+&#x524D;&#x7AEF;:
+jQuery AngularJS Angular2/4/6
+Vue.js React TypeScript
+NodeJs Deno WebAssembly
+</p>
+
+<p>
+&#x540E;&#x7AEF;:
+Hadoop Spark Storm
+&#x5FAE;&#x670D;&#x52A1; &#x5BB9;&#x5668; K8S
+</p>
+</div>
+</div>
+
+<div id="outline-container-org381c295" class="outline-3">
+<h3 id="org381c295"><span class="section-number-3">6.2</span> &#x52A8;&#x673A;</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+&#x56DE;&#x62A5;
+</p>
+
+<p>
+&#x5B66;&#x4E60;&#x7684;&#x56DE;&#x62A5;&#x76F8;&#x6BD4;&#x5176;&#x5B83;&#x884C;&#x4E1A;&#x5468;&#x671F;&#x66F4;&#x77ED;
+</p>
+
+<p>
+&#x6B63;&#x5411;&#x53CD;&#x9988;&#x5FAA;&#x73AF;
+</p>
+
+<p>
+&#x4E00;&#x4EF6;&#x4E8B;&#x6709;&#x5174;&#x8DA3;&#x624D;&#x4F1A;&#x505A;&#x5F97;&#x597D;,&#x505A;&#x5F97;&#x597D;&#x624D;&#x4F1A;&#x66F4;&#x6709;&#x5174;&#x8DA3;,&#x66F4;&#x6709;&#x5174;&#x8DA3;&#x624D;&#x4F1A;&#x505A;&#x5F97;&#x66F4;&#x597D;
+&#x6CA1;&#x6709;&#x4EBA;&#x4F1A;&#x559C;&#x6B22;&#x4E00;&#x76F4;&#x505A;&#x4E00;&#x4EF6;&#x81EA;&#x5DF1;&#x505A;&#x4E0D;&#x597D;&#x7684;&#x4E8B;&#x60C5;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org29fbbee" class="outline-3">
+<h3 id="org29fbbee"><span class="section-number-3">6.3</span> &#x65B9;&#x5F0F;</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li>&#x65F6;&#x95F4;&#x7BA1;&#x7406;&#x4E4B;&#x5916;, &#x5E94;&#x8BE5;&#x66F4;&#x91CD;&#x89C6;&#x7CBE;&#x529B;&#x7BA1;&#x7406;</li>
+<li>&#x91CD;&#x89C6;&#x7761;&#x7720;</li>
+<li>&#x7CFB;&#x7EDF;&#x6027;&#x5B66;&#x4E60;: &#x6DF1;&#x5EA6;&#x5DE5;&#x4F5C; ( <a href="https://book.douban.com/subject/27056409/" target="_blank" rel="noopener">Deep Work <i class="fa fa-external-link" aria-hidden="true"></i></a> )</li>
+<li>&#x788E;&#x7247;&#x5316;&#x5B66;&#x4E60;: &#x6CDB;&#x8BFB;, &#x5229;&#x7528;&#x597D;&#x788E;&#x7247;&#x5316;&#x65F6;&#x95F4;, &#x64AD;&#x5BA2;(&#x97F3;&#x9891;&#x53EF;&#x4EE5;&#x586B;&#x5145;&#x788E;&#x7247;&#x65F6;&#x95F4;&#x6216;&#x8005;&#x4E0D;&#x65B9;&#x4FBF;&#x770B;&#x4E66;&#x7684;&#x65F6;&#x95F4;)</li>
+<li>&#x4FDD;&#x6301;&#x6280;&#x672F;&#x654F;&#x611F;</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2191d3c" class="outline-3">
+<h3 id="org2191d3c"><span class="section-number-3">6.4</span> &#x81EA;&#x6211;&#x6559;&#x80B2;</h3>
+<div class="outline-text-3" id="text-6-4">
+<ul class="org-ul">
+<li>MIT OpenWareCourse</li>
+<li>Coursera</li>
+<li>edX</li>
+<li>Khan Academy</li>
+<li>&#x7F51;&#x6613;&#x516C;&#x5F00;&#x8BFE;</li>
+<li>TED &#x6F14;&#x8BB2;</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p style="font-size: .7em; font-style: italic">Generated using <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 26.3 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.2.6)</p>
+</div>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2017/08/26/python-refactor-patterns/" rel="bookmark">Python重构代码的一些模式</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2017/09/02/python-intro/" rel="bookmark">Python项目入门培训文档</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2018/05/05/construct-sql/" rel="bookmark">如何使用sqlalchemy构造SQL语句</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2018/05/26/sqlalchemy-custom-query/" rel="bookmark">SQLAlchemy 使用自定义 Query 类</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2018/12/31/python-replace-url-host/" rel="bookmark">How to easily replace host:port of a url in Python</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/生产力/" rel="tag"># 生产力</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/20/python-convention/" rel="next" title="Python 项目开发规范">
+                <i class="fa fa-chevron-left"></i> Python 项目开发规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460" alt="Randall Wang">
+            
+              <p class="site-author-name" itemprop="name">Randall Wang</p>
+              <p class="site-description motion-element" itemprop="description">Just another coder . Heavy Emacs user</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/mpwang" title="GitHub &rarr; https://github.com/mpwang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://douban.com/people/asbalckswings" title="Douban &rarr; http://douban.com/people/asbalckswings" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Douban</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org98ea780"><span class="nav-text">1 代码之外的功夫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgbb99c9c"><span class="nav-text">2 信息的信噪比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org16fdfa6"><span class="nav-text">2.1 信息不再贫乏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org684331b"><span class="nav-text">2.2 认知科学: 大脑的主动识别模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9edd2ba"><span class="nav-text">2.3 提高信息来源的质量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgec51a64"><span class="nav-text">2.4 高质量的信息来源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org44c6b0e"><span class="nav-text">3 提高搜索信息的效率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orga3ed141"><span class="nav-text">3.1 时代的改变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org402606c"><span class="nav-text">3.2 正确地使用搜索引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge0c97b2"><span class="nav-text">3.3 搜索引擎之外</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6a38103"><span class="nav-text">4 知识组织的步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org44a4a71"><span class="nav-text">4.1 学习计划的制定和安排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgfaf91d1"><span class="nav-text">4.2 学习材料的收集和储存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4edae83"><span class="nav-text">4.3 资料的阅读和消化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org1d6ec75"><span class="nav-text">4.4 知识的思考和产出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb3efd48"><span class="nav-text">5 善用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org44363c1"><span class="nav-text">5.1 你是工具增强过的人类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbed20a3"><span class="nav-text">5.2 使用好的工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge7f417e"><span class="nav-text">6 学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org6e1286e"><span class="nav-text">6.1 知识更新速度快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org381c295"><span class="nav-text">6.2 动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org29fbbee"><span class="nav-text">6.3 方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org2191d3c"><span class="nav-text">6.4 自我教育</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randall Wang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+  <script id="dsq-count-scr" src="https://slientplant.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://mpwang.github.io/2020/05/22/beyond-coding/";
+    this.page.identifier = "2020/05/22/beyond-coding/";
+    this.page.title = '代码之外的功夫';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://slientplant.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
