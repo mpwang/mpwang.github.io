@@ -100,7 +100,7 @@
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 项目开发规范">
-<meta property="og:url" content="http://mpwang.github.io/2019/10/20/python-convention/index.html">
+<meta property="og:url" content="mpwang.github.io/2019/10/20/python-convention/index.html">
 <meta property="og:site_name" content="Slient Plant">
 <meta property="og:description" content="1. Python 项目开发规范  2. 代码风格  3. 语言规范  4. 编程原则与最佳实践  5. References    1. Python 项目开发规范 1.1. 阅读指南    2. 代码风格 2.1. 代码格式器 2.1.1. black 的使用  2.2. import 2.2.1. 禁止使用 import *  2.2.2. import 语句的顺序  2.3. 命名">
 <meta property="og:locale" content="zh-CN">
@@ -116,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://mpwang.github.io/2019/10/20/python-convention/">
+  <link rel="canonical" href="mpwang.github.io/2019/10/20/python-convention/">
 
 
 
@@ -131,6 +131,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=G-0HTWZBPPCK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0HTWZBPPCK');
+  </script>
 
 
 
@@ -325,7 +333,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2019/10/20/python-convention/">
+    <link itemprop="mainEntityOfPage" href="mpwang.github.io/2019/10/20/python-convention/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randall Wang">
@@ -451,114 +459,114 @@
 <div class="tabs" id="org-toc" style="font-size: 12px;">
 <ul class="nav-tabs">
 <li class="tab">
-<a class="btn" href="#tab-org93e67ae">1. Python 项目开发规范</a></li>
+<a class="btn" href="#tab-orgc9155e1">1. Python 项目开发规范</a></li>
 <li class="tab">
-<a class="btn" href="#tab-orgf50cfc7">2. 代码风格</a></li>
+<a class="btn" href="#tab-org1923ec3">2. 代码风格</a></li>
 <li class="tab">
-<a class="btn" href="#tab-org3ca70c9">3. 语言规范</a></li>
+<a class="btn" href="#tab-org8e2b82b">3. 语言规范</a></li>
 <li class="tab">
-<a class="btn" href="#tab-orge9ccec3">4. 编程原则与最佳实践</a></li>
+<a class="btn" href="#tab-orge5d6fb4">4. 编程原则与最佳实践</a></li>
 <li class="tab">
-<a class="btn" href="#tab-org0008a04">5. References</a></li>
+<a class="btn" href="#tab-orgf9729b7">5. References</a></li>
 </ul><div class="tab-content">
-<div class="tab-pane" id="tab-org93e67ae">
+<div class="tab-pane" id="tab-orgc9155e1">
 <ul>
-<a href="#org93e67ae">1. Python 项目开发规范</a><li>
-<a href="#org3fe422d">1.1. 阅读指南</a></li></ul>
+<a href="#orgc9155e1">1. Python 项目开发规范</a><li>
+<a href="#org8df92d2">1.1. 阅读指南</a></li></ul>
 </div>
-<div class="tab-pane" id="tab-orgf50cfc7">
+<div class="tab-pane" id="tab-org1923ec3">
 <ul>
-<a href="#orgf50cfc7">2. 代码风格</a><li>
-<a href="#orgcfc6f06">2.1. 代码格式器</a></li><li>
-<a href="#orgb6359d4">2.1.1. black 的使用</a></li>
+<a href="#org1923ec3">2. 代码风格</a><li>
+<a href="#org0dd741e">2.1. 代码格式器</a></li><li>
+<a href="#org64e339f">2.1.1. black 的使用</a></li>
 <li>
-<a href="#org44a1cae">2.2. import</a></li><li>
-<a href="#org4a527c8">2.2.1. 禁止使用 import <code>*</code></a></li>
+<a href="#orgfa347b5">2.2. import</a></li><li>
+<a href="#orgde61708">2.2.1. 禁止使用 import <code>*</code></a></li>
 <li>
-<a href="#orgb750803">2.2.2. import 语句的顺序</a></li>
+<a href="#org538b34c">2.2.2. import 语句的顺序</a></li>
 <li>
-<a href="#org89f08b9">2.3. 命名</a></li><li>
-<a href="#org58c6837">2.3.1. 描述</a></li>
+<a href="#org9ac39e3">2.3. 命名</a></li><li>
+<a href="#orgea24c5d">2.3.1. 描述</a></li>
 <li>
-<a href="#org78db293">2.3.2. 避免使用的命名</a></li>
+<a href="#org0b2b876">2.3.2. 避免使用的命名</a></li>
 <li>
-<a href="#org403829b">2.3.3. 命名约定</a></li>
+<a href="#org25414f1">2.3.3. 命名约定</a></li>
 <li>
-<a href="#org49feec2">2.3.4. 变量名形式</a></li>
+<a href="#org8b6afc0">2.3.4. 变量名形式</a></li>
 <li>
-<a href="#orge4ecf4f">2.4. Main 方法</a></li>
+<a href="#orge681950">2.4. Main 方法</a></li>
 <li>
-<a href="#orgb2bab8b">2.5. 注释</a></li><li>
-<a href="#org1345ac8">2.5.1. 解释为什么</a></li>
+<a href="#orgcc02b99">2.5. 注释</a></li><li>
+<a href="#org0e66b4b">2.5.1. 解释为什么</a></li>
 <li>
-<a href="#org148001b">2.5.2. 错误的注释比没有注释还糟糕</a></li>
+<a href="#org1a6a944">2.5.2. 错误的注释比没有注释还糟糕</a></li>
 <li>
-<a href="#org2272701">2.5.3. docstring</a></li>
+<a href="#org58e45bd">2.5.3. docstring</a></li>
 <li>
-<a href="#org283224e">2.5.4. inline comment</a></li>
+<a href="#org0d418f9">2.5.4. inline comment</a></li>
 <li>
-<a href="#orge2d805e">2.6. 类型注解</a></li></ul>
+<a href="#orgc1cc4d6">2.6. 类型注解</a></li></ul>
 </div>
-<div class="tab-pane" id="tab-org3ca70c9">
+<div class="tab-pane" id="tab-org8e2b82b">
 <ul>
-<a href="#org3ca70c9">3. 语言规范</a><li>
-<a href="#orgd6f2239">3.1. 导入</a></li><li>
-<a href="#org3246861">3.1.1. 例外</a></li>
+<a href="#org8e2b82b">3. 语言规范</a><li>
+<a href="#orge49dca4">3.1. 导入</a></li><li>
+<a href="#orgcd3c9b7">3.1.1. 例外</a></li>
 <li>
-<a href="#org58fe324">3.2. 包</a></li>
+<a href="#orgd7f1849">3.2. 包</a></li>
 <li>
-<a href="#org7de52e2">3.3. 类</a></li>
+<a href="#orgd4b9a0d">3.3. 类</a></li>
 <li>
-<a href="#orgfb89587">3.4. 异常</a></li><li>
-<a href="#orgf390a05">3.4.1. 自定义异常</a></li>
+<a href="#orgf5438e3">3.4. 异常</a></li><li>
+<a href="#orgfabd333">3.4.1. 自定义异常</a></li>
 <li>
-<a href="#orgd708034">3.4.2. 异常抛出的形式</a></li>
+<a href="#org2b97242">3.4.2. 异常抛出的形式</a></li>
 <li>
-<a href="#org044ffd1">3.4.3. 注意异常捕获的范围</a></li>
+<a href="#org10757ec">3.4.3. 注意异常捕获的范围</a></li>
 <li>
-<a href="#org7257321">3.4.4. 尽量减少 try except 语法块内代码的数量</a></li>
+<a href="#org7720156">3.4.4. 尽量减少 try except 语法块内代码的数量</a></li>
 <li>
-<a href="#org50cc356">3.4.5. 使用 try except else finally 结构</a></li>
+<a href="#org8710a89">3.4.5. 使用 try except else finally 结构</a></li>
 <li>
-<a href="#orgf424303">3.4.6. assert</a></li>
+<a href="#org6d250cd">3.4.6. assert</a></li>
 <li>
-<a href="#orgf39f83d">3.5. 全局变量</a></li>
+<a href="#org21cf231">3.5. 全局变量</a></li>
 <li>
-<a href="#org790671a">3.6. 列表表达式 (list compreshensions)</a></li>
+<a href="#org43f02e1">3.6. 列表表达式 (list compreshensions)</a></li>
 <li>
-<a href="#org2b2fe2f">3.7. 默认迭代器和操作符</a></li>
+<a href="#org5573912">3.7. 默认迭代器和操作符</a></li>
 <li>
-<a href="#org49f7f05">3.8. lambda 表达式</a></li>
+<a href="#orgd1a22e8">3.8. lambda 表达式</a></li>
 <li>
-<a href="#org7c2be79">3.9. 条件表达式</a></li>
+<a href="#org10ab43d">3.9. 条件表达式</a></li>
 <li>
-<a href="#org1c4dfd2">3.10. 函数参数默认值</a></li>
+<a href="#orgd2aa065">3.10. 函数参数默认值</a></li>
 <li>
-<a href="#org797804c">3.11. True/False 求值</a></li>
+<a href="#org12aa89f">3.11. True/False 求值</a></li>
 <li>
-<a href="#org669259f">3.12. 格式化字符串</a></li><li>
-<a href="#org74c2c59">3.12.1. 例外</a></li></ul>
+<a href="#org31434d0">3.12. 格式化字符串</a></li><li>
+<a href="#org2578fde">3.12.1. 例外</a></li></ul>
 </div>
-<div class="tab-pane" id="tab-orge9ccec3">
+<div class="tab-pane" id="tab-orge5d6fb4">
 <ul>
-<a href="#orge9ccec3">4. 编程原则与最佳实践</a><li>
-<a href="#orgbf4a7a6">4.1. 使用 pylint</a></li>
+<a href="#orge5d6fb4">4. 编程原则与最佳实践</a><li>
+<a href="#orgd88841b">4.1. 使用 pylint</a></li>
 <li>
-<a href="#orgfb26bab">4.2. 自底向上编程</a></li>
+<a href="#org6d3c7f8">4.2. 自底向上编程</a></li>
 <li>
-<a href="#org5644270">4.3. 防御式编程</a></li>
+<a href="#org7008555">4.3. 防御式编程</a></li>
 <li>
-<a href="#org351475a">4.4. 避免使用 magic number</a></li>
+<a href="#org293c889">4.4. 避免使用 magic number</a></li>
 <li>
-<a href="#org897eabf">4.5. 处理字典 key 不存在时的默认值</a></li></ul>
+<a href="#org4a3b25f">4.5. 处理字典 key 不存在时的默认值</a></li></ul>
 </div>
-<div class="tab-pane" id="tab-org0008a04">
+<div class="tab-pane" id="tab-orgf9729b7">
 <ul>
-<a href="#org0008a04">5. References</a></ul></div></div>
+<a href="#orgf9729b7">5. References</a></ul></div></div>
 </div>
 
-<div id="outline-container-org93e67ae" class="outline-2">
-<h2 id="org93e67ae"><span class="section-number-2">1.</span> Python 项目开发规范</h2>
+<div id="outline-container-orgc9155e1" class="outline-2">
+<h2 id="orgc9155e1"><span class="section-number-2">1.</span> Python 项目开发规范</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 本文旨在提供 Python 项目的开发规范参考以及工具指南,
@@ -577,8 +585,8 @@
 </p>
 </div>
 
-<div id="outline-container-org3fe422d" class="outline-3">
-<h3 id="org3fe422d"><span class="section-number-3">1.1.</span> 阅读指南</h3>
+<div id="outline-container-org8df92d2" class="outline-3">
+<h3 id="org8df92d2"><span class="section-number-3">1.1.</span> 阅读指南</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 由于 Python 2 将于 2020 年正式停止维护, 新的工程项目禁止使用 Python 2,
@@ -593,8 +601,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf50cfc7" class="outline-2">
-<h2 id="orgf50cfc7"><span class="section-number-2">2.</span> 代码风格</h2>
+<div id="outline-container-org1923ec3" class="outline-2">
+<h2 id="org1923ec3"><span class="section-number-2">2.</span> 代码风格</h2>
 <div class="outline-text-2" id="text-2">
 <pre class="example">
 代码风格应该遵循 PEP8 风格</pre>
@@ -618,8 +626,8 @@
 </p>
 </div>
 
-<div id="outline-container-orgcfc6f06" class="outline-3">
-<h3 id="orgcfc6f06"><span class="section-number-3">2.1.</span> 代码格式器</h3>
+<div id="outline-container-org0dd741e" class="outline-3">
+<h3 id="org0dd741e"><span class="section-number-3">2.1.</span> 代码格式器</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 formatter 选择使用 Black.</pre>
@@ -640,8 +648,8 @@ Black 使用的代码风格可以视为比 PEP8 风格还严格的一个子集,
 </p>
 </div>
 
-<div id="outline-container-orgb6359d4" class="outline-4">
-<h4 id="orgb6359d4"><span class="section-number-4">2.1.1.</span> black 的使用</h4>
+<div id="outline-container-org64e339f" class="outline-4">
+<h4 id="org64e339f"><span class="section-number-4">2.1.1.</span> black 的使用</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 black 可以通用命令行使用对单个文件或者整个文件夹的文件进行格式化.
@@ -676,8 +684,8 @@ File -> Settings -> Keymap
 </div>
 </div>
 
-<div id="outline-container-org44a1cae" class="outline-3">
-<h3 id="org44a1cae"><span class="section-number-3">2.2.</span> import</h3>
+<div id="outline-container-orgfa347b5" class="outline-3">
+<h3 id="orgfa347b5"><span class="section-number-3">2.2.</span> import</h3>
 <div class="outline-text-3" id="text-2-2">
 <pre class="example">
 使用独立的一行导入一个模块</pre>
@@ -698,8 +706,8 @@ No
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> extres.vcenter.datatype <span class="keyword">import</span> SaltCallFailedException, VCenterInitializeOptions, VCenterVMCloneSpec</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line"><span class="keyword">from</span> extres.vcenter.datatype <span class="keyword">import</span> (</span><br><span class="line">    SaltCallFailedException,</span><br><span class="line">    VCenterInitializeOptions,</span><br><span class="line">    VCenterVMCloneSpec,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </div>
 </div>
-<div id="outline-container-org4a527c8" class="outline-4">
-<h4 id="org4a527c8"><span class="section-number-4">2.2.1.</span> 禁止使用 import <code>*</code></h4>
+<div id="outline-container-orgde61708" class="outline-4">
+<h4 id="orgde61708"><span class="section-number-4">2.2.1.</span> 禁止使用 import <code>*</code></h4>
 <div class="outline-text-4" id="text-2-2-1">
 <pre class="example">
 原则上禁止避免使用 import *, 应该显式地列出每一个需要导入的模块</pre>
@@ -721,8 +729,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-orgb750803" class="outline-4">
-<h4 id="orgb750803"><span class="section-number-4">2.2.2.</span> import 语句的顺序</h4>
+<div id="outline-container-org538b34c" class="outline-4">
+<h4 id="org538b34c"><span class="section-number-4">2.2.2.</span> import 语句的顺序</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 使用 PyCharm 的 Optimize imports 功能格式化导入语句,
@@ -745,8 +753,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org89f08b9" class="outline-3">
-<h3 id="org89f08b9"><span class="section-number-3">2.3.</span> 命名</h3>
+<div id="outline-container-org9ac39e3" class="outline-3">
+<h3 id="org9ac39e3"><span class="section-number-3">2.3.</span> 命名</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 名字(变量名,函数名,类名,方法名)本身是表达代码信息的重要组成部分,
@@ -759,8 +767,8 @@ No
 </p>
 </div>
 
-<div id="outline-container-org58c6837" class="outline-4">
-<h4 id="org58c6837"><span class="section-number-4">2.3.1.</span> 描述</h4>
+<div id="outline-container-orgea24c5d" class="outline-4">
+<h4 id="orgea24c5d"><span class="section-number-4">2.3.1.</span> 描述</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 函数名, 类方法以动词开头; 类名, 类属性以名词开头.
@@ -768,8 +776,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org78db293" class="outline-4">
-<h4 id="org78db293"><span class="section-number-4">2.3.2.</span> 避免使用的命名</h4>
+<div id="outline-container-org0b2b876" class="outline-4">
+<h4 id="org0b2b876"><span class="section-number-4">2.3.2.</span> 避免使用的命名</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li>在任何地方都避免使用短横线 <code>-</code></li>
@@ -779,8 +787,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org403829b" class="outline-4">
-<h4 id="org403829b"><span class="section-number-4">2.3.3.</span> 命名约定</h4>
+<div id="outline-container-org25414f1" class="outline-4">
+<h4 id="org25414f1"><span class="section-number-4">2.3.3.</span> 命名约定</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
 <li><p>
@@ -806,8 +814,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org49feec2" class="outline-4">
-<h4 id="org49feec2"><span class="section-number-4">2.3.4.</span> 变量名形式</h4>
+<div id="outline-container-org8b6afc0" class="outline-4">
+<h4 id="org8b6afc0"><span class="section-number-4">2.3.4.</span> 变量名形式</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -898,8 +906,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-orge4ecf4f" class="outline-3">
-<h3 id="orge4ecf4f"><span class="section-number-3">2.4.</span> Main 方法</h3>
+<div id="outline-container-orge681950" class="outline-3">
+<h3 id="orge681950"><span class="section-number-3">2.4.</span> Main 方法</h3>
 <div class="outline-text-3" id="text-2-4">
 <pre class="example">
 在编写可执行的 Python 脚本时, 必须使用 if __name__ == '__main__'</pre>
@@ -918,12 +926,12 @@ No
 </div>
 </div>
 </div>
-<div id="outline-container-orgb2bab8b" class="outline-3">
-<h3 id="orgb2bab8b"><span class="section-number-3">2.5.</span> 注释</h3>
+<div id="outline-container-orgcc02b99" class="outline-3">
+<h3 id="orgcc02b99"><span class="section-number-3">2.5.</span> 注释</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-org1345ac8" class="outline-4">
-<h4 id="org1345ac8"><span class="section-number-4">2.5.1.</span> 解释为什么</h4>
+<div id="outline-container-org0e66b4b" class="outline-4">
+<h4 id="org0e66b4b"><span class="section-number-4">2.5.1.</span> 解释为什么</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 一些非直观的代码需要进行注释, 注释应当从解释代码的意义,
@@ -948,8 +956,8 @@ good
 </div>
 </div>
 
-<div id="outline-container-org148001b" class="outline-4">
-<h4 id="org148001b"><span class="section-number-4">2.5.2.</span> 错误的注释比没有注释还糟糕</h4>
+<div id="outline-container-org1a6a944" class="outline-4">
+<h4 id="org1a6a944"><span class="section-number-4">2.5.2.</span> 错误的注释比没有注释还糟糕</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <p>
 当代码发生变化时, 相关的注释也需要同步更新. 错误的注释往往比没有注释还具有误导性.
@@ -957,8 +965,8 @@ good
 </div>
 </div>
 
-<div id="outline-container-org2272701" class="outline-4">
-<h4 id="org2272701"><span class="section-number-4">2.5.3.</span> docstring</h4>
+<div id="outline-container-org58e45bd" class="outline-4">
+<h4 id="org58e45bd"><span class="section-number-4">2.5.3.</span> docstring</h4>
 <div class="outline-text-4" id="text-2-5-3">
 <p>
 公开的类与函数应当使用 docstring 描述作用, 入参与返回值的作用.
@@ -966,8 +974,8 @@ good
 </div>
 </div>
 
-<div id="outline-container-org283224e" class="outline-4">
-<h4 id="org283224e"><span class="section-number-4">2.5.4.</span> inline comment</h4>
+<div id="outline-container-org0d418f9" class="outline-4">
+<h4 id="org0d418f9"><span class="section-number-4">2.5.4.</span> inline comment</h4>
 <div class="outline-text-4" id="text-2-5-4">
 <pre class="example">
 避免将代码与注释写在同一行, 在代码块之前进行注释</pre>
@@ -1002,8 +1010,8 @@ Yes
 </div>
 </div>
 </div>
-<div id="outline-container-orge2d805e" class="outline-3">
-<h3 id="orge2d805e"><span class="section-number-3">2.6.</span> 类型注解</h3>
+<div id="outline-container-orgc1cc4d6" class="outline-3">
+<h3 id="orgc1cc4d6"><span class="section-number-3">2.6.</span> 类型注解</h3>
 <div class="outline-text-3" id="text-2-6">
 <pre class="example">
 强烈推荐尽可能多地使用类型注解</pre>
@@ -1063,12 +1071,12 @@ Python 3 使用类型注解(type annotations)的方法来加入类型信息, Pyt
 </div>
 </div>
 
-<div id="outline-container-org3ca70c9" class="outline-2">
-<h2 id="org3ca70c9"><span class="section-number-2">3.</span> 语言规范</h2>
+<div id="outline-container-org8e2b82b" class="outline-2">
+<h2 id="org8e2b82b"><span class="section-number-2">3.</span> 语言规范</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgd6f2239" class="outline-3">
-<h3 id="orgd6f2239"><span class="section-number-3">3.1.</span> 导入</h3>
+<div id="outline-container-orge49dca4" class="outline-3">
+<h3 id="orge49dca4"><span class="section-number-3">3.1.</span> 导入</h3>
 <div class="outline-text-3" id="text-3-1">
 <pre class="example">
 仅对包和模板使用导入</pre>
@@ -1106,8 +1114,8 @@ Python 3 使用类型注解(type annotations)的方法来加入类型信息, Pyt
 </div>
 </div>
 
-<div id="outline-container-org3246861" class="outline-4">
-<h4 id="org3246861"><span class="section-number-4">3.1.1.</span> 例外</h4>
+<div id="outline-container-orgcd3c9b7" class="outline-4">
+<h4 id="orgcd3c9b7"><span class="section-number-4">3.1.1.</span> 例外</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 在使用 <code>typing</code> 模块时, 不需要遵守这条规则
@@ -1120,8 +1128,8 @@ Python 3 使用类型注解(type annotations)的方法来加入类型信息, Pyt
 </div>
 </div>
 
-<div id="outline-container-org58fe324" class="outline-3">
-<h3 id="org58fe324"><span class="section-number-3">3.2.</span> 包</h3>
+<div id="outline-container-orgd7f1849" class="outline-3">
+<h3 id="orgd7f1849"><span class="section-number-3">3.2.</span> 包</h3>
 <div class="outline-text-3" id="text-3-2">
 <pre class="example">
 使用模块的全路径名来导入每个模块</pre>
@@ -1141,8 +1149,8 @@ Python 3 使用类型注解(type annotations)的方法来加入类型信息, Pyt
 </div>
 </div>
 
-<div id="outline-container-org7de52e2" class="outline-3">
-<h3 id="org7de52e2"><span class="section-number-3">3.3.</span> 类</h3>
+<div id="outline-container-orgd4b9a0d" class="outline-3">
+<h3 id="orgd4b9a0d"><span class="section-number-3">3.3.</span> 类</h3>
 <div class="outline-text-3" id="text-3-3">
 <pre class="example">
 类没有必要继承 object, 除非你需要考虑兼容 Python 2</pre>
@@ -1184,16 +1192,16 @@ No
 </div>
 </div>
 
-<div id="outline-container-orgfb89587" class="outline-3">
-<h3 id="orgfb89587"><span class="section-number-3">3.4.</span> 异常</h3>
+<div id="outline-container-orgf5438e3" class="outline-3">
+<h3 id="orgf5438e3"><span class="section-number-3">3.4.</span> 异常</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 谨慎地使用异常
 </p>
 </div>
 
-<div id="outline-container-orgf390a05" class="outline-4">
-<h4 id="orgf390a05"><span class="section-number-4">3.4.1.</span> 自定义异常</h4>
+<div id="outline-container-orgfabd333" class="outline-4">
+<h4 id="orgfabd333"><span class="section-number-4">3.4.1.</span> 自定义异常</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <pre class="example">
 自定义异常类名以 Error 结尾, 继承 Exception</pre>
@@ -1212,8 +1220,8 @@ class MyError(Exception):
 </div>
 </div>
 
-<div id="outline-container-orgd708034" class="outline-4">
-<h4 id="orgd708034"><span class="section-number-4">3.4.2.</span> 异常抛出的形式</h4>
+<div id="outline-container-org2b97242" class="outline-4">
+<h4 id="org2b97242"><span class="section-number-4">3.4.2.</span> 异常抛出的形式</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <pre class="example">
 使用抛出异常实例的形式</pre>
@@ -1236,8 +1244,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org044ffd1" class="outline-4">
-<h4 id="org044ffd1"><span class="section-number-4">3.4.3.</span> 注意异常捕获的范围</h4>
+<div id="outline-container-org10757ec" class="outline-4">
+<h4 id="org10757ec"><span class="section-number-4">3.4.3.</span> 注意异常捕获的范围</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <pre class="example">
 不要使用 except: 捕获所有异常</pre>
@@ -1266,8 +1274,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org7257321" class="outline-4">
-<h4 id="org7257321"><span class="section-number-4">3.4.4.</span> 尽量减少 try except 语法块内代码的数量</h4>
+<div id="outline-container-org7720156" class="outline-4">
+<h4 id="org7720156"><span class="section-number-4">3.4.4.</span> 尽量减少 try except 语法块内代码的数量</h4>
 <div class="outline-text-4" id="text-3-4-4">
 <p>
 try except 语法块内代码的数量越多, 在你预期之外的代码抛出异常的机会就会越大, 在这种情况下 try except
@@ -1276,8 +1284,8 @@ try except 语法块内代码的数量越多, 在你预期之外的代码抛出�
 </div>
 </div>
 
-<div id="outline-container-org50cc356" class="outline-4">
-<h4 id="org50cc356"><span class="section-number-4">3.4.5.</span> 使用 try except else finally 结构</h4>
+<div id="outline-container-org8710a89" class="outline-4">
+<h4 id="org8710a89"><span class="section-number-4">3.4.5.</span> 使用 try except else finally 结构</h4>
 <div class="outline-text-4" id="text-3-4-5">
 <p>
 使用完整的 try/except/else/finally 结构, 会让代码逻辑变得更清晰
@@ -1289,8 +1297,8 @@ try except 语法块内代码的数量越多, 在你预期之外的代码抛出�
 </div>
 </div>
 
-<div id="outline-container-orgf424303" class="outline-4">
-<h4 id="orgf424303"><span class="section-number-4">3.4.6.</span> assert</h4>
+<div id="outline-container-org6d250cd" class="outline-4">
+<h4 id="org6d250cd"><span class="section-number-4">3.4.6.</span> assert</h4>
 <div class="outline-text-4" id="text-3-4-6">
 <pre class="example">
 assert 只用于确保代码内部的正确性, 不能用于确保调用是正确的或者有异常发生</pre>
@@ -1327,8 +1335,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-orgf39f83d" class="outline-3">
-<h3 id="orgf39f83d"><span class="section-number-3">3.5.</span> 全局变量</h3>
+<div id="outline-container-org21cf231" class="outline-3">
+<h3 id="org21cf231"><span class="section-number-3">3.5.</span> 全局变量</h3>
 <div class="outline-text-3" id="text-3-5">
 <pre class="example">
 尽量避免使用全局变量</pre>
@@ -1352,8 +1360,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org790671a" class="outline-3">
-<h3 id="org790671a"><span class="section-number-3">3.6.</span> 列表表达式 (list compreshensions)</h3>
+<div id="outline-container-org43f02e1" class="outline-3">
+<h3 id="org43f02e1"><span class="section-number-3">3.6.</span> 列表表达式 (list compreshensions)</h3>
 <div class="outline-text-3" id="text-3-6">
 <pre class="example">
 适用于简单的情况, 禁止在列表表达式中使用多重 for 循环或者多重过滤</pre>
@@ -1389,8 +1397,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org2b2fe2f" class="outline-3">
-<h3 id="org2b2fe2f"><span class="section-number-3">3.7.</span> 默认迭代器和操作符</h3>
+<div id="outline-container-org5573912" class="outline-3">
+<h3 id="org5573912"><span class="section-number-3">3.7.</span> 默认迭代器和操作符</h3>
 <div class="outline-text-3" id="text-3-7">
 <pre class="example">
 如果类型支持, 就使用默认迭代器和操作符. 比如列表, 字典及文件等.</pre>
@@ -1425,8 +1433,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org49f7f05" class="outline-3">
-<h3 id="org49f7f05"><span class="section-number-3">3.8.</span> lambda 表达式</h3>
+<div id="outline-container-orgd1a22e8" class="outline-3">
+<h3 id="orgd1a22e8"><span class="section-number-3">3.8.</span> lambda 表达式</h3>
 <div class="outline-text-3" id="text-3-8">
 <pre class="example">
 lambda 方法体为一行表达式的情况下可以使用</pre>
@@ -1453,8 +1461,8 @@ lambda 方法体为一行表达式的情况下可以使用</pre>
 </div>
 </div>
 
-<div id="outline-container-org7c2be79" class="outline-3">
-<h3 id="org7c2be79"><span class="section-number-3">3.9.</span> 条件表达式</h3>
+<div id="outline-container-org10ab43d" class="outline-3">
+<h3 id="org10ab43d"><span class="section-number-3">3.9.</span> 条件表达式</h3>
 <div class="outline-text-3" id="text-3-9">
 <pre class="example">
 简单的情况下适用, 复杂情况或多重条件判断时使用完整的 if else 语句.</pre>
@@ -1481,8 +1489,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org1c4dfd2" class="outline-3">
-<h3 id="org1c4dfd2"><span class="section-number-3">3.10.</span> 函数参数默认值</h3>
+<div id="outline-container-orgd2aa065" class="outline-3">
+<h3 id="orgd2aa065"><span class="section-number-3">3.10.</span> 函数参数默认值</h3>
 <div class="outline-text-3" id="text-3-10">
 <pre class="example">
 禁止使用可变对象作为函数参数的默认值</pre>
@@ -1521,8 +1529,8 @@ No
 </div>
 </div>
 
-<div id="outline-container-org797804c" class="outline-3">
-<h3 id="org797804c"><span class="section-number-3">3.11.</span> True/False 求值</h3>
+<div id="outline-container-org12aa89f" class="outline-3">
+<h3 id="org12aa89f"><span class="section-number-3">3.11.</span> True/False 求值</h3>
 <div class="outline-text-3" id="text-3-11">
 <pre class="example">
 在可能的情况下使用隐式的 False 值</pre>
@@ -1562,8 +1570,8 @@ Python 的惯用法是使用这些隐式的 False 值, 例如 <code>if foo:</cod
 </div>
 </div>
 
-<div id="outline-container-org669259f" class="outline-3">
-<h3 id="org669259f"><span class="section-number-3">3.12.</span> 格式化字符串</h3>
+<div id="outline-container-org31434d0" class="outline-3">
+<h3 id="org31434d0"><span class="section-number-3">3.12.</span> 格式化字符串</h3>
 <div class="outline-text-3" id="text-3-12">
 <p>
 在 Python 3 中推荐使用 f-string, 不使用老式的 <code>%</code> 以及 <code>str.format</code> 进行格式化.
@@ -1590,8 +1598,8 @@ better
 </p>
 </div>
 
-<div id="outline-container-org74c2c59" class="outline-4">
-<h4 id="org74c2c59"><span class="section-number-4">3.12.1.</span> 例外</h4>
+<div id="outline-container-org2578fde" class="outline-4">
+<h4 id="org2578fde"><span class="section-number-4">3.12.1.</span> 例外</h4>
 <div class="outline-text-4" id="text-3-12-1">
 <p>
 在使用标准库 logging 进行日志输出时, 仍然推荐使用 <code>%s</code> 的格式化风格,而不是 <code>f-string</code>.
@@ -1615,12 +1623,12 @@ better
 </div>
 </div>
 
-<div id="outline-container-orge9ccec3" class="outline-2">
-<h2 id="orge9ccec3"><span class="section-number-2">4.</span> 编程原则与最佳实践</h2>
+<div id="outline-container-orge5d6fb4" class="outline-2">
+<h2 id="orge5d6fb4"><span class="section-number-2">4.</span> 编程原则与最佳实践</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgbf4a7a6" class="outline-3">
-<h3 id="orgbf4a7a6"><span class="section-number-3">4.1.</span> 使用 pylint</h3>
+<div id="outline-container-orgd88841b" class="outline-3">
+<h3 id="orgd88841b"><span class="section-number-3">4.1.</span> 使用 pylint</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 使用 pylint</pre>
@@ -1652,8 +1660,8 @@ better
 </div>
 </div>
 
-<div id="outline-container-orgfb26bab" class="outline-3">
-<h3 id="orgfb26bab"><span class="section-number-3">4.2.</span> 自底向上编程</h3>
+<div id="outline-container-org6d3c7f8" class="outline-3">
+<h3 id="org6d3c7f8"><span class="section-number-3">4.2.</span> 自底向上编程</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 自底向上编程(bottom up): 从最底层,依赖最少的地方开始设计结构及编写代码,
@@ -1679,8 +1687,8 @@ better
 </div>
 </div>
 
-<div id="outline-container-org5644270" class="outline-3">
-<h3 id="org5644270"><span class="section-number-3">4.3.</span> 防御式编程</h3>
+<div id="outline-container-org7008555" class="outline-3">
+<h3 id="org7008555"><span class="section-number-3">4.3.</span> 防御式编程</h3>
 <div class="outline-text-3" id="text-4-3">
 <pre class="example">
 使用 assert 语句确保程序处于的正确状态</pre>
@@ -1733,8 +1741,8 @@ assert 语句通常可用于以下场景: - 确保公共类或者函数被正确
 </div>
 </div>
 
-<div id="outline-container-org351475a" class="outline-3">
-<h3 id="org351475a"><span class="section-number-3">4.4.</span> 避免使用 magic number</h3>
+<div id="outline-container-org293c889" class="outline-3">
+<h3 id="org293c889"><span class="section-number-3">4.4.</span> 避免使用 magic number</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 赋予特殊的常量一个名字, 避免重复地直接使用它们的字面值.
@@ -1764,8 +1772,8 @@ Yes
 </div>
 </div>
 
-<div id="outline-container-org897eabf" class="outline-3">
-<h3 id="org897eabf"><span class="section-number-3">4.5.</span> 处理字典 key 不存在时的默认值</h3>
+<div id="outline-container-org4a3b25f" class="outline-3">
+<h3 id="org4a3b25f"><span class="section-number-3">4.5.</span> 处理字典 key 不存在时的默认值</h3>
 <div class="outline-text-3" id="text-4-5">
 <pre class="example">
 使用 dict.setdefault 或者 defaultdict</pre>
@@ -1805,8 +1813,8 @@ Yes
 </div>
 </div>
 
-<div id="outline-container-org0008a04" class="outline-2">
-<h2 id="org0008a04"><span class="section-number-2">5.</span> References</h2>
+<div id="outline-container-orgf9729b7" class="outline-2">
+<h2 id="orgf9729b7"><span class="section-number-2">5.</span> References</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://google.github.io/styleguide/pyguide.html" target="_blank" rel="noopener">Google Python Style Guide <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
@@ -1879,7 +1887,7 @@ mypy 的开发直接影响了 PEP484 的诞生, 而且有非常成功的使用�
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2019/02/07/how-to-use-ob-ipython/" rel="bookmark">org 文档使用 ob-ipython 进行 python literal programming</a></div>
+      <div class="popular-posts-title"><a href="/2019/02/23/python-dynamic-module-creation/" rel="bookmark">Python 动态创建模块</a></div>
       
     </li>
   
@@ -2114,7 +2122,7 @@ mypy 的开发直接影响了 PEP484 的诞生, 而且有非常成功的使用�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org93e67ae"><span class="nav-text">1. Python 项目开发规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org3fe422d"><span class="nav-text">1.1. 阅读指南</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf50cfc7"><span class="nav-text">2. 代码风格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgcfc6f06"><span class="nav-text">2.1. 代码格式器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgb6359d4"><span class="nav-text">2.1.1. black 的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org44a1cae"><span class="nav-text">2.2. import</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org4a527c8"><span class="nav-text">2.2.1. 禁止使用 import *</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgb750803"><span class="nav-text">2.2.2. import 语句的顺序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org89f08b9"><span class="nav-text">2.3. 命名</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org58c6837"><span class="nav-text">2.3.1. 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org78db293"><span class="nav-text">2.3.2. 避免使用的命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org403829b"><span class="nav-text">2.3.3. 命名约定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org49feec2"><span class="nav-text">2.3.4. 变量名形式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge4ecf4f"><span class="nav-text">2.4. Main 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgb2bab8b"><span class="nav-text">2.5. 注释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org1345ac8"><span class="nav-text">2.5.1. 解释为什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org148001b"><span class="nav-text">2.5.2. 错误的注释比没有注释还糟糕</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org2272701"><span class="nav-text">2.5.3. docstring</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org283224e"><span class="nav-text">2.5.4. inline comment</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge2d805e"><span class="nav-text">2.6. 类型注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3ca70c9"><span class="nav-text">3. 语言规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd6f2239"><span class="nav-text">3.1. 导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org3246861"><span class="nav-text">3.1.1. 例外</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org58fe324"><span class="nav-text">3.2. 包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org7de52e2"><span class="nav-text">3.3. 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgfb89587"><span class="nav-text">3.4. 异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgf390a05"><span class="nav-text">3.4.1. 自定义异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgd708034"><span class="nav-text">3.4.2. 异常抛出的形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org044ffd1"><span class="nav-text">3.4.3. 注意异常捕获的范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org7257321"><span class="nav-text">3.4.4. 尽量减少 try except 语法块内代码的数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org50cc356"><span class="nav-text">3.4.5. 使用 try except else finally 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgf424303"><span class="nav-text">3.4.6. assert</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf39f83d"><span class="nav-text">3.5. 全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org790671a"><span class="nav-text">3.6. 列表表达式 (list compreshensions)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org2b2fe2f"><span class="nav-text">3.7. 默认迭代器和操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org49f7f05"><span class="nav-text">3.8. lambda 表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org7c2be79"><span class="nav-text">3.9. 条件表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org1c4dfd2"><span class="nav-text">3.10. 函数参数默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org797804c"><span class="nav-text">3.11. True/False 求值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org669259f"><span class="nav-text">3.12. 格式化字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org74c2c59"><span class="nav-text">3.12.1. 例外</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge9ccec3"><span class="nav-text">4. 编程原则与最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbf4a7a6"><span class="nav-text">4.1. 使用 pylint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgfb26bab"><span class="nav-text">4.2. 自底向上编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org5644270"><span class="nav-text">4.3. 防御式编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org351475a"><span class="nav-text">4.4. 避免使用 magic number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org897eabf"><span class="nav-text">4.5. 处理字典 key 不存在时的默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0008a04"><span class="nav-text">5. References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc9155e1"><span class="nav-text">1. Python 项目开发规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org8df92d2"><span class="nav-text">1.1. 阅读指南</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1923ec3"><span class="nav-text">2. 代码风格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org0dd741e"><span class="nav-text">2.1. 代码格式器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org64e339f"><span class="nav-text">2.1.1. black 的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgfa347b5"><span class="nav-text">2.2. import</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgde61708"><span class="nav-text">2.2.1. 禁止使用 import *</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org538b34c"><span class="nav-text">2.2.2. import 语句的顺序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9ac39e3"><span class="nav-text">2.3. 命名</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgea24c5d"><span class="nav-text">2.3.1. 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org0b2b876"><span class="nav-text">2.3.2. 避免使用的命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org25414f1"><span class="nav-text">2.3.3. 命名约定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org8b6afc0"><span class="nav-text">2.3.4. 变量名形式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge681950"><span class="nav-text">2.4. Main 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgcc02b99"><span class="nav-text">2.5. 注释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org0e66b4b"><span class="nav-text">2.5.1. 解释为什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org1a6a944"><span class="nav-text">2.5.2. 错误的注释比没有注释还糟糕</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org58e45bd"><span class="nav-text">2.5.3. docstring</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org0d418f9"><span class="nav-text">2.5.4. inline comment</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgc1cc4d6"><span class="nav-text">2.6. 类型注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8e2b82b"><span class="nav-text">3. 语言规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orge49dca4"><span class="nav-text">3.1. 导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgcd3c9b7"><span class="nav-text">3.1.1. 例外</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd7f1849"><span class="nav-text">3.2. 包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd4b9a0d"><span class="nav-text">3.3. 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf5438e3"><span class="nav-text">3.4. 异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgfabd333"><span class="nav-text">3.4.1. 自定义异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org2b97242"><span class="nav-text">3.4.2. 异常抛出的形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org10757ec"><span class="nav-text">3.4.3. 注意异常捕获的范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org7720156"><span class="nav-text">3.4.4. 尽量减少 try except 语法块内代码的数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org8710a89"><span class="nav-text">3.4.5. 使用 try except else finally 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org6d250cd"><span class="nav-text">3.4.6. assert</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org21cf231"><span class="nav-text">3.5. 全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org43f02e1"><span class="nav-text">3.6. 列表表达式 (list compreshensions)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org5573912"><span class="nav-text">3.7. 默认迭代器和操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd1a22e8"><span class="nav-text">3.8. lambda 表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org10ab43d"><span class="nav-text">3.9. 条件表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd2aa065"><span class="nav-text">3.10. 函数参数默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org12aa89f"><span class="nav-text">3.11. True/False 求值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org31434d0"><span class="nav-text">3.12. 格式化字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org2578fde"><span class="nav-text">3.12.1. 例外</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge5d6fb4"><span class="nav-text">4. 编程原则与最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd88841b"><span class="nav-text">4.1. 使用 pylint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org6d3c7f8"><span class="nav-text">4.2. 自底向上编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org7008555"><span class="nav-text">4.3. 防御式编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org293c889"><span class="nav-text">4.4. 避免使用 magic number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4a3b25f"><span class="nav-text">4.5. 处理字典 key 不存在时的默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf9729b7"><span class="nav-text">5. References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
             
 
           </div>
@@ -2271,7 +2279,7 @@ mypy 的开发直接影响了 PEP484 的诞生, 而且有非常成功的使用�
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://mpwang.github.io/2019/10/20/python-convention/";
+    this.page.url = "mpwang.github.io/2019/10/20/python-convention/";
     this.page.identifier = "2019/10/20/python-convention/";
     this.page.title = 'Python 项目开发规范';
     };

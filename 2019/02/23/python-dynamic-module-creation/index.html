@@ -100,7 +100,7 @@
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 动态创建模块">
-<meta property="og:url" content="http://mpwang.github.io/2019/02/23/python-dynamic-module-creation/index.html">
+<meta property="og:url" content="mpwang.github.io/2019/02/23/python-dynamic-module-creation/index.html">
 <meta property="og:site_name" content="Slient Plant">
 <meta property="og:description" content="1. 使用 types.ModuleType  2. import 模块    1. 使用 types.ModuleType    2. import 模块    1. 使用 types.ModuleType   几乎 Python 中所有的东西都是对象, Python 标准库 types  提供了 build-in 对象的类型. 我们需要 types.ModuleType 来动态创建 m">
 <meta property="og:locale" content="zh-CN">
@@ -116,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://mpwang.github.io/2019/02/23/python-dynamic-module-creation/">
+  <link rel="canonical" href="mpwang.github.io/2019/02/23/python-dynamic-module-creation/">
 
 
 
@@ -131,6 +131,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=G-0HTWZBPPCK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0HTWZBPPCK');
+  </script>
 
 
 
@@ -325,7 +333,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2019/02/23/python-dynamic-module-creation/">
+    <link itemprop="mainEntityOfPage" href="mpwang.github.io/2019/02/23/python-dynamic-module-creation/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randall Wang">
@@ -463,21 +471,21 @@
 <div class="tabs" id="org-toc" style="font-size: 12px;">
 <ul class="nav-tabs">
 <li class="tab">
-<a class="btn" href="#tab-org60dcdd2">1. 使用 types.ModuleType</a></li>
+<a class="btn" href="#tab-org2221b91">1. 使用 types.ModuleType</a></li>
 <li class="tab">
-<a class="btn" href="#tab-org3ce8abb">2. import 模块</a></li>
+<a class="btn" href="#tab-orgd5dfa28">2. import 模块</a></li>
 </ul><div class="tab-content">
-<div class="tab-pane" id="tab-org60dcdd2">
+<div class="tab-pane" id="tab-org2221b91">
 <ul>
-<a href="#org60dcdd2">1. 使用 types.ModuleType</a></ul>
+<a href="#org2221b91">1. 使用 types.ModuleType</a></ul>
 </div>
-<div class="tab-pane" id="tab-org3ce8abb">
+<div class="tab-pane" id="tab-orgd5dfa28">
 <ul>
-<a href="#org3ce8abb">2. import 模块</a></ul></div></div>
+<a href="#orgd5dfa28">2. import 模块</a></ul></div></div>
 </div>
 
-<div id="outline-container-org60dcdd2" class="outline-2">
-<h2 id="org60dcdd2"><span class="section-number-2">1.</span> 使用 types.ModuleType</h2>
+<div id="outline-container-org2221b91" class="outline-2">
+<h2 id="org2221b91"><span class="section-number-2">1.</span> 使用 types.ModuleType</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 几乎 Python 中所有的东西都是对象, Python 标准库 <a href="https://docs.python.org/dev/library/types.html" target="_blank" rel="noopener">types <i class="fa fa-external-link" aria-hidden="true"></i></a> 提供了 build-in 对象的类型. 我们需要 <code>types.ModuleType</code> 来动态创建 module.
@@ -510,8 +518,8 @@ setattr(hello, "say_hello", say_hello)</span><br></pre></td></tr></table></figur
 </div>
 </div>
 
-<div id="outline-container-org3ce8abb" class="outline-2">
-<h2 id="org3ce8abb"><span class="section-number-2">2.</span> import 模块</h2>
+<div id="outline-container-orgd5dfa28" class="outline-2">
+<h2 id="orgd5dfa28"><span class="section-number-2">2.</span> import 模块</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 以上动态创建的模块 hello, 并不能通过 <code>import hello</code> 的方式使用.
@@ -585,7 +593,7 @@ Python 的 import 机制很简明, <code>sys.modules</code> 在其中是关键�
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2019/02/07/how-to-use-ob-ipython/" rel="bookmark">org 文档使用 ob-ipython 进行 python literal programming</a></div>
+      <div class="popular-posts-title"><a href="/2020/05/22/beyond-coding/" rel="bookmark">代码之外的功夫</a></div>
       
     </li>
   
@@ -820,7 +828,7 @@ Python 的 import 机制很简明, <code>sys.modules</code> 在其中是关键�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org60dcdd2"><span class="nav-text">1. 使用 types.ModuleType</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3ce8abb"><span class="nav-text">2. import 模块</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org2221b91"><span class="nav-text">1. 使用 types.ModuleType</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd5dfa28"><span class="nav-text">2. import 模块</span></a></li></ol></div>
             
 
           </div>
@@ -977,7 +985,7 @@ Python 的 import 机制很简明, <code>sys.modules</code> 在其中是关键�
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://mpwang.github.io/2019/02/23/python-dynamic-module-creation/";
+    this.page.url = "mpwang.github.io/2019/02/23/python-dynamic-module-creation/";
     this.page.identifier = "2019/02/23/python-dynamic-module-creation/";
     this.page.title = 'Python 动态创建模块';
     };

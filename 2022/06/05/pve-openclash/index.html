@@ -100,14 +100,16 @@
 <meta name="keywords" content="Misc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Intel NUC作为家用服务器">
-<meta property="og:url" content="http://mpwang.github.io/2022/06/05/pve-openclash/index.html">
+<meta property="og:url" content="mpwang.github.io/2022/06/05/pve-openclash/index.html">
 <meta property="og:site_name" content="Slient Plant">
 <meta property="og:description" content="1. 硬件与安装  2. PVE 使用    1. 硬件与安装 1.1. Intel NUC11 与 proxmox  1.2. 安装 PVE    2. PVE 使用 2.1. 安装 Openwrt 作为旁路由 2.1.1. 设置 Openclash  2.2. 设置旁路由 2.2.1. 修改 Openwrt 设置  2.2.2. 修改主路由设置  2.2.3. windows 机器设置">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2022-06-11T12:06:17.790Z">
+<meta property="og:image" content="/2022/06/05/pve-openclash/home_network.png">
+<meta property="og:updated_time" content="2022-06-11T12:22:33.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Intel NUC作为家用服务器">
 <meta name="twitter:description" content="1. 硬件与安装  2. PVE 使用    1. 硬件与安装 1.1. Intel NUC11 与 proxmox  1.2. 安装 PVE    2. PVE 使用 2.1. 安装 Openwrt 作为旁路由 2.1.1. 设置 Openclash  2.2. 设置旁路由 2.2.1. 修改 Openwrt 设置  2.2.2. 修改主路由设置  2.2.3. windows 机器设置">
+<meta name="twitter:image" content="/2022/06/05/pve-openclash/home_network.png">
 
 
 
@@ -116,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="http://mpwang.github.io/2022/06/05/pve-openclash/">
+  <link rel="canonical" href="mpwang.github.io/2022/06/05/pve-openclash/">
 
 
 
@@ -131,6 +133,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=G-0HTWZBPPCK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0HTWZBPPCK');
+  </script>
 
 
 
@@ -325,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2022/06/05/pve-openclash/">
+    <link itemprop="mainEntityOfPage" href="mpwang.github.io/2022/06/05/pve-openclash/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randall Wang">
@@ -385,7 +395,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2022-06-11 20:06:17" itemprop="dateModified" datetime="2022-06-11T20:06:17+08:00">2022-06-11</time>
+                <time title="修改时间：2022-06-11 20:22:33" itemprop="dateModified" datetime="2022-06-11T20:22:33+08:00">2022-06-11</time>
               
             
           </span>
@@ -463,46 +473,46 @@
 <div class="tabs" id="org-toc" style="font-size: 12px;">
 <ul class="nav-tabs">
 <li class="tab">
-<a class="btn" href="#tab-orge6531f7">1. 硬件与安装</a></li>
+<a class="btn" href="#tab-org7abde16">1. 硬件与安装</a></li>
 <li class="tab">
-<a class="btn" href="#tab-orga3b1ec9">2. PVE 使用</a></li>
+<a class="btn" href="#tab-orgd196df1">2. PVE 使用</a></li>
 </ul><div class="tab-content">
-<div class="tab-pane" id="tab-orge6531f7">
+<div class="tab-pane" id="tab-org7abde16">
 <ul>
-<a href="#orge6531f7">1. 硬件与安装</a><li>
-<a href="#org692f2d3">1.1. Intel NUC11 与 proxmox</a></li>
+<a href="#org7abde16">1. 硬件与安装</a><li>
+<a href="#org71ce4dc">1.1. Intel NUC11 与 proxmox</a></li>
 <li>
-<a href="#orgbc6efcf">1.2. 安装 PVE</a></li></ul>
+<a href="#org76a2a61">1.2. 安装 PVE</a></li></ul>
 </div>
-<div class="tab-pane" id="tab-orga3b1ec9">
+<div class="tab-pane" id="tab-orgd196df1">
 <ul>
-<a href="#orga3b1ec9">2. PVE 使用</a><li>
-<a href="#org35b4f83">2.1. 安装 Openwrt 作为旁路由</a></li><li>
-<a href="#org659aa1e">2.1.1. 设置 Openclash</a></li>
+<a href="#orgd196df1">2. PVE 使用</a><li>
+<a href="#orgeb55446">2.1. 安装 Openwrt 作为旁路由</a></li><li>
+<a href="#orge23aa5e">2.1.1. 设置 Openclash</a></li>
 <li>
-<a href="#orgbb9093e">2.2. 设置旁路由</a></li><li>
-<a href="#org4fe01ef">2.2.1. 修改 Openwrt 设置</a></li>
+<a href="#org796018a">2.2. 设置旁路由</a></li><li>
+<a href="#org065fdab">2.2.1. 修改 Openwrt 设置</a></li>
 <li>
-<a href="#orga474ffb">2.2.2. 修改主路由设置</a></li>
+<a href="#orgcbe5139">2.2.2. 修改主路由设置</a></li>
 <li>
-<a href="#orgcbe76d9">2.2.3. windows 机器设置 chrome 浏览器</a></li>
+<a href="#orga8094c7">2.2.3. windows 机器设置 chrome 浏览器</a></li>
 <li>
-<a href="#org13c5a49">2.3. Pi-Hole</a></li>
+<a href="#orgdcecf69">2.3. Pi-Hole</a></li>
 <li>
-<a href="#org6786794">2.4. HomeAssistant</a></li>
+<a href="#org195fab4">2.4. HomeAssistant</a></li>
 <li>
-<a href="#org79a3156">2.5. aliyundrive-webdav</a></li>
+<a href="#org996c6cb">2.5. aliyundrive-webdav</a></li>
 <li>
-<a href="#orga5f5b0e">2.6. Samba</a></li></ul></div></div>
+<a href="#org528ae4c">2.6. Samba</a></li></ul></div></div>
 </div>
 
 
-<div id="outline-container-orge6531f7" class="outline-2">
-<h2 id="orge6531f7"><span class="section-number-2">1.</span> 硬件与安装</h2>
+<div id="outline-container-org7abde16" class="outline-2">
+<h2 id="org7abde16"><span class="section-number-2">1.</span> 硬件与安装</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org692f2d3" class="outline-3">
-<h3 id="org692f2d3"><span class="section-number-3">1.1.</span> Intel NUC11 与 proxmox</h3>
+<div id="outline-container-org71ce4dc" class="outline-3">
+<h3 id="org71ce4dc"><span class="section-number-3">1.1.</span> Intel NUC11 与 proxmox</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <a href="https://nucfans.com/p/1305.html" target="_blank" rel="noopener">从初代到11代，NUC 捡漏指南 <i class="fa fa-external-link" aria-hidden="true"></i></a>
@@ -519,30 +529,30 @@ Intel NUC 11 低功耗，安静，体积比 Mac mini 还小，硬件强大，配
 </div>
 </div>
 
-<div id="outline-container-orgbc6efcf" class="outline-3">
-<h3 id="orgbc6efcf"><span class="section-number-3">1.2.</span> 安装 PVE</h3>
+<div id="outline-container-org76a2a61" class="outline-3">
+<h3 id="org76a2a61"><span class="section-number-3">1.2.</span> 安装 PVE</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <a href="https://pve.proxmox.com/wiki/Prepare_Installation_Media#_instructions_for_windows" target="_blank" rel="noopener">https://pve.proxmox.com/wiki/Prepare_Installation_Media#_instructions_for_windows <i class="fa fa-external-link" aria-hidden="true"></i></a>
 </p>
 
 <p>
-使用 Etcher 烧录 ISO 文件至 USB 盘，插入目标主机，开机进入 BIOS 编辑引导盘从 USB 盘开始，安装 PVE
+使用 <a href="https://www.balena.io/etcher/" target="_blank" rel="noopener">Etcher <i class="fa fa-external-link" aria-hidden="true"></i></a> 烧录 ISO 文件至 USB 盘，插入目标主机，开机进入 BIOS 编辑引导盘从 USB 盘开始，安装 PVE
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga3b1ec9" class="outline-2">
-<h2 id="orga3b1ec9"><span class="section-number-2">2.</span> PVE 使用</h2>
+<div id="outline-container-orgd196df1" class="outline-2">
+<h2 id="orgd196df1"><span class="section-number-2">2.</span> PVE 使用</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 使用 PVE 创建虚拟机或 LXC
 </p>
 </div>
 
-<div id="outline-container-org35b4f83" class="outline-3">
-<h3 id="org35b4f83"><span class="section-number-3">2.1.</span> 安装 Openwrt 作为旁路由</h3>
+<div id="outline-container-orgeb55446" class="outline-3">
+<h3 id="orgeb55446"><span class="section-number-3">2.1.</span> 安装 Openwrt 作为旁路由</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>IMG 镜像文件来源<a href="https://github.com/ApertureG/OpenWrt/releases" target="_blank" rel="noopener">https://github.com/ApertureG/OpenWrt/releases <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
@@ -556,8 +566,8 @@ PVE 安装 Openwrt 设置  <a href="https://felixqu.com/2021/09/05/setup-openwrt
 </ul>
 </div>
 
-<div id="outline-container-org659aa1e" class="outline-4">
-<h4 id="org659aa1e"><span class="section-number-4">2.1.1.</span> 设置 Openclash</h4>
+<div id="outline-container-orge23aa5e" class="outline-4">
+<h4 id="orge23aa5e"><span class="section-number-4">2.1.1.</span> 设置 Openclash</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Openwrt 镜像中已经安装了 openclash，登录 Openwrt 在服务中找到 openclash
@@ -571,12 +581,12 @@ Openwrt 镜像中已经安装了 openclash，登录 Openwrt 在服务中找到 o
 </div>
 
 
-<div id="outline-container-orgbb9093e" class="outline-3">
-<h3 id="orgbb9093e"><span class="section-number-3">2.2.</span> 设置旁路由</h3>
+<div id="outline-container-org796018a" class="outline-3">
+<h3 id="org796018a"><span class="section-number-3">2.2.</span> 设置旁路由</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org4fe01ef" class="outline-4">
-<h4 id="org4fe01ef"><span class="section-number-4">2.2.1.</span> 修改 Openwrt 设置</h4>
+<div id="outline-container-org065fdab" class="outline-4">
+<h4 id="org065fdab"><span class="section-number-4">2.2.1.</span> 修改 Openwrt 设置</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 登录 openwrt
@@ -586,17 +596,15 @@ Openwrt 镜像中已经安装了 openclash，登录 Openwrt 在服务中找到 o
 网络 -> 接口 LAN -> 修改
 </p>
 
-<p>
-－般配置 -> 基本配置 -> IPv4 网关: 填写主路由 IP
+<pre class="example">
+一般配置 -> 基本配置 -> IPv4 网关: 填写主路由 IP
                      -> IPv4 广播: 设置为主路由网段，最后一位为 255
                      -> 使用自定义的 DNS 服务器: 填写主路由 IP
+                     
          -> 物理设置 -> 桥接接口: 取消勾选
                      -> 接口: 选择对应的硬件 LAN 接口
-</p>
 
-<p>
-DHCP 服务器 -> IPv6 设置 -> DHCPv6 服务: 修改为已禁用
-</p>
+DHCP 服务器 -> IPv6 设置 -> DHCPv6 服务: 修改为已禁用</pre>
 
 <p>
 保存&应用
@@ -604,20 +612,19 @@ DHCP 服务器 -> IPv6 设置 -> DHCPv6 服务: 修改为已禁用
 </div>
 </div>
 
-<div id="outline-container-orga474ffb" class="outline-4">
-<h4 id="orga474ffb"><span class="section-number-4">2.2.2.</span> 修改主路由设置</h4>
+<div id="outline-container-orgcbe5139" class="outline-4">
+<h4 id="orgcbe5139"><span class="section-number-4">2.2.2.</span> 修改主路由设置</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 登录主路由
 </p>
 
-<p>
+<pre class="example">
 内部网络(LAN) -> DHCP 服务器 -> 基本设置 -> 默认网关: 填写为 Openwrt 的 IP
-                                         -> DNS 服务器设置: 填写为 Openwrt 的 IP
-</p>
+                                         -> DNS 服务器设置: 填写为 Openwrt 的 IP</pre>
 
 <p>
-这种设置为主路由不关闭 DHCP 服务器，只设置 DHCP 的默认网关
+这样的设置为主路由不关闭 DHCP 服务器，只设置 DHCP 的默认网关
 </p>
 
 <p>
@@ -626,8 +633,8 @@ DHCP 服务器 -> IPv6 设置 -> DHCPv6 服务: 修改为已禁用
 </div>
 </div>
 
-<div id="outline-container-orgcbe76d9" class="outline-4">
-<h4 id="orgcbe76d9"><span class="section-number-4">2.2.3.</span> windows 机器设置 chrome 浏览器</h4>
+<div id="outline-container-orga8094c7" class="outline-4">
+<h4 id="orga8094c7"><span class="section-number-4">2.2.3.</span> windows 机器设置 chrome 浏览器</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 设置后发现接入家用网络的 windows 机器出现以下现象
@@ -641,36 +648,37 @@ DHCP 服务器 -> IPv6 设置 -> DHCPv6 服务: 修改为已禁用
 解决方法
 </p>
 
-<p>
+<pre class="example">
 chrome://settings 搜索 dns
-</p>
 
-<p>
-security -> Advanced -> Use secure DNS 选择 With Cloudflare 1.1.1.1
-</p>
+security -> Advanced -> Use secure DNS 选择 With Cloudflare 1.1.1.1</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org13c5a49" class="outline-3">
-<h3 id="org13c5a49"><span class="section-number-3">2.3.</span> Pi-Hole</h3>
+<div id="outline-container-orgdcecf69" class="outline-3">
+<h3 id="orgdcecf69"><span class="section-number-3">2.3.</span> Pi-Hole</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-可以选择创建 Ubuntu 容器安装 Pi-Hole 用于广告过滤以及网络流量监控
+可以选择创建 Ubuntu 容器安装 <a href="https://pi-hole.net/" target="_blank" rel="noopener">Pi-Hole <i class="fa fa-external-link" aria-hidden="true"></i></a> 用于广告过滤以及网络流量监控
 </p>
 
 <p>
-网络拓扑在加入 Pi-Hole 之后
+在加入 Pi-Hole 之后的网络拓扑
 </p>
 
 <p>
+<img src="/2022/06/05/pve-openclash/home_network.png">
+</p>
 
+<p>
+Pi-Hole 使用的<a href="https://github.com/privacy-protection-tools/anti-AD" target="_blank" rel="noopener">anti-AD <i class="fa fa-external-link" aria-hidden="true"></i></a>列表
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6786794" class="outline-3">
-<h3 id="org6786794"><span class="section-number-3">2.4.</span> HomeAssistant</h3>
+<div id="outline-container-org195fab4" class="outline-3">
+<h3 id="org195fab4"><span class="section-number-3">2.4.</span> HomeAssistant</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 安装 HomeAssistant 将小米设备接入 Apple HomeKit，通过 Siri 控制家族智能设备
@@ -693,8 +701,8 @@ Configuration then disable Attempt Secure Boot.
 </div>
 </div>
 
-<div id="outline-container-org79a3156" class="outline-3">
-<h3 id="org79a3156"><span class="section-number-3">2.5.</span> aliyundrive-webdav</h3>
+<div id="outline-container-org996c6cb" class="outline-3">
+<h3 id="org996c6cb"><span class="section-number-3">2.5.</span> aliyundrive-webdav</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 将阿里云盘作为文件夹挂载到 windows 电脑中
@@ -711,19 +719,19 @@ Configuration then disable Attempt Secure Boot.
 </div>
 
 
-<div id="outline-container-orga5f5b0e" class="outline-3">
-<h3 id="orga5f5b0e"><span class="section-number-3">2.6.</span> Samba</h3>
+<div id="outline-container-org528ae4c" class="outline-3">
+<h3 id="org528ae4c"><span class="section-number-3">2.6.</span> Samba</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 设置 Sambda 服务器，用于局域网共享文件夹
 </p>
 
 <p>
-将 1T 的 SSD 格式化之后挂载到 PVE.
+将 1T 的 SSD 格式化之后挂载到 PVE. 挂载路径 <b>/mnt/data</b>
 </p>
 
 <p>
-挂载路径 <b>/mnt/data*，创建用于共享的文件夹 */mnt/data/share</b>
+创建用于共享的文件夹 <b>/mnt/data/share</b>
 </p>
 
 <p>
@@ -1006,7 +1014,7 @@ ufw allow samba</pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orge6531f7"><span class="nav-text">1. 硬件与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org692f2d3"><span class="nav-text">1.1. Intel NUC11 与 proxmox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbc6efcf"><span class="nav-text">1.2. 安装 PVE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga3b1ec9"><span class="nav-text">2. PVE 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org35b4f83"><span class="nav-text">2.1. 安装 Openwrt 作为旁路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org659aa1e"><span class="nav-text">2.1.1. 设置 Openclash</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbb9093e"><span class="nav-text">2.2. 设置旁路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org4fe01ef"><span class="nav-text">2.2.1. 修改 Openwrt 设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orga474ffb"><span class="nav-text">2.2.2. 修改主路由设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgcbe76d9"><span class="nav-text">2.2.3. windows 机器设置 chrome 浏览器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org13c5a49"><span class="nav-text">2.3. Pi-Hole</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org6786794"><span class="nav-text">2.4. HomeAssistant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org79a3156"><span class="nav-text">2.5. aliyundrive-webdav</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orga5f5b0e"><span class="nav-text">2.6. Samba</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org7abde16"><span class="nav-text">1. 硬件与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org71ce4dc"><span class="nav-text">1.1. Intel NUC11 与 proxmox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org76a2a61"><span class="nav-text">1.2. 安装 PVE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd196df1"><span class="nav-text">2. PVE 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgeb55446"><span class="nav-text">2.1. 安装 Openwrt 作为旁路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orge23aa5e"><span class="nav-text">2.1.1. 设置 Openclash</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org796018a"><span class="nav-text">2.2. 设置旁路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org065fdab"><span class="nav-text">2.2.1. 修改 Openwrt 设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgcbe5139"><span class="nav-text">2.2.2. 修改主路由设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orga8094c7"><span class="nav-text">2.2.3. windows 机器设置 chrome 浏览器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgdcecf69"><span class="nav-text">2.3. Pi-Hole</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org195fab4"><span class="nav-text">2.4. HomeAssistant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org996c6cb"><span class="nav-text">2.5. aliyundrive-webdav</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org528ae4c"><span class="nav-text">2.6. Samba</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1163,7 +1171,7 @@ ufw allow samba</pre>
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://mpwang.github.io/2022/06/05/pve-openclash/";
+    this.page.url = "mpwang.github.io/2022/06/05/pve-openclash/";
     this.page.identifier = "2022/06/05/pve-openclash/";
     this.page.title = '使用Intel NUC作为家用服务器';
     };
