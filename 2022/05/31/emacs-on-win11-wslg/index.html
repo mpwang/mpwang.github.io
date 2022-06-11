@@ -96,20 +96,18 @@
 
 
 
-  <meta name="description" content="1. ob-ipython  2. 安装  3. 配置  4. 使用 yasnippet  5. 显示图片及表格  6. Enjoy    1. ob-ipython    2. 安装 2.1. 安装 ob-ipython  2.2. 安装 jupyter 2.2.1. 手动安装 jupyter  2.2.2. 使用 use-package    3. 配置    4. 使用 yasnip">
-<meta name="keywords" content="Emacs,Python">
+  <meta name="description" content="1. wslg  2. emacs    1. wslg 1.1. 中文字体    2. emacs 2.1. 安装 Emacs 29  2.2. Emacs 中文输入法 pyim  2.3. Emacs 复制文本至 Windows 剪贴板    1. wslg   在 windows 下使用原生的 Emacs 一直是个麻烦的事情，比如以下问题   windows 文件路径形式的匹配， 缺">
+<meta name="keywords" content="Emacs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="org 文档使用 ob-ipython 进行 python literal programming">
-<meta property="og:url" content="http://mpwang.github.io/2019/02/07/how-to-use-ob-ipython/index.html">
+<meta property="og:title" content="windows11使用WSLg方式使用Emacs">
+<meta property="og:url" content="http://mpwang.github.io/2022/05/31/emacs-on-win11-wslg/index.html">
 <meta property="og:site_name" content="Slient Plant">
-<meta property="og:description" content="1. ob-ipython  2. 安装  3. 配置  4. 使用 yasnippet  5. 显示图片及表格  6. Enjoy    1. ob-ipython    2. 安装 2.1. 安装 ob-ipython  2.2. 安装 jupyter 2.2.1. 手动安装 jupyter  2.2.2. 使用 use-package    3. 配置    4. 使用 yasnip">
+<meta property="og:description" content="1. wslg  2. emacs    1. wslg 1.1. 中文字体    2. emacs 2.1. 安装 Emacs 29  2.2. Emacs 中文输入法 pyim  2.3. Emacs 复制文本至 Windows 剪贴板    1. wslg   在 windows 下使用原生的 Emacs 一直是个麻烦的事情，比如以下问题   windows 文件路径形式的匹配， 缺">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://mpwang.github.io/2019/02/07/how-to-use-ob-ipython/screenshot.jpg">
-<meta property="og:updated_time" content="2019-02-09T19:25:11.000Z">
+<meta property="og:updated_time" content="2022-05-30T18:57:49.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="org 文档使用 ob-ipython 进行 python literal programming">
-<meta name="twitter:description" content="1. ob-ipython  2. 安装  3. 配置  4. 使用 yasnippet  5. 显示图片及表格  6. Enjoy    1. ob-ipython    2. 安装 2.1. 安装 ob-ipython  2.2. 安装 jupyter 2.2.1. 手动安装 jupyter  2.2.2. 使用 use-package    3. 配置    4. 使用 yasnip">
-<meta name="twitter:image" content="http://mpwang.github.io/2019/02/07/how-to-use-ob-ipython/screenshot.jpg">
+<meta name="twitter:title" content="windows11使用WSLg方式使用Emacs">
+<meta name="twitter:description" content="1. wslg  2. emacs    1. wslg 1.1. 中文字体    2. emacs 2.1. 安装 Emacs 29  2.2. Emacs 中文输入法 pyim  2.3. Emacs 复制文本至 Windows 剪贴板    1. wslg   在 windows 下使用原生的 Emacs 一直是个麻烦的事情，比如以下问题   windows 文件路径形式的匹配， 缺">
 
 
 
@@ -118,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://mpwang.github.io/2019/02/07/how-to-use-ob-ipython/">
+  <link rel="canonical" href="http://mpwang.github.io/2022/05/31/emacs-on-win11-wslg/">
 
 
 
@@ -128,7 +126,7 @@
   };
 </script>
 
-  <title>org 文档使用 ob-ipython 进行 python literal programming | Slient Plant</title>
+  <title>windows11使用WSLg方式使用Emacs | Slient Plant</title>
   
 
 
@@ -327,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2019/02/07/how-to-use-ob-ipython/">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2022/05/31/emacs-on-win11-wslg/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randall Wang">
@@ -344,7 +342,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">org 文档使用 ob-ipython 进行 python literal programming
+          <h2 class="post-title" itemprop="name headline">windows11使用WSLg方式使用Emacs
 
               
             
@@ -370,24 +368,12 @@
                 
               
 
-              <time title="创建时间：2019-02-07 22:25:37" itemprop="dateCreated datePublished" datetime="2019-02-07T22:25:37+08:00">2019-02-07</time>
+              <time title="创建时间：2022-05-31 01:49:44 / 修改时间：02:57:49" itemprop="dateCreated datePublished" datetime="2022-05-31T01:49:44+08:00">2022-05-31</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-10 03:25:11" itemprop="dateModified" datetime="2019-02-10T03:25:11+08:00">2019-02-10</time>
               
             
           </span>
@@ -404,8 +390,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/2019/02/07/how-to-use-ob-ipython/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/07/how-to-use-ob-ipython/" itemprop="commentCount"></span>
+                <a href="/2022/05/31/emacs-on-win11-wslg/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/05/31/emacs-on-win11-wslg/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -427,7 +413,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.8k</span>
+                <span title="本文字数">2.1k</span>
               
 
               
@@ -441,7 +427,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -465,210 +451,119 @@
 <div class="tabs" id="org-toc" style="font-size: 12px;">
 <ul class="nav-tabs">
 <li class="tab">
-<a class="btn" href="#tab-orge91b059">1. ob-ipython</a></li>
+<a class="btn" href="#tab-orgcf3383f">1. wslg</a></li>
 <li class="tab">
-<a class="btn" href="#tab-org16608bf">2. 安装</a></li>
-<li class="tab">
-<a class="btn" href="#tab-org6df32de">3. 配置</a></li>
-<li class="tab">
-<a class="btn" href="#tab-org4318a6f">4. 使用 yasnippet</a></li>
-<li class="tab">
-<a class="btn" href="#tab-orgec760ba">5. 显示图片及表格</a></li>
-<li class="tab">
-<a class="btn" href="#tab-org48e34ba">6. Enjoy</a></li>
+<a class="btn" href="#tab-org9be858c">2. emacs</a></li>
 </ul><div class="tab-content">
-<div class="tab-pane" id="tab-orge91b059">
+<div class="tab-pane" id="tab-orgcf3383f">
 <ul>
-<a href="#orge91b059">1. ob-ipython</a></ul>
+<a href="#orgcf3383f">1. wslg</a><li>
+<a href="#org5b2b993">1.1. 中文字体</a></li></ul>
 </div>
-<div class="tab-pane" id="tab-org16608bf">
+<div class="tab-pane" id="tab-org9be858c">
 <ul>
-<a href="#org16608bf">2. 安装</a><li>
-<a href="#org3406279">2.1. 安装 ob-ipython</a></li>
+<a href="#org9be858c">2. emacs</a><li>
+<a href="#org54445df">2.1. 安装 Emacs 29</a></li>
 <li>
-<a href="#org66c2770">2.2. 安装 jupyter</a></li><li>
-<a href="#org8e377b2">2.2.1. 手动安装 jupyter</a></li>
+<a href="#org66ffd8c">2.2. Emacs 中文输入法 pyim</a></li>
 <li>
-<a href="#org683e998">2.2.2. 使用 use-package</a></li></ul>
-</div>
-<div class="tab-pane" id="tab-org6df32de">
-<ul>
-<a href="#org6df32de">3. 配置</a></ul>
-</div>
-<div class="tab-pane" id="tab-org4318a6f">
-<ul>
-<a href="#org4318a6f">4. 使用 yasnippet</a></ul>
-</div>
-<div class="tab-pane" id="tab-orgec760ba">
-<ul>
-<a href="#orgec760ba">5. 显示图片及表格</a></ul>
-</div>
-<div class="tab-pane" id="tab-org48e34ba">
-<ul>
-<a href="#org48e34ba">6. Enjoy</a></ul></div></div>
+<a href="#org3ab6aed">2.3. Emacs 复制文本至 Windows 剪贴板</a></li></ul></div></div>
 </div>
 
-<div id="outline-container-orge91b059" class="outline-2">
-<h2 id="orge91b059"><span class="section-number-2">1.</span> ob-ipython</h2>
+<div id="outline-container-orgcf3383f" class="outline-2">
+<h2 id="orgcf3383f"><span class="section-number-2">1.</span> wslg</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-使用 <a href="https://github.com/gregsexton/ob-ipython" target="_blank" rel="noopener"><code>ob-ipython</code> <i class="fa fa-external-link" aria-hidden="true"></i></a> 可以在 org 文档内运行代码块, 代码块内容会被发送到后台的
-<code>Jupyter</code> 进程运行, 返回结果会被插入到 org 文档中. org 文档丰富的显示类型使得使
-用 org 文档来代替 jupyter notebook 成为了一种不错的体验.
+在 windows 下使用原生的 Emacs 一直是个麻烦的事情，比如以下问题
+</p>
+<ul class="org-ul">
+<li>windows 文件路径形式的匹配，</li>
+<li>缺少 Linux 常用命令(使用如 <a href="http://gnuwin32.sourceforge.net/" target="_blank" rel="noopener">GnuWin32 <i class="fa fa-external-link" aria-hidden="true"></i></a>, <a href="https://github.com/uutils/coreutils" target="_blank" rel="noopener">coreutils <i class="fa fa-external-link" aria-hidden="true"></i></a>等项目)</li>
+<li>环境变量的设置</li>
+<li>编译麻烦</li>
+</ul>
+
+<p>
+而且最大的问题出在性能上，无法和在 Linux/MacOS 上使用经验相媲美。
 </p>
 
 <p>
-效果图
+windows 11 推出后支持使用 <a href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps" target="_blank" rel="noopener">wslg <i class="fa fa-external-link" aria-hidden="true"></i></a> 的形式使用 Linux 应用图形化界面。目前看来在 windows 上以这种形式使用 Emacs 体验十分不错。
 </p>
 
 <p>
-<img src="/2019/02/07/how-to-use-ob-ipython/screenshot.jpg">
+在安装好 WSL2 之后，选择使用 Ubuntu 20.0 创建虚拟机。
+</p>
+</div>
+
+<div id="outline-container-org5b2b993" class="outline-3">
+<h3 id="org5b2b993"><span class="section-number-3">1.1.</span> 中文字体</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+配置 Ubuntu 系统的中文字体, 按照<a href="https://kknews.cc/code/pjv5rb8.html" target="_blank" rel="noopener">这篇文章 <i class="fa fa-external-link" aria-hidden="true"></i></a>的 1.5.1 及 1.5.2 两个章节操作，安装中文支持及配置中文字体。
 </p>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org16608bf" class="outline-2">
-<h2 id="org16608bf"><span class="section-number-2">2.</span> 安装</h2>
+<div id="outline-container-org9be858c" class="outline-2">
+<h2 id="org9be858c"><span class="section-number-2">2.</span> emacs</h2>
 <div class="outline-text-2" id="text-2">
-<p>
-以下指引针对 spacemacs 用户, 其它配置的用户需要在自己的配置中添加对应的设置.
-</p>
 </div>
-<div id="outline-container-org3406279" class="outline-3">
-<h3 id="org3406279"><span class="section-number-3">2.1.</span> 安装 ob-ipython</h3>
+<div id="outline-container-org54445df" class="outline-3">
+<h3 id="org54445df"><span class="section-number-3">2.1.</span> 安装 Emacs 29</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-在 <code>dotspacemacs-additional-packages</code> 中添加 ob-ipython.
+使用本地编译方式安装 Emacs 29.0.50
 </p>
 
-<p>
-<code>SPC f e R</code> 重新载入 spacemacs 配置或者重启 spacemacs 下载安装 ob-ipython.
-</p>
+<ul class="org-ul">
+<li><b>–with-native-compilation</b> Emacs Lisp bytecode is translated to C and then machine code, yielding performance benefits.</li>
+<li>WSLg uses Wayland and Emacs 29.0.50 master has the pure GTK feature instead of relying on the older X window system.</li>
+</ul>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">git clone git://git.sv.gnu.org/emacs.git emacs-source
+cd emacs-source
+
+sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgif-dev libjpeg-dev libpng-dev libxpm-dev libncurses-dev texinfo
+# Native JSON
+sudo apt install libjansson4 libjansson-dev
+# Native Complilation
+sudo apt install libgccjit0 libgccjit-10-dev gcc-10 g++-10
+
+./audogen.sh
+
+export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+./configure --with-native-compilation --with-json --with-pgtk
+
+make -j6
+
+sudo make install</span><br></pre></td></tr></table></figure>
 </div>
 </div>
-<div id="outline-container-org66c2770" class="outline-3">
-<h3 id="org66c2770"><span class="section-number-3">2.2.</span> 安装 jupyter</h3>
+</div>
+
+<div id="outline-container-org66ffd8c" class="outline-3">
+<h3 id="org66ffd8c"><span class="section-number-3">2.2.</span> Emacs 中文输入法 pyim</h3>
 <div class="outline-text-3" id="text-2-2">
-</div>
-<div id="outline-container-org8e377b2" class="outline-4">
-<h4 id="org8e377b2"><span class="section-number-4">2.2.1.</span> 手动安装 jupyter</h4>
-<div class="outline-text-4" id="text-2-2-1">
 <p>
-python3 安装 jupyter
+使用 wslg 方式使用 Emacs，windows 的中文输入法在 Emacs 应用上无法生效。使用 Emacs 原生的<a href="https://github.com/tumashu/pyim" target="_blank" rel="noopener">中文输入法 pyim <i class="fa fa-external-link" aria-hidden="true"></i></a> 来解决这个问题，无需使用系统
+输入法来回切换，使用起来也十分流畅。
 </p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">pip3 install jupyter</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org683e998" class="outline-4">
-<h4 id="org683e998"><span class="section-number-4">2.2.2.</span> 使用 use-package</h4>
-<div class="outline-text-4" id="text-2-2-2">
+
 <p>
-在 <code>dotspacemacs/user-config</code> 中添加
+以下是使用 use-package 配置 pyim 使用五笔输入法的例子，需要安装 <b>pyim</b> <b>pyim-wbdict</b>
 </p>
 
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">use-package</span> use-package-ensure-system-package</span><br><span class="line">  <span class="keyword">:ensure</span> <span class="literal">t</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">use-package</span> ob-ipython</span><br><span class="line">  <span class="keyword">:ensure-system-package</span> <span class="list">(<span class="list">(<span class="keyword">jupyter</span> . <span class="string">"pip3 install jupyter"</span>)</span>)</span>)</span></span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-使用 use-package 的 <a href="https://github.com/jwiegley/use-package#use-package-ensure-system-package" target="_blank" rel="noopener">use-package-ensure-system-package <i class="fa fa-external-link" aria-hidden="true"></i></a> 功能, 如果系统 <code>PATH</code> 中没有 jupyter, 自动运行下载命令.
-</p>
-
-<p>
-<code>SPC f e R</code> 重新载入 spacemacs 配置.
-</p>
-</div>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">use-package</span> pyim</span><br><span class="line">    <span class="keyword">:ensure</span> <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">:config</span></span><br><span class="line">    <span class="list">(<span class="keyword">use-package</span> pyim-wbdict</span><br><span class="line">      <span class="keyword">:config</span></span><br><span class="line">      <span class="keyword">:ensure</span> <span class="literal">nil</span></span><br><span class="line">      <span class="keyword">:config</span> <span class="list">(<span class="keyword">pyim-wbdict-gbk-enable</span>)</span>)</span></span><br><span class="line"></span><br><span class="line">    <span class="list">(<span class="keyword">setq</span> default-input-method <span class="string">"pyim"</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">setq</span> pyim-default-scheme <span class="quoted">'wubi</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">pyim-wbdict-v86-enable</span>)</span></span><br><span class="line">    <span class="comment">;; (pyim-wbdict-v98-enable)</span></span><br><span class="line">    <span class="comment">;; (pyim-wbdict-v98-morphe-enable)</span></span><br><span class="line">    <span class="comment">;; (pyim-wbdict-v86-single-enable)</span></span><br><span class="line"></span><br><span class="line">    <span class="list">(<span class="keyword">setq</span> pyim-page-tooltip <span class="quoted">'popup</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">setq</span> pyim-page-length <span class="number">5</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'emacs-startup-hook</span> #<span class="quoted">'(lambda () (pyim-restart-1 <span class="literal">t</span>))</span>)</span></span><br><span class="line">    )</span></span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6df32de" class="outline-2">
-<h2 id="org6df32de"><span class="section-number-2">3.</span> 配置</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-在 <code>dotspacemacs/user-config</code> 中添加
-</p>
-<div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; 设置 python 解析器路径</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> python-shell-interpreter <span class="string">"/usr/local/bin/python3"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">with-eval-after-load</span> <span class="quoted">'org</span></span><br><span class="line">  <span class="list">(<span class="keyword">add-to-list</span> <span class="quoted">'org-babel-load-languages</span> <span class="quoted">'(ipython . t)</span>)</span></span><br><span class="line">  <span class="comment">;; 不再询问是否允许执行代码块</span></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-confirm-babel-evaluate <span class="literal">nil</span>)</span></span><br><span class="line">  <span class="comment">;; display/update images in the buffer after I evaluate</span></span><br><span class="line">  <span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'org-babel-after-execute-hook</span> <span class="quoted">'org-display-inline-images</span> <span class="quoted">'append</span>)</span></span><br><span class="line">  )</span></span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org4318a6f" class="outline-2">
-<h2 id="org4318a6f"><span class="section-number-2">4.</span> 使用 yasnippet</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-使用 <a href="https://github.com/joaotavora/yasnippet" target="_blank" rel="noopener">yasnippet <i class="fa fa-external-link" aria-hidden="true"></i></a> 帮助你快速的创建 ipython 代码块.
-</p>
-
-<p>
-打开 org 文档, 点击菜单 YASnippet <code>New snippet</code>, 粘贴以下内容, 保存.
-</p>
-
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"># -*- mode: snippet -*-
-# name: ipython block
-# key: srcip
-# --
-#+BEGIN_SRC ipython :session ${1::ipyfile ${2:$$(let ((temporary-file-directory "./")) (make-temp-file (concat (file-name-sans-extension (file-name-nondirectory buffer-file-name)) "-py") nil ".png"))} }:exports ${3:both} :results raw drawer
-$0
-#+END_SRC</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-现在你可以在 org 文档中输入关键字 <code>srcip</code> 然后使用 <code>M-/</code> 自动扩展, 然后连续按
-下 <code>TAB</code> 自动生成类似以下的代码
-</p>
-
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+BEGIN_SRC ipython :session :ipyfile /Users/mpwang/org/test-py9bDtND.png :exports both :results raw drawer
-
-#+END_SRC</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-假设你的 org 文件名为 test.org, 如果你的代码块会生成图片, 这段代码会自动创建随
-机生成的以 test 开头的文件名 <code>test-py9bDtND.png</code> 保存图片.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgec760ba" class="outline-2">
-<h2 id="orgec760ba"><span class="section-number-2">5.</span> 显示图片及表格</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-<a href="https://ipython.org/ipython-doc/1/config/overview.html#startup-files" target="_blank" rel="noopener">ipython startup files <i class="fa fa-external-link" aria-hidden="true"></i></a>
-</p>
-
-<p>
-设置 ipython startup 文件让 org 文档显示图片以及表格
-</p>
-
-<p>
-在 <code>~/.ipython/profile_default/startup</code> 中添加 ob-ipython.py 文件, 插入以下内容, 保存.
-</p>
-
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> IPython</span><br><span class="line"><span class="keyword">from</span> tabulate <span class="keyword">import</span> tabulate</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrgFormatter</span><span class="params">(IPython.core.formatters.BaseFormatter)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> tabulate(obj, headers=<span class="string">'keys'</span>,</span><br><span class="line">                            tablefmt=<span class="string">'orgtbl'</span>, showindex=<span class="string">'always'</span>)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">ip = get_ipython()</span><br><span class="line">ip.display_formatter.formatters[<span class="string">'text/org'</span>] = OrgFormatter()</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org48e34ba" class="outline-2">
-<h2 id="org48e34ba"><span class="section-number-2">6.</span> Enjoy</h2>
-<div class="outline-text-2" id="text-6">
-<p>
-现在你已经可以在 org 文档代码块中使用 <code>C-c C-c</code> 执行 python 代码并且可以在 org
-文档中漂亮地显示图片以及表格了.
-</p>
-
-<blockquote class="blockquote-center">
-<p>
-Emacs Rocks!
-</p>
-</blockquote>
+<div id="outline-container-org3ab6aed" class="outline-3">
+<h3 id="org3ab6aed"><span class="section-number-3">2.3.</span> Emacs 复制文本至 Windows 剪贴板</h3>
 </div>
 </div>
 </div>
@@ -688,14 +583,14 @@ Emacs Rocks!
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2017/08/26/python-refactor-patterns/" rel="bookmark">Python重构代码的一些模式</a></div>
+      <div class="popular-posts-title"><a href="/2012/08/24/setup-clojure-with-slime-under-emacs/" rel="bookmark">Setup Clojure with SLIME under Emacs</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2012/08/24/setup-clojure-with-slime-under-emacs/" rel="bookmark">Setup Clojure with SLIME under Emacs</a></div>
+      <div class="popular-posts-title"><a href="/2013/08/10/using-emacs-under-mac/" rel="bookmark">using emacs under mac</a></div>
       
     </li>
   
@@ -716,7 +611,7 @@ Emacs Rocks!
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2022/05/31/emacs-on-win11-wslg/" rel="bookmark">windows11使用WSLg方式使用Emacs</a></div>
+      <div class="popular-posts-title"><a href="/2019/02/07/how-to-use-ob-ipython/" rel="bookmark">org 文档使用 ob-ipython 进行 python literal programming</a></div>
       
     </li>
   
@@ -744,8 +639,6 @@ Emacs Rocks!
           
             <a href="/tags/Emacs/" rel="tag"># Emacs</a>
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
-          
         </div>
       
 
@@ -757,8 +650,8 @@ Emacs Rocks!
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/06/productivity/" rel="next" title="spacemacs 与 org-mode 配置与使用技巧">
-                <i class="fa fa-chevron-left"></i> spacemacs 与 org-mode 配置与使用技巧
+              <a href="/2020/05/22/beyond-coding/" rel="next" title="代码之外的功夫">
+                <i class="fa fa-chevron-left"></i> 代码之外的功夫
               </a>
             
           </div>
@@ -767,8 +660,8 @@ Emacs Rocks!
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/13/how-to-write-hexo-blog-with-org-mode/" rel="prev" title="如何使用 Org 文档写 Hexo 博客">
-                如何使用 Org 文档写 Hexo 博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/06/05/pve-openclash/" rel="prev" title="使用Intel NUC作为家用服务器">
+                使用Intel NUC作为家用服务器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -953,7 +846,7 @@ Emacs Rocks!
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orge91b059"><span class="nav-text">1. ob-ipython</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org16608bf"><span class="nav-text">2. 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org3406279"><span class="nav-text">2.1. 安装 ob-ipython</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org66c2770"><span class="nav-text">2.2. 安装 jupyter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org8e377b2"><span class="nav-text">2.2.1. 手动安装 jupyter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org683e998"><span class="nav-text">2.2.2. 使用 use-package</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6df32de"><span class="nav-text">3. 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4318a6f"><span class="nav-text">4. 使用 yasnippet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgec760ba"><span class="nav-text">5. 显示图片及表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org48e34ba"><span class="nav-text">6. Enjoy</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcf3383f"><span class="nav-text">1. wslg</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org5b2b993"><span class="nav-text">1.1. 中文字体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9be858c"><span class="nav-text">2. emacs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org54445df"><span class="nav-text">2.1. 安装 Emacs 29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org66ffd8c"><span class="nav-text">2.2. Emacs 中文输入法 pyim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org3ab6aed"><span class="nav-text">2.3. Emacs 复制文本至 Windows 剪贴板</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1110,9 +1003,9 @@ Emacs Rocks!
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://mpwang.github.io/2019/02/07/how-to-use-ob-ipython/";
-    this.page.identifier = "2019/02/07/how-to-use-ob-ipython/";
-    this.page.title = 'org 文档使用 ob-ipython 进行 python literal programming';
+    this.page.url = "http://mpwang.github.io/2022/05/31/emacs-on-win11-wslg/";
+    this.page.identifier = "2022/05/31/emacs-on-win11-wslg/";
+    this.page.title = 'windows11使用WSLg方式使用Emacs';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');

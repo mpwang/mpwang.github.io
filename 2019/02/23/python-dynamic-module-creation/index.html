@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="1. &amp;#x4F7F;&amp;#x7528; types.ModuleType  2. import &amp;#x6A21;&amp;#x5757;    1. &amp;#x4F7F;&amp;#x7528; types.ModuleType    2. import &amp;#x6A21;&amp;#x5757;    1 &amp;#x4F7F;&amp;#x7528; types.ModuleType   &amp;#x51E0;&amp;#x4E4E; Pyt">
+  <meta name="description" content="1. 使用 types.ModuleType  2. import 模块    1. 使用 types.ModuleType    2. import 模块    1. 使用 types.ModuleType   几乎 Python 中所有的东西都是对象, Python 标准库 types  提供了 build-in 对象的类型. 我们需要 types.ModuleType 来动态创建 m">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 动态创建模块">
 <meta property="og:url" content="http://mpwang.github.io/2019/02/23/python-dynamic-module-creation/index.html">
 <meta property="og:site_name" content="Slient Plant">
-<meta property="og:description" content="1. &amp;#x4F7F;&amp;#x7528; types.ModuleType  2. import &amp;#x6A21;&amp;#x5757;    1. &amp;#x4F7F;&amp;#x7528; types.ModuleType    2. import &amp;#x6A21;&amp;#x5757;    1 &amp;#x4F7F;&amp;#x7528; types.ModuleType   &amp;#x51E0;&amp;#x4E4E; Pyt">
+<meta property="og:description" content="1. 使用 types.ModuleType  2. import 模块    1. 使用 types.ModuleType    2. import 模块    1. 使用 types.ModuleType   几乎 Python 中所有的东西都是对象, Python 标准库 types  提供了 build-in 对象的类型. 我们需要 types.ModuleType 来动态创建 m">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-20T15:34:57.446Z">
+<meta property="og:updated_time" content="2019-10-20T15:34:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 动态创建模块">
-<meta name="twitter:description" content="1. &amp;#x4F7F;&amp;#x7528; types.ModuleType  2. import &amp;#x6A21;&amp;#x5757;    1. &amp;#x4F7F;&amp;#x7528; types.ModuleType    2. import &amp;#x6A21;&amp;#x5757;    1 &amp;#x4F7F;&amp;#x7528; types.ModuleType   &amp;#x51E0;&amp;#x4E4E; Pyt">
+<meta name="twitter:description" content="1. 使用 types.ModuleType  2. import 模块    1. 使用 types.ModuleType    2. import 模块    1. 使用 types.ModuleType   几乎 Python 中所有的东西都是对象, Python 标准库 types  提供了 build-in 对象的类型. 我们需要 types.ModuleType 来动态创建 m">
 
 
 
@@ -425,7 +425,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.5k</span>
+                <span title="本文字数">980</span>
               
 
               
@@ -439,7 +439,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -463,45 +463,45 @@
 <div class="tabs" id="org-toc" style="font-size: 12px;">
 <ul class="nav-tabs">
 <li class="tab">
-<a class="btn" href="#tab-orgcd357d4">1. &#x4F7F;&#x7528; types.ModuleType</a></li>
+<a class="btn" href="#tab-org60dcdd2">1. 使用 types.ModuleType</a></li>
 <li class="tab">
-<a class="btn" href="#tab-org09cc5aa">2. import &#x6A21;&#x5757;</a></li>
+<a class="btn" href="#tab-org3ce8abb">2. import 模块</a></li>
 </ul><div class="tab-content">
-<div class="tab-pane" id="tab-orgcd357d4">
+<div class="tab-pane" id="tab-org60dcdd2">
 <ul>
-<a href="#orgcd357d4">1. &#x4F7F;&#x7528; types.ModuleType</a></ul>
+<a href="#org60dcdd2">1. 使用 types.ModuleType</a></ul>
 </div>
-<div class="tab-pane" id="tab-org09cc5aa">
+<div class="tab-pane" id="tab-org3ce8abb">
 <ul>
-<a href="#org09cc5aa">2. import &#x6A21;&#x5757;</a></ul></div></div>
+<a href="#org3ce8abb">2. import 模块</a></ul></div></div>
 </div>
 
-<div id="outline-container-orgcd357d4" class="outline-2">
-<h2 id="orgcd357d4"><span class="section-number-2">1</span> &#x4F7F;&#x7528; types.ModuleType</h2>
+<div id="outline-container-org60dcdd2" class="outline-2">
+<h2 id="org60dcdd2"><span class="section-number-2">1.</span> 使用 types.ModuleType</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-&#x51E0;&#x4E4E; Python &#x4E2D;&#x6240;&#x6709;&#x7684;&#x4E1C;&#x897F;&#x90FD;&#x662F;&#x5BF9;&#x8C61;, Python &#x6807;&#x51C6;&#x5E93; <a href="https://docs.python.org/dev/library/types.html" target="_blank" rel="noopener">types <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x63D0;&#x4F9B;&#x4E86; build-in &#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x578B;. &#x6211;&#x4EEC;&#x9700;&#x8981; <code>types.ModuleType</code> &#x6765;&#x52A8;&#x6001;&#x521B;&#x5EFA; module.
+几乎 Python 中所有的东西都是对象, Python 标准库 <a href="https://docs.python.org/dev/library/types.html" target="_blank" rel="noopener">types <i class="fa fa-external-link" aria-hidden="true"></i></a> 提供了 build-in 对象的类型. 我们需要 <code>types.ModuleType</code> 来动态创建 module.
 </p>
 
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">import types
 
-hello = types.ModuleType(&quot;hello&quot;)</span><br></pre></td></tr></table></figure>
+hello = types.ModuleType("hello")</span><br></pre></td></tr></table></figure>
 </div>
 
 
 <p>
-&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x7A7A;&#x767D;&#x7684;&#x6A21;&#x5757;, &#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5E76;&#x5C06;&#x51FD;&#x6570;&#x52A0;&#x5165;&#x5230; hello &#x6A21;&#x5757;&#x4E2D;.
+现在我们创建了一个空白的模块, 现在我们可以创建一个函数并将函数加入到 hello 模块中.
 </p>
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">def say_hello():
-    print(&quot;hello&quot;)
+    print("hello")
 
-setattr(hello, &quot;say_hello&quot;, say_hello)</span><br></pre></td></tr></table></figure>
+setattr(hello, "say_hello", say_hello)</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>hello.say_hello</code> &#x6765;&#x8C03;&#x7528; <code>say_hello</code>
+现在可以通过 <code>hello.say_hello</code> 来调用 <code>say_hello</code>
 </p>
 
 <div class="org-src-container">
@@ -510,11 +510,11 @@ setattr(hello, &quot;say_hello&quot;, say_hello)</span><br></pre></td></tr></tab
 </div>
 </div>
 
-<div id="outline-container-org09cc5aa" class="outline-2">
-<h2 id="org09cc5aa"><span class="section-number-2">2</span> import &#x6A21;&#x5757;</h2>
+<div id="outline-container-org3ce8abb" class="outline-2">
+<h2 id="org3ce8abb"><span class="section-number-2">2.</span> import 模块</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-&#x4EE5;&#x4E0A;&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x7684;&#x6A21;&#x5757; hello, &#x5E76;&#x4E0D;&#x80FD;&#x901A;&#x8FC7; <code>import hello</code> &#x7684;&#x65B9;&#x5F0F;&#x4F7F;&#x7528;.
+以上动态创建的模块 hello, 并不能通过 <code>import hello</code> 的方式使用.
 </p>
 
 <div class="org-src-container">
@@ -522,27 +522,27 @@ setattr(hello, &quot;say_hello&quot;, say_hello)</span><br></pre></td></tr></tab
 </div>
 
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">ModuleNotFoundErrorTraceback (most recent call last)</span><br><span class="line">&lt;ipython-input-2-f81fb083bdeb&gt; in &lt;module&gt;</span><br><span class="line">----&gt; 1 import hello</span><br><span class="line"></span><br><span class="line">ModuleNotFoundError: No module named &apos;hello&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">ModuleNotFoundErrorTraceback (most recent call last)</span><br><span class="line"><ipython-input-2-f81fb083bdeb> in <module></module></ipython-input-2-f81fb083bdeb></span><br><span class="line">----> 1 import hello</span><br><span class="line"></span><br><span class="line">ModuleNotFoundError: No module named 'hello'</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-Python &#x7684; import &#x673A;&#x5236;&#x5F88;&#x7B80;&#x660E;, <code>sys.modules</code> &#x5728;&#x5176;&#x4E2D;&#x662F;&#x5173;&#x952E;&#x70B9;.
+Python 的 import 机制很简明, <code>sys.modules</code> 在其中是关键点.
 </p>
 
 <p>
-&#x5F53;&#x6211;&#x4EEC;&#x4F7F;&#x7528; <code>import hello</code> &#x7684;&#x65F6;&#x5019;, Python &#x89E3;&#x6790;&#x5668;&#x4F1A;&#x5728; <code>sys.modules</code> &#x5B57;&#x5178;&#x4E2D;&#x67E5;&#x627E; key &#x4E3A; &apos;hello&apos; &#x7684;&#x503C;.
-&#x5982;&#x679C; key &#x5B58;&#x5728;, &#x8FD4;&#x56DE;&#x5DF2;&#x7ECF;&#x88AB;&#x521D;&#x59CB;&#x5316;&#x7684;&#x6A21;&#x5757;.
+当我们使用 <code>import hello</code> 的时候, Python 解析器会在 <code>sys.modules</code> 字典中查找 key 为 'hello' 的值.
+如果 key 存在, 返回已经被初始化的模块.
 </p>
 
 <p>
-&#x5982;&#x679C; key &#x4E0D;&#x5B58;&#x5728;&#x7684;&#x8BDD;, Python &#x89E3;&#x6790;&#x5668;&#x4F1A;&#x904D;&#x5386; <a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH" target="_blank" rel="noopener">PYTHONPATH <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x4E2D;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;, &#x5BFB;&#x627E;&#x540D;&#x5B57;&#x4E3A; hello &#x7684;&#x6587;&#x4EF6;&#x6216;&#x8005;&#x6A21;&#x5757;,
-&#x5982;&#x679C;&#x627E;&#x5230;&#x7684;&#x8BDD;&#x521D;&#x59CB;&#x5316; hello &#x5E76;&#x6CE8;&#x518C;&#x5230; sys.modules &#x4E2D;, &#x5426;&#x5219;&#x629B;&#x51FA; <code>ImportError</code> &#x5F02;&#x5E38;.
+如果 key 不存在的话, Python 解析器会遍历 <a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH" target="_blank" rel="noopener">PYTHONPATH <i class="fa fa-external-link" aria-hidden="true"></i></a> 中的文件系统, 寻找名字为 hello 的文件或者模块,
+如果找到的话初始化 hello 并注册到 sys.modules 中, 否则抛出 <code>ImportError</code> 异常.
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p style="font-size: .7em; font-style: italic">Generated using <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 26.3 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.2.6)</p>
+<p style="font-size: .7em; font-style: italic">Generated using <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 29.0.50 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.4.6)</p>
 </div>
 
       
@@ -564,13 +564,6 @@ Python &#x7684; import &#x673A;&#x5236;&#x5F88;&#x7B80;&#x660E;, <code>sys.modul
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2017/09/02/python-intro/" rel="bookmark">Python项目入门培训文档</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
       <div class="popular-posts-title"><a href="/2018/05/05/construct-sql/" rel="bookmark">如何使用sqlalchemy构造SQL语句</a></div>
       
     </li>
@@ -586,6 +579,13 @@ Python &#x7684; import &#x673A;&#x5236;&#x5F88;&#x7B80;&#x660E;, <code>sys.modul
       
       
       <div class="popular-posts-title"><a href="/2018/12/31/python-replace-url-host/" rel="bookmark">How to easily replace host:port of a url in Python</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/02/07/how-to-use-ob-ipython/" rel="bookmark">org 文档使用 ob-ipython 进行 python literal programming</a></div>
       
     </li>
   
@@ -715,7 +715,7 @@ Python &#x7684; import &#x673A;&#x5236;&#x5F88;&#x7B80;&#x660E;, <code>sys.modul
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -760,7 +760,9 @@ Python &#x7684; import &#x673A;&#x5236;&#x5F88;&#x7B80;&#x660E;, <code>sys.modul
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -791,17 +793,6 @@ Python &#x7684; import &#x673A;&#x5236;&#x5F88;&#x7B80;&#x660E;, <code>sys.modul
                   <a href="https://github.com/mpwang" title="GitHub &rarr; https://github.com/mpwang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="http://douban.com/people/asbalckswings" title="Douban &rarr; http://douban.com/people/asbalckswings" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Douban</a>
-                </span>
-              
             </div>
           
 
@@ -829,7 +820,7 @@ Python &#x7684; import &#x673A;&#x5236;&#x5F88;&#x7B80;&#x660E;, <code>sys.modul
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcd357d4"><span class="nav-text">1 使用 types.ModuleType</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org09cc5aa"><span class="nav-text">2 import 模块</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org60dcdd2"><span class="nav-text">1. 使用 types.ModuleType</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3ce8abb"><span class="nav-text">2. import 模块</span></a></li></ol></div>
             
 
           </div>
@@ -856,7 +847,7 @@ Python &#x7684; import &#x673A;&#x5236;&#x5F88;&#x7B80;&#x660E;, <code>sys.modul
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

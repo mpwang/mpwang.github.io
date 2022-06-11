@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="1. Hexo &amp;#x4E0E; Org-mode  2. hexo-renderer-org  3. &amp;#x914D;&amp;#x5408;&amp;#x4F7F;&amp;#x7528; Hexo &amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x8D44;&amp;#x6E90;&amp;#x6587;&amp;#x4EF6;&amp;#x5939;  4. &amp;#x914D;&amp;#x5408; Hexo &amp;#x4E3B;&amp;#x9898">
+  <meta name="description" content="1. Hexo 与 Org-mode  2. hexo-renderer-org  3. 配合使用 Hexo 的文章资源文件夹  4. 配合 Hexo 主题: NexT  5. 技巧    1. Hexo 与 Org-mode    2. hexo-renderer-org 2.1. 安装  2.2. 工作原理  2.3. emacs 的配置  2.4. hexo 的配置 2.4.1. 不">
 <meta name="keywords" content="Emacs,Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用 Org 文档写 Hexo 博客">
 <meta property="og:url" content="http://mpwang.github.io/2019/02/13/how-to-write-hexo-blog-with-org-mode/index.html">
 <meta property="og:site_name" content="Slient Plant">
-<meta property="og:description" content="1. Hexo &amp;#x4E0E; Org-mode  2. hexo-renderer-org  3. &amp;#x914D;&amp;#x5408;&amp;#x4F7F;&amp;#x7528; Hexo &amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x8D44;&amp;#x6E90;&amp;#x6587;&amp;#x4EF6;&amp;#x5939;  4. &amp;#x914D;&amp;#x5408; Hexo &amp;#x4E3B;&amp;#x9898">
+<meta property="og:description" content="1. Hexo 与 Org-mode  2. hexo-renderer-org  3. 配合使用 Hexo 的文章资源文件夹  4. 配合 Hexo 主题: NexT  5. 技巧    1. Hexo 与 Org-mode    2. hexo-renderer-org 2.1. 安装  2.2. 工作原理  2.3. emacs 的配置  2.4. hexo 的配置 2.4.1. 不">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-13T16:43:33.225Z">
+<meta property="og:updated_time" content="2019-02-13T16:43:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 Org 文档写 Hexo 博客">
-<meta name="twitter:description" content="1. Hexo &amp;#x4E0E; Org-mode  2. hexo-renderer-org  3. &amp;#x914D;&amp;#x5408;&amp;#x4F7F;&amp;#x7528; Hexo &amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x8D44;&amp;#x6E90;&amp;#x6587;&amp;#x4EF6;&amp;#x5939;  4. &amp;#x914D;&amp;#x5408; Hexo &amp;#x4E3B;&amp;#x9898">
+<meta name="twitter:description" content="1. Hexo 与 Org-mode  2. hexo-renderer-org  3. 配合使用 Hexo 的文章资源文件夹  4. 配合 Hexo 主题: NexT  5. 技巧    1. Hexo 与 Org-mode    2. hexo-renderer-org 2.1. 安装  2.2. 工作原理  2.3. emacs 的配置  2.4. hexo 的配置 2.4.1. 不">
 
 
 
@@ -425,7 +425,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">18k</span>
+                <span title="本文字数">8.3k</span>
               
 
               
@@ -439,7 +439,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">16 分钟</span>
+                <span title="阅读时长">8 分钟</span>
               
             </div>
           
@@ -463,79 +463,79 @@
 <div class="tabs" id="org-toc" style="font-size: 12px;">
 <ul class="nav-tabs">
 <li class="tab">
-<a class="btn" href="#tab-org5e6a029">1. Hexo &#x4E0E; Org-mode</a></li>
+<a class="btn" href="#tab-orgcfce239">1. Hexo 与 Org-mode</a></li>
 <li class="tab">
-<a class="btn" href="#tab-orged9a103">2. hexo-renderer-org</a></li>
+<a class="btn" href="#tab-orgafff4fb">2. hexo-renderer-org</a></li>
 <li class="tab">
-<a class="btn" href="#tab-org094b7e7">3. &#x914D;&#x5408;&#x4F7F;&#x7528; Hexo &#x7684;&#x6587;&#x7AE0;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;</a></li>
+<a class="btn" href="#tab-org64e951a">3. 配合使用 Hexo 的文章资源文件夹</a></li>
 <li class="tab">
-<a class="btn" href="#tab-orgdb10464">4. &#x914D;&#x5408; Hexo &#x4E3B;&#x9898;: NexT</a></li>
+<a class="btn" href="#tab-orgc26a402">4. 配合 Hexo 主题: NexT</a></li>
 <li class="tab">
-<a class="btn" href="#tab-org293bcaa">5. &#x6280;&#x5DE7;</a></li>
+<a class="btn" href="#tab-org99d99fd">5. 技巧</a></li>
 </ul><div class="tab-content">
-<div class="tab-pane" id="tab-org5e6a029">
+<div class="tab-pane" id="tab-orgcfce239">
 <ul>
-<a href="#org5e6a029">1. Hexo &#x4E0E; Org-mode</a></ul>
+<a href="#orgcfce239">1. Hexo 与 Org-mode</a></ul>
 </div>
-<div class="tab-pane" id="tab-orged9a103">
+<div class="tab-pane" id="tab-orgafff4fb">
 <ul>
-<a href="#orged9a103">2. hexo-renderer-org</a><li>
-<a href="#orgf4180e6">2.1. &#x5B89;&#x88C5;</a></li>
+<a href="#orgafff4fb">2. hexo-renderer-org</a><li>
+<a href="#org1d9399b">2.1. 安装</a></li>
 <li>
-<a href="#org8ac48cc">2.2. &#x5DE5;&#x4F5C;&#x539F;&#x7406;</a></li>
+<a href="#org6ea8c0b">2.2. 工作原理</a></li>
 <li>
-<a href="#org5611c1c">2.3. emacs &#x7684;&#x914D;&#x7F6E;</a></li>
+<a href="#org9fe38e4">2.3. emacs 的配置</a></li>
 <li>
-<a href="#org9a115af">2.4. hexo &#x7684;&#x914D;&#x7F6E;</a></li><li>
-<a href="#orgea41260">2.4.1. &#x4E0D;&#x8981;&#x4F7F;&#x7528; emacs htmlize &#x529F;&#x80FD;</a></li>
+<a href="#org65275b6">2.4. hexo 的配置</a></li><li>
+<a href="#org9e7a404">2.4.1. 不要使用 emacs htmlize 功能</a></li>
 <li>
-<a href="#org179a5ea">2.5. Enjoy</a></li></ul>
+<a href="#org9713123">2.5. Enjoy</a></li></ul>
 </div>
-<div class="tab-pane" id="tab-org094b7e7">
+<div class="tab-pane" id="tab-org64e951a">
 <ul>
-<a href="#org094b7e7">3. &#x914D;&#x5408;&#x4F7F;&#x7528; Hexo &#x7684;&#x6587;&#x7AE0;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;</a></ul>
+<a href="#org64e951a">3. 配合使用 Hexo 的文章资源文件夹</a></ul>
 </div>
-<div class="tab-pane" id="tab-orgdb10464">
+<div class="tab-pane" id="tab-orgc26a402">
 <ul>
-<a href="#orgdb10464">4. &#x914D;&#x5408; Hexo &#x4E3B;&#x9898;: NexT</a></ul>
+<a href="#orgc26a402">4. 配合 Hexo 主题: NexT</a></ul>
 </div>
-<div class="tab-pane" id="tab-org293bcaa">
+<div class="tab-pane" id="tab-org99d99fd">
 <ul>
-<a href="#org293bcaa">5. &#x6280;&#x5DE7;</a></ul></div></div>
+<a href="#org99d99fd">5. 技巧</a></ul></div></div>
 </div>
 
 
-<div id="outline-container-org5e6a029" class="outline-2">
-<h2 id="org5e6a029"><span class="section-number-2">1</span> Hexo &#x4E0E; Org-mode</h2>
+<div id="outline-container-orgcfce239" class="outline-2">
+<h2 id="orgcfce239"><span class="section-number-2">1.</span> Hexo 与 Org-mode</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x662F;&#x4E00;&#x4E2A;&#x5FEB;&#x901F;&#x3001;&#x7B80;&#x6D01;&#x4E14;&#x9AD8;&#x6548;&#x7684;&#x7528;&#x4E8E;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x7684;&#x535A;&#x5BA2;&#x6846;&#x67B6;, &#x751F;&#x6210;&#x7684;&#x7F51;&#x9875;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x6258;&#x7BA1;&#x5230; <a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages <i class="fa fa-external-link" aria-hidden="true"></i></a>, &#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x65B9;&#x4FBF;&#x5730;&#x521B;&#x5EFA;&#x4E2A;&#x4EBA;&#x535A;&#x5BA2;.
+<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo <i class="fa fa-external-link" aria-hidden="true"></i></a> 是一个快速、简洁且高效的用于生成静态网页的博客框架, 生成的网页可以方便地托管到 <a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages <i class="fa fa-external-link" aria-hidden="true"></i></a>, 可以快速方便地创建个人博客.
 </p>
 
 <p>
-Hexo &#x9ED8;&#x8BA4;&#x4F7F;&#x7528;<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="noopener"> Markdown <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x683C;&#x5F0F;&#x89E3;&#x6790;&#x6587;&#x7AE0;, &#x672C;&#x6587;&#x4ECB;&#x7ECD;&#x5982;&#x4F55;&#x4F7F;&#x7528; <a href="https://orgmode.org/" target="_blank" rel="noopener">org <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x6587;&#x6863;&#x751F;&#x6210; Hexo &#x535A;&#x5BA2;&#x6587;&#x7AE0;.
+Hexo 默认使用<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="noopener"> Markdown <i class="fa fa-external-link" aria-hidden="true"></i></a> 格式解析文章, 本文介绍如何使用 <a href="https://orgmode.org/" target="_blank" rel="noopener">org <i class="fa fa-external-link" aria-hidden="true"></i></a> 文档生成 Hexo 博客文章.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orged9a103" class="outline-2">
-<h2 id="orged9a103"><span class="section-number-2">2</span> hexo-renderer-org</h2>
+<div id="outline-container-orgafff4fb" class="outline-2">
+<h2 id="orgafff4fb"><span class="section-number-2">2.</span> hexo-renderer-org</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-hexo-renderer-org &#x662F; hexo &#x7684;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;, &#x7528;&#x4E8E;&#x5C06; org &#x6587;&#x6863;&#x751F;&#x6210; hexo &#x7684;&#x535A;&#x5BA2;&#x6587;&#x7AE0;. Hexo &#x89E3;&#x6790; Markdown &#x6587;&#x6863;&#x7684;&#x80FD;&#x529B;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;, &#x76F8;&#x5F53;&#x4E8E;&#x7ED9; Hexo &#x52A0;&#x4E0A;
-org &#x6587;&#x6863;&#x7684;&#x652F;&#x6301;.
+hexo-renderer-org 是 hexo 的一个插件, 用于将 org 文档生成 hexo 的博客文章. Hexo 解析 Markdown 文档的能力保持不变, 相当于给 Hexo 加上
+org 文档的支持.
 </p>
 
 <p>
-&#x4F7F;&#x7528;&#x6211;&#x7EF4;&#x62A4;&#x7684; <a href="https://github.com/mpwang/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x9879;&#x76EE;<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+使用我维护的 <a href="https://github.com/mpwang/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org <i class="fa fa-external-link" aria-hidden="true"></i></a> 项目<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
 </p>
 </div>
 
-<div id="outline-container-orgf4180e6" class="outline-3">
-<h3 id="orgf4180e6"><span class="section-number-3">2.1</span> &#x5B89;&#x88C5;</h3>
+<div id="outline-container-org1d9399b" class="outline-3">
+<h3 id="org1d9399b"><span class="section-number-3">2.1.</span> 安装</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-&#x5728; Hexo &#x535A;&#x5BA2;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x5B89;&#x88C5; hexo-renderer-org
+在 Hexo 博客文件夹下安装 hexo-renderer-org
 </p>
 <div class="org-src-container">
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://github.com/mpwang/hexo-renderer-org<span class="comment">#master --save</span></span><br></pre></td></tr></table></figure>
@@ -543,18 +543,18 @@ org &#x6587;&#x6863;&#x7684;&#x652F;&#x6301;.
 </div>
 </div>
 
-<div id="outline-container-org8ac48cc" class="outline-3">
-<h3 id="org8ac48cc"><span class="section-number-3">2.2</span> &#x5DE5;&#x4F5C;&#x539F;&#x7406;</h3>
+<div id="outline-container-org6ea8c0b" class="outline-3">
+<h3 id="org6ea8c0b"><span class="section-number-3">2.2.</span> 工作原理</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-&#x5B89;&#x88C5;&#x4E86; hexo-renderer-org &#x4E4B;&#x540E;, hexo &#x547D;&#x4EE4;&#x4F1A;&#x4F7F;&#x7528; emacsclient &#x53BB;&#x8FDE;&#x63A5; emacs server, &#x4F7F;
-&#x7528; org export &#x529F;&#x80FD;&#x5C06; org &#x6587;&#x6863;&#x8F6C;&#x6362;&#x6210; html, &#x6240;&#x4EE5;&#x8981;&#x6C42; emacs &#x5F00;&#x542F; server &#x8FDB;&#x7A0B;.
+安装了 hexo-renderer-org 之后, hexo 命令会使用 emacsclient 去连接 emacs server, 使
+用 org export 功能将 org 文档转换成 html, 所以要求 emacs 开启 server 进程.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5611c1c" class="outline-3">
-<h3 id="org5611c1c"><span class="section-number-3">2.3</span> emacs &#x7684;&#x914D;&#x7F6E;</h3>
+<div id="outline-container-org9fe38e4" class="outline-3">
+<h3 id="org9fe38e4"><span class="section-number-3">2.3.</span> emacs 的配置</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 <div class="note warning">
@@ -563,67 +563,67 @@ org &#x6587;&#x6863;&#x7684;&#x652F;&#x6301;.
 </p>
 
 <p>
-&#x542F;&#x7528; emacs server &#x8FDB;&#x7A0B;&#x4EE5;&#x53CA;&#x8BBE;&#x7F6E; emacs server socket &#x6587;&#x4EF6;&#x6240;&#x5728;&#x7684;&#x6587;&#x4EF6;&#x5939;.
+启用 emacs server 进程以及设置 emacs server socket 文件所在的文件夹.
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; If non-nil, start an Emacs server if one is not already running.</span></span><br><span class="line"><span class="comment">;; (default nil)</span></span><br><span class="line">dotspacemacs-enable-server <span class="literal">t</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;; Set the emacs server socket location.</span></span><br><span class="line"><span class="comment">;; If nil, uses whatever the Emacs default is, otherwise a directory path</span></span><br><span class="line"><span class="comment">;; like \&quot;~/.emacs.d/server\&quot;. It has no effect if</span></span><br><span class="line"><span class="comment">;; `dotspacemacs-enable-server&apos; is nil.</span></span><br><span class="line"><span class="comment">;; (default nil)</span></span><br><span class="line">dotspacemacs-server-socket-dir <span class="string">&quot;~/.emacs.d/server&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; If non-nil, start an Emacs server if one is not already running.</span></span><br><span class="line"><span class="comment">;; (default nil)</span></span><br><span class="line">dotspacemacs-enable-server <span class="literal">t</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;; Set the emacs server socket location.</span></span><br><span class="line"><span class="comment">;; If nil, uses whatever the Emacs default is, otherwise a directory path</span></span><br><span class="line"><span class="comment">;; like \"~/.emacs.d/server\". It has no effect if</span></span><br><span class="line"><span class="comment">;; `dotspacemacs-enable-server' is nil.</span></span><br><span class="line"><span class="comment">;; (default nil)</span></span><br><span class="line">dotspacemacs-server-socket-dir <span class="string">"~/.emacs.d/server"</span></span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org9a115af" class="outline-3">
-<h3 id="org9a115af"><span class="section-number-3">2.4</span> hexo &#x7684;&#x914D;&#x7F6E;</h3>
+<div id="outline-container-org65275b6" class="outline-3">
+<h3 id="org65275b6"><span class="section-number-3">2.4.</span> hexo 的配置</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-&#x5728; hexo &#x535A;&#x5BA2;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6; <code>_config.yml</code> &#x4E2D;&#x6DFB;&#x52A0;
+在 hexo 博客的配置文件 <code>_config.yml</code> 中添加
 </p>
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">org:
-  # &#x6307;&#x5B9A; emacs &#x6267;&#x884C;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;
-  emacs: &apos;/usr/local/bin/emacs&apos;
-  # &#x6307;&#x5B9A; emacsclient &#x6267;&#x884C;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;
-  emacsclient: &apos;/usr/local/bin/emacsclient&apos;
-  # &#x662F;&#x5426;&#x751F;&#x6210;&#x81EA;&#x52A8;&#x6CE8;&#x811A;, t &#x4E3A;&#x5F00;&#x542F;, nil &#x4E3A;&#x5173;&#x95ED;
+  # 指定 emacs 执行文件路径
+  emacs: '/usr/local/bin/emacs'
+  # 指定 emacsclient 执行文件路径
+  emacsclient: '/usr/local/bin/emacsclient'
+  # 是否生成自动注脚, t 为开启, nil 为关闭
   common: |
     #+OPTIONS: html-postamble:nil
   clean_cache: true
   daemonize: true
-  # emacs server file &#x8DEF;&#x5F84;, &#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;, &#x4EE5;&#x4E0B;&#x4E3A;&#x9ED8;&#x8BA4;&#x503C;
-  server_file: &quot;~/.emacs.d/server/server&quot;</span><br></pre></td></tr></table></figure>
+  # emacs server file 路径, 如果不指定, 以下为默认值
+  server_file: "~/.emacs.d/server/server"</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 
-<div id="outline-container-orgea41260" class="outline-4">
-<h4 id="orgea41260"><span class="section-number-4">2.4.1</span> &#x4E0D;&#x8981;&#x4F7F;&#x7528; emacs htmlize &#x529F;&#x80FD;</h4>
+<div id="outline-container-org9e7a404" class="outline-4">
+<h4 id="org9e7a404"><span class="section-number-4">2.4.1.</span> 不要使用 emacs htmlize 功能</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
-README &#x6587;&#x6863;&#x91CC;&#x7684; htmlize &#x529F;&#x80FD;&#x6211;&#x6CA1;&#x6709;&#x6210;&#x529F;&#x8FC7;, &#x8BBE;&#x7F6E; <code>htmlize: true</code> &#x4E4B;&#x540E;&#x751F;&#x6210;&#x7684;&#x5185;&#x5BB9;&#x4F1A;
-&#x51FA;&#x9519;. &#x4E0D;&#x8FC7;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5F71;&#x54CD;&#x4E0D;&#x5927;, &#x4EE3;&#x7801;&#x9AD8;&#x4EAE;&#x4EA4;&#x7ED9; <code>highlight.js</code> &#x53BB;&#x5904;&#x7406;.
+README 文档里的 htmlize 功能我没有成功过, 设置 <code>htmlize: true</code> 之后生成的内容会
+出错. 不过这个问题影响不大, 代码高亮交给 <code>highlight.js</code> 去处理.
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org179a5ea" class="outline-3">
-<h3 id="org179a5ea"><span class="section-number-3">2.5</span> Enjoy</h3>
+<div id="outline-container-org9713123" class="outline-3">
+<h3 id="org9713123"><span class="section-number-3">2.5.</span> Enjoy</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
-&#x73B0;&#x5728;&#x5728;&#x5F00;&#x542F; emacs &#x7684;&#x60C5;&#x51B5;&#x4E0B;, &#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5373;&#x53EF;&#x4EE5;&#x4EAB;&#x53D7;&#x7528;&#x5F3A;&#x5927;&#x7684; org-mode &#x5199;&#x6587;&#x6863;, &#x5E76;&#x751F;&#x6210; Hexo &#x535A;&#x5BA2;.
+现在在开启 emacs 的情况下, 执行以下命令即可以享受用强大的 org-mode 写文档, 并生成 Hexo 博客.
 </p>
 <div class="org-src-container">
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server --debug</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean && hexo generate && hexo server --debug</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org094b7e7" class="outline-2">
-<h2 id="org094b7e7"><span class="section-number-2">3</span> &#x914D;&#x5408;&#x4F7F;&#x7528; Hexo &#x7684;&#x6587;&#x7AE0;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;</h2>
+<div id="outline-container-org64e951a" class="outline-2">
+<h2 id="org64e951a"><span class="section-number-2">3.</span> 配合使用 Hexo 的文章资源文件夹</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Hexo3 &#x52A0;&#x5165;&#x4E86;<a href="https://hexo.io/zh-cn/docs/asset-folders.html" target="_blank" rel="noopener">&#x6587;&#x7AE0;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939; <i class="fa fa-external-link" aria-hidden="true"></i></a>&#x7684;&#x652F;&#x6301;, &#x6587;&#x7AE0;&#x76F8;&#x5173;&#x7684;&#x56FE;&#x7247;&#x53EF;&#x4EE5;&#x653E;&#x5728;&#x6587;&#x7AE0;&#x540C;&#x540D;&#x6587;&#x4EF6;&#x5939;&#x91CC;&#x9762;, &#x5E76;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x5F15;&#x7528;&#x56FE;&#x7247;
+Hexo3 加入了<a href="https://hexo.io/zh-cn/docs/asset-folders.html" target="_blank" rel="noopener">文章资源文件夹 <i class="fa fa-external-link" aria-hidden="true"></i></a>的支持, 文章相关的图片可以放在文章同名文件夹里面, 并使用以下代码引用图片
 
 </p>
 <pre class="example">
@@ -633,37 +633,37 @@ Hexo3 &#x52A0;&#x5165;&#x4E86;<a href="https://hexo.io/zh-cn/docs/asset-folders.
 </p>
 
 <p>
-&#x800C;&#x5728; org &#x6587;&#x6863;&#x4E2D;&#x914D;&#x5408; org-download, &#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x66F4;&#x5F3A;&#x5927;&#x7684;&#x529F;&#x80FD;. &#x5728; Hexo &#x535A;&#x5BA2;&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521B;&#x5EFA; <code>.dir-local.el</code>, &#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;
+而在 org 文档中配合 org-download, 我们还可以实现更强大的功能. 在 Hexo 博客文件夹中创建 <code>.dir-local.el</code>, 添加以下代码
 
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="list">(<span class="keyword">nil</span> .</span><br><span class="line">   <span class="list">(<span class="list">(<span class="keyword">eval</span> .</span><br><span class="line">          <span class="list">(<span class="keyword">progn</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;; make drag-and-drop image save in the same name folder as org file</span></span><br><span class="line">            <span class="comment">;; ex: `aa-bb-cc.org&apos; then save image test.png to `aa-bb-cc/test.png&apos;</span></span><br><span class="line">            <span class="list">(<span class="keyword">defun</span> my-org-download-method <span class="list">(<span class="keyword">link</span>)</span></span><br><span class="line">              <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">filename</span></span><br><span class="line">                     <span class="list">(<span class="keyword">file-name-nondirectory</span></span><br><span class="line">                      <span class="list">(<span class="keyword">car</span> <span class="list">(<span class="keyword">url-path-and-query</span></span><br><span class="line">                            <span class="list">(<span class="keyword">url-generic-parse-url</span> link)</span>)</span>)</span>)</span>)</span></span><br><span class="line">                    <span class="list">(<span class="keyword">dirname</span> <span class="list">(<span class="keyword">file-name-sans-extension</span> buffer-file-name )</span> )</span>)</span></span><br><span class="line">                <span class="comment">;; if directory not exist, create it</span></span><br><span class="line">                <span class="list">(<span class="keyword">unless</span> <span class="list">(<span class="keyword">file-exists-p</span> dirname)</span></span><br><span class="line">                  <span class="list">(<span class="keyword">make-directory</span> dirname)</span>)</span></span><br><span class="line">                <span class="comment">;; return the path to save the download files</span></span><br><span class="line">                <span class="list">(<span class="keyword">expand-file-name</span> filename dirname)</span>)</span>)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;; only modify `org-download-method&apos; in this project</span></span><br><span class="line">            <span class="list">(<span class="keyword">setq-local</span> org-download-method <span class="quoted">&apos;my-org-download-method</span>)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">            <span class="comment">;; for using hexo config post_asset_folder: true             ;;</span></span><br><span class="line">            <span class="comment">;; https://hexo.io/docs/asset-folders.html#Post-Asset-Folder ;;</span></span><br><span class="line">            <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;; only modify `org-download-link-format&apos; in this project</span></span><br><span class="line">            <span class="list">(<span class="keyword">setq-local</span> org-download-link-format <span class="string">&quot;{%% asset_img %s %%}&quot;</span>)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;; only modify `org-download-abbreviate-filename-function&apos; in</span></span><br><span class="line">            <span class="comment">;; this project</span></span><br><span class="line">            <span class="list">(<span class="keyword">setq-local</span> org-download-abbreviate-filename-function <span class="quoted">#&apos;file-name-nondirectory</span>)</span></span><br><span class="line">            )</span>)</span>)</span>)</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="list">(<span class="keyword">nil</span> .</span><br><span class="line">   <span class="list">(<span class="list">(<span class="keyword">eval</span> .</span><br><span class="line">          <span class="list">(<span class="keyword">progn</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;; make drag-and-drop image save in the same name folder as org file</span></span><br><span class="line">            <span class="comment">;; ex: `aa-bb-cc.org' then save image test.png to `aa-bb-cc/test.png'</span></span><br><span class="line">            <span class="list">(<span class="keyword">defun</span> my-org-download-method <span class="list">(<span class="keyword">link</span>)</span></span><br><span class="line">              <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">filename</span></span><br><span class="line">                     <span class="list">(<span class="keyword">file-name-nondirectory</span></span><br><span class="line">                      <span class="list">(<span class="keyword">car</span> <span class="list">(<span class="keyword">url-path-and-query</span></span><br><span class="line">                            <span class="list">(<span class="keyword">url-generic-parse-url</span> link)</span>)</span>)</span>)</span>)</span></span><br><span class="line">                    <span class="list">(<span class="keyword">dirname</span> <span class="list">(<span class="keyword">file-name-sans-extension</span> buffer-file-name )</span> )</span>)</span></span><br><span class="line">                <span class="comment">;; if directory not exist, create it</span></span><br><span class="line">                <span class="list">(<span class="keyword">unless</span> <span class="list">(<span class="keyword">file-exists-p</span> dirname)</span></span><br><span class="line">                  <span class="list">(<span class="keyword">make-directory</span> dirname)</span>)</span></span><br><span class="line">                <span class="comment">;; return the path to save the download files</span></span><br><span class="line">                <span class="list">(<span class="keyword">expand-file-name</span> filename dirname)</span>)</span>)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;; only modify `org-download-method' in this project</span></span><br><span class="line">            <span class="list">(<span class="keyword">setq-local</span> org-download-method <span class="quoted">'my-org-download-method</span>)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">            <span class="comment">;; for using hexo config post_asset_folder: true             ;;</span></span><br><span class="line">            <span class="comment">;; https://hexo.io/docs/asset-folders.html#Post-Asset-Folder ;;</span></span><br><span class="line">            <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;; only modify `org-download-link-format' in this project</span></span><br><span class="line">            <span class="list">(<span class="keyword">setq-local</span> org-download-link-format <span class="string">"{%% asset_img %s %%}"</span>)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">;; only modify `org-download-abbreviate-filename-function' in</span></span><br><span class="line">            <span class="comment">;; this project</span></span><br><span class="line">            <span class="list">(<span class="keyword">setq-local</span> org-download-abbreviate-filename-function <span class="quoted">#'file-name-nondirectory</span>)</span></span><br><span class="line">            )</span>)</span>)</span>)</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 <p>
 
-&#x73B0;&#x5728;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;&#x56FE;&#x7247;&#x652F;&#x6301;&#x62D6;&#x62FD;&#x5230; org &#x6587;&#x6863;&#x4E2D;, emacs &#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x6587;&#x7AE0;&#x540C;&#x540D;&#x6587;&#x4EF6;&#x5939;&#x5E76;&#x5F02;&#x6B65;&#x4E0B;&#x8F7D;&#x56FE;&#x7247;, &#x5728;&#x5149;&#x6807;&#x6240;&#x5728;&#x5904;&#x81EA;&#x52A8;&#x63D2;&#x5165;&#x5BF9;&#x5E94;&#x7684;&#x5F15;&#x7528;&#x4EE3;&#x7801;.
+现在你可以将图片支持拖拽到 org 文档中, emacs 会自动创建文章同名文件夹并异步下载图片, 在光标所在处自动插入对应的引用代码.
 </p>
 
 <p>
-&#x4F7F;&#x7528;&#x672C;&#x529F;&#x80FD;&#x5FC5;&#x987B;&#x914D;&#x7F6E; org &#x6587;&#x6863;&#x5BFC;&#x51FA;&#x65F6;&#x5FFD;&#x7565; <code>_</code> &#x5B57;&#x7B26;&#x7684;&#x5904;&#x7406;, &#x5426;&#x5219;&#x5904;&#x7406; <code>asset_img</code> &#x65F6;&#x4F1A;&#x5F15;&#x8D77;&#x62A5;&#x9519;.
+使用本功能必须配置 org 文档导出时忽略 <code>_</code> 字符的处理, 否则处理 <code>asset_img</code> 时会引起报错.
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>emacs &#x914D;&#x7F6E;&#x4E2D;&#x52A0;&#x5165; org export &#x8BBE;&#x7F6E;</label><figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">with-eval-after-load</span> <span class="quoted">&apos;ox</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="comment">;; disable interpret &quot;_&quot; and &quot;^&quot; for export ;;</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-export-with-sub-superscripts <span class="literal">nil</span>)</span>)</span></span><br></pre></td></tr></table></figure>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>emacs 配置中加入 org export 设置</label><figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">with-eval-after-load</span> <span class="quoted">'ox</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="comment">;; disable interpret "_" and "^" for export ;;</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-export-with-sub-superscripts <span class="literal">nil</span>)</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgdb10464" class="outline-2">
-<h2 id="orgdb10464"><span class="section-number-2">4</span> &#x914D;&#x5408; Hexo &#x4E3B;&#x9898;: NexT</h2>
+<div id="outline-container-orgc26a402" class="outline-2">
+<h2 id="orgc26a402"><span class="section-number-2">4.</span> 配合 Hexo 主题: NexT</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-&#x672C;&#x7F51;&#x7AD9;&#x91C7;&#x7528;&#x4E86;&#x6F02;&#x4EAE;&#x6210;&#x719F;&#x7684;&#x4E3B;&#x9898; <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">NexT <i class="fa fa-external-link" aria-hidden="true"></i></a> 6.0.
+本网站采用了漂亮成熟的主题 <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">NexT <i class="fa fa-external-link" aria-hidden="true"></i></a> 6.0.
 </p>
 
 <p>
-&#x4EE5;&#x4E0B;&#x662F;&#x6211;&#x4F7F;&#x7528; hexo-renderer-org &#x914D;&#x5408; NexT &#x4E3B;&#x9898;&#x7684;&#x7684;&#x4E00;&#x4E9B;&#x8C03;&#x4F18;.
+以下是我使用 hexo-renderer-org 配合 NexT 主题的的一些调优.
 </p>
 
 <p>
@@ -673,18 +673,18 @@ Hexo3 &#x52A0;&#x5165;&#x4E86;<a href="https://hexo.io/zh-cn/docs/asset-folders.
 </p>
 
 <p>
-&#x4F7F;&#x7528;&#x65B9;&#x5F0F;: &#x5728; <code>.spacemacs</code> &#x6587;&#x4EF6;&#x7684; <code>dotspacemacs/user-config</code> &#x4E2D;&#x6DFB;&#x52A0;
+使用方式: 在 <code>.spacemacs</code> 文件的 <code>dotspacemacs/user-config</code> 中添加
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">load</span> <span class="string">&quot;~/.emacs.d/config-hexo.el&quot;</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">load</span> <span class="string">"~/.emacs.d/config-hexo.el"</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-&#x5728; <code>~/.emacs.d/</code> &#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521B;&#x5EFA; <code>config-hexo.el</code> &#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;
+在 <code>~/.emacs.d/</code> 文件夹中创建 <code>config-hexo.el</code> 添加以下代码
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line"><span class="comment">;; customization for using hexo-renderer-org to generate hexo static web pages ;;</span></span><br><span class="line"><span class="comment">;;                                                                             ;;</span></span><br><span class="line"><span class="comment">;; using themes/next https://theme-next.org/                                   ;;</span></span><br><span class="line"><span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">defun</span> hexo-theme-next/link-add-font-awesome <span class="list">(<span class="keyword">text</span> backend info)</span></span><br><span class="line">  <span class="string">&quot;Add fa-external-link class to &lt;a&gt; element.&quot;</span></span><br><span class="line">  <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">fa-external-element</span> <span class="string">&quot;&lt;i class=&apos;fa fa-external-link&apos; aria-hidden=&apos;true&apos;&gt;&lt;/i&gt;&lt;/a&gt;&quot;</span>)</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">when</span> <span class="list">(<span class="keyword">and</span> <span class="list">(<span class="keyword">eq</span> backend <span class="quoted">&apos;hexo-html</span>)</span></span><br><span class="line">               <span class="list">(<span class="keyword">not</span> <span class="list">(<span class="keyword">string-match-p</span> fa-external-element text)</span>)</span>)</span></span><br><span class="line">      <span class="list">(<span class="keyword">replace-regexp-in-string</span> <span class="string">&quot;&lt;/a&gt;&quot;</span> <span class="list">(<span class="keyword">concat</span> <span class="string">&quot; &quot;</span> fa-external-element)</span> text)</span></span><br><span class="line">      )</span>)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">defun</span> hexo-theme-next/center-quote <span class="list">(<span class="keyword">text</span> backend info)</span></span><br><span class="line">  <span class="string">&quot;Transcode a CENTER-BLOCK from org to hexo theme/next centerquote tag plugin.&quot;</span></span><br><span class="line">  <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">blockquote-tag-start</span> <span class="string">&quot;&lt;blockquote class=&apos;blockquote-center&apos;&gt;&quot;</span>)</span></span><br><span class="line">        <span class="list">(<span class="keyword">blockqoute-tag-end</span> <span class="string">&quot;&lt;/blockquote&gt;&quot;</span>)</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">when</span> <span class="list">(<span class="keyword">and</span> <span class="list">(<span class="keyword">eq</span> backend <span class="quoted">&apos;hexo-html</span>)</span></span><br><span class="line">               <span class="list">(<span class="keyword">not</span> <span class="list">(<span class="keyword">string-match-p</span> blockquote-tag-start text)</span>)</span>)</span></span><br><span class="line">      <span class="list">(<span class="keyword">let*</span> <span class="list">(<span class="list">(<span class="keyword">result</span> text)</span></span><br><span class="line">             <span class="list">(<span class="keyword">result</span> <span class="list">(<span class="keyword">replace-regexp-in-string</span> <span class="string">&quot;&lt;div class=\&quot;org-center\&quot;&gt;&quot;</span> blockquote-tag-start result)</span>)</span></span><br><span class="line">             <span class="list">(<span class="keyword">result</span> <span class="list">(<span class="keyword">replace-regexp-in-string</span> <span class="string">&quot;&lt;/div&gt;&quot;</span> blockqoute-tag-end result)</span>)</span>)</span></span><br><span class="line">        result)</span>)</span>)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">with-eval-after-load</span> <span class="quoted">&apos;ox</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="comment">;; disable interpret &quot;_&quot; and &quot;^&quot; for export ;;</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-export-with-sub-superscripts <span class="literal">nil</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">add-to-list</span> <span class="quoted">&apos;org-export-filter-link-functions</span> <span class="quoted">#&apos;hexo-theme-next/link-add-font-awesome</span>)</span></span><br><span class="line">  <span class="list">(<span class="keyword">add-to-list</span> <span class="quoted">&apos;org-export-filter-center-block-functions</span> <span class="quoted">#&apos;hexo-theme-next/center-quote</span>)</span></span><br><span class="line">  )</span></span><br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">with-eval-after-load</span> <span class="quoted">&apos;ox-html</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="comment">;; todo keyword use theme/next label CSS class ;;</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-html-todo-kwd-class-prefix <span class="string">&quot;label warning &quot;</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-html-postamble-format</span><br><span class="line">        <span class="quoted">&apos;((<span class="string">&quot;en&quot;</span></span><br><span class="line">           <span class="string">&quot;&lt;p style=&apos;font-size: .7em; font-style: italic&apos;&gt;Generated using %c&lt;/p&gt;&quot;</span>)</span><br><span class="line">          )</span>)</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="comment">;; generate TOC using hexo theme/next tabs plugin at the top of article ;;</span></span><br><span class="line">  <span class="comment">;;                                                                      ;;</span></span><br><span class="line">  <span class="comment">;; redefine org-html-toc                                                ;;</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="list">(<span class="keyword">defun</span> org-html-toc <span class="list">(<span class="keyword">depth</span> info <span class="keyword">&amp;optional</span> scope)</span></span><br><span class="line">    <span class="string">&quot;Build a table of contents.</span><br><span class="line">DEPTH is an integer specifying the depth of the table.  INFO is</span><br><span class="line">a plist used as a communication channel.  Optional argument SCOPE</span><br><span class="line">is an element defining the scope of the table.  Return the table</span><br><span class="line">of contents as a string, or nil if it is empty.&quot;</span></span><br><span class="line">    <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">toc-entries</span></span><br><span class="line">           <span class="list">(<span class="keyword">mapcar</span> <span class="list">(<span class="keyword">lambda</span> <span class="list">(<span class="keyword">headline</span>)</span></span><br><span class="line">                     <span class="list">(<span class="keyword">cons</span> <span class="list">(<span class="keyword">org-html--format-toc-headline</span> headline info)</span></span><br><span class="line">                           <span class="list">(<span class="keyword">org-export-get-relative-level</span> headline info)</span>)</span>)</span></span><br><span class="line">                   <span class="list">(<span class="keyword">org-export-collect-headlines</span> info depth scope)</span>)</span>)</span>)</span></span><br><span class="line">      <span class="list">(<span class="keyword">when</span> toc-entries</span><br><span class="line">        <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">toc</span> <span class="list">(<span class="keyword">concat</span> <span class="string">&quot;&lt;ul class=\&quot;nav-tabs\&quot;&gt;\n&quot;</span></span><br><span class="line">                           <span class="list">(<span class="keyword">hexo-theme-next/toc-nav-tabs</span> toc-entries)</span></span><br><span class="line">                           <span class="string">&quot;&lt;/ul&gt;&quot;</span></span><br><span class="line">                           <span class="string">&quot;&lt;div class=\&quot;tab-content\&quot;&gt;\n&quot;</span></span><br><span class="line">                           <span class="list">(<span class="keyword">hexo-theme-next/toc-text</span> toc-entries)</span></span><br><span class="line">                           <span class="string">&quot;&lt;/div&gt;\n&quot;</span></span><br><span class="line">                           )</span>)</span>)</span></span><br><span class="line">          <span class="list">(<span class="keyword">if</span> scope toc</span><br><span class="line">            <span class="list">(<span class="keyword">concat</span>  <span class="string">&quot;&lt;div class=\&quot;tabs\&quot; id=\&quot;org-toc\&quot; style=\&quot;font-size: 12px;\&quot;&gt;\n&quot;</span></span><br><span class="line">                     toc</span><br><span class="line">                     <span class="string">&quot;&lt;/div&gt;\n&quot;</span> )</span>)</span></span><br><span class="line">          )</span>)</span>)</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">defun</span> hexo-theme-next/get-href <span class="list">(<span class="keyword">headline</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">if</span> <span class="list">(<span class="keyword">string-match</span> <span class="string">&quot;href=\&quot;#\\(.*\\)\&quot;&quot;</span> headline)</span></span><br><span class="line">        <span class="list">(<span class="keyword">match-string-no-properties</span> <span class="number">1</span> headline)</span></span><br><span class="line">      <span class="string">&quot;&quot;</span>)</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">defun</span> hexo-theme-next/toc-nav-tabs <span class="list">(<span class="keyword">toc-entries</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">mapconcat</span></span><br><span class="line">     <span class="list">(<span class="keyword">lambda</span> <span class="list">(<span class="keyword">entry</span>)</span></span><br><span class="line">       <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">headline</span> <span class="list">(<span class="keyword">car</span> entry)</span>)</span></span><br><span class="line">             <span class="list">(<span class="keyword">level</span> <span class="list">(<span class="keyword">cdr</span> entry)</span>)</span>)</span></span><br><span class="line">         <span class="list">(<span class="keyword">when</span> <span class="list">(<span class="keyword">=</span> level <span class="number">1</span>)</span></span><br><span class="line">           <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">ahref</span> <span class="list">(<span class="keyword">hexo-theme-next/get-href</span> headline)</span>)</span>)</span></span><br><span class="line">             <span class="list">(<span class="keyword">concat</span> <span class="string">&quot;&lt;li class=\&quot;tab\&quot;&gt;\n&quot;</span></span><br><span class="line">                     <span class="list">(<span class="keyword">replace-regexp-in-string</span></span><br><span class="line">                      <span class="string">&quot;&lt;a href&quot;</span></span><br><span class="line">                      <span class="string">&quot;&lt;a class=\&quot;btn\&quot; href&quot;</span></span><br><span class="line">                      <span class="list">(<span class="keyword">replace-regexp-in-string</span> ahref <span class="list">(<span class="keyword">concat</span> <span class="string">&quot;tab-&quot;</span> ahref)</span> headline)</span>)</span></span><br><span class="line">                     <span class="string">&quot;&lt;/li&gt;\n&quot;</span>)</span>)</span>)</span>)</span>)</span></span><br><span class="line">     toc-entries <span class="string">&quot;&quot;</span>)</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">defun</span> hexo-theme-next/toc-text <span class="list">(<span class="keyword">toc-entries</span>)</span></span><br><span class="line">    <span class="string">&quot;Return innards of a table of contents, as a string.</span><br><span class="line">TOC-ENTRIES is an alist where key is an entry title, as a string,</span><br><span class="line">and value is its relative level, as an integer.&quot;</span></span><br><span class="line">    <span class="list">(<span class="keyword">let*</span> <span class="list">(<span class="list">(<span class="keyword">prev-level</span> <span class="list">(<span class="number">1</span>- <span class="list">(<span class="keyword">cdar</span> toc-entries)</span>)</span>)</span></span><br><span class="line">           <span class="list">(<span class="keyword">start-level</span> prev-level)</span>)</span></span><br><span class="line">      <span class="list">(<span class="keyword">concat</span></span><br><span class="line">       <span class="list">(<span class="keyword">mapconcat</span></span><br><span class="line">        <span class="list">(<span class="keyword">lambda</span> <span class="list">(<span class="keyword">entry</span>)</span></span><br><span class="line">          <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">headline</span> <span class="list">(<span class="keyword">car</span> entry)</span>)</span></span><br><span class="line">                <span class="list">(<span class="keyword">level</span> <span class="list">(<span class="keyword">cdr</span> entry)</span>)</span>)</span></span><br><span class="line">            <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">ahref</span> <span class="list">(<span class="keyword">hexo-theme-next/get-href</span> headline )</span>)</span>)</span></span><br><span class="line">              <span class="list">(<span class="keyword">concat</span></span><br><span class="line">               <span class="list">(<span class="keyword">let*</span> <span class="list">(<span class="list">(<span class="keyword">cnt</span> <span class="list">(<span class="keyword">-</span> level prev-level)</span>)</span></span><br><span class="line">                      <span class="list">(<span class="keyword">times</span> <span class="list">(<span class="keyword">if</span> <span class="list">(<span class="keyword">&gt;</span> cnt <span class="number">0</span>)</span> <span class="list">(<span class="number">1</span>- cnt)</span> <span class="list">(<span class="keyword">-</span> cnt)</span>)</span>)</span>)</span></span><br><span class="line">                 <span class="list">(<span class="keyword">setq</span> prev-level level)</span></span><br><span class="line">                 <span class="list">(<span class="keyword">if</span> <span class="list">(<span class="keyword">&gt;</span> cnt <span class="number">0</span>)</span></span><br><span class="line">                     <span class="list">(<span class="keyword">cond</span> <span class="list">(<span class="list">(<span class="keyword">=</span> level <span class="number">1</span>)</span></span><br><span class="line">                            <span class="list">(<span class="keyword">format</span> <span class="string">&quot;&lt;div class=\&quot;tab-pane\&quot; id=\&quot;%s\&quot;&gt;\n&lt;ul&gt;\n&quot;</span></span><br><span class="line">                                    <span class="list">(<span class="keyword">concat</span> <span class="string">&quot;tab-&quot;</span> ahref)</span>)</span>)</span></span><br><span class="line">                           <span class="list">(<span class="list">(<span class="keyword">&gt;</span> level <span class="number">1</span>)</span></span><br><span class="line">                            <span class="string">&quot;&lt;li&gt;\n&quot;</span>)</span>)</span></span><br><span class="line">                   <span class="list">(<span class="keyword">cond</span> <span class="list">(<span class="list">(<span class="keyword">=</span> level <span class="number">1</span>)</span></span><br><span class="line">                          <span class="list">(<span class="keyword">format</span> <span class="string">&quot;&lt;/ul&gt;\n&lt;/div&gt;\n&lt;div class=\&quot;tab-pane\&quot; id=\&quot;%s\&quot;&gt;\n&lt;ul&gt;\n&quot;</span></span><br><span class="line">                                  <span class="list">(<span class="keyword">concat</span> <span class="string">&quot;tab-&quot;</span> ahref)</span>)</span>)</span></span><br><span class="line">                         <span class="list">(<span class="list">(<span class="keyword">&gt;</span> level <span class="number">1</span>)</span></span><br><span class="line">                          <span class="string">&quot;&lt;/li&gt;\n&lt;li&gt;\n&quot;</span>)</span>)</span>)</span>)</span></span><br><span class="line">               headline)</span>)</span>)</span>)</span></span><br><span class="line">        toc-entries <span class="string">&quot;&quot;</span>)</span></span><br><span class="line">       <span class="string">&quot;&lt;/div&gt;&quot;</span></span><br><span class="line">       )</span>)</span>)</span></span><br><span class="line">  )</span></span><br></pre></td></tr></table></figure>
-</div>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line"><span class="comment">;; customization for using hexo-renderer-org to generate hexo static web pages ;;</span></span><br><span class="line"><span class="comment">;;                                                                             ;;</span></span><br><span class="line"><span class="comment">;; using themes/next https://theme-next.org/                                   ;;</span></span><br><span class="line"><span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">defun</span> hexo-theme-next/link-add-font-awesome <span class="list">(<span class="keyword">text</span> backend info)</span></span><br><span class="line">  <span class="string">"Add fa-external-link class to <a> element."</a></span></span><br><span class="line">  <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">fa-external-element</span> <span class="string">"<i class="fa fa-external-link" aria-hidden="true"></i>"</span>)</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">when</span> <span class="list">(<span class="keyword">and</span> <span class="list">(<span class="keyword">eq</span> backend <span class="quoted">'hexo-html</span>)</span></span><br><span class="line">               <span class="list">(<span class="keyword">not</span> <span class="list">(<span class="keyword">string-match-p</span> fa-external-element text)</span>)</span>)</span></span><br><span class="line">      <span class="list">(<span class="keyword">replace-regexp-in-string</span> <span class="string">""</span> <span class="list">(<span class="keyword">concat</span> <span class="string">" "</span> fa-external-element)</span> text)</span></span><br><span class="line">      )</span>)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">defun</span> hexo-theme-next/center-quote <span class="list">(<span class="keyword">text</span> backend info)</span></span><br><span class="line">  <span class="string">"Transcode a CENTER-BLOCK from org to hexo theme/next centerquote tag plugin."</span></span><br><span class="line">  <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">blockquote-tag-start</span> <span class="string">"<blockquote class="blockquote-center">"</blockquote></span>)</span></span><br><span class="line">        <span class="list">(<span class="keyword">blockqoute-tag-end</span> <span class="string">""</span>)</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">when</span> <span class="list">(<span class="keyword">and</span> <span class="list">(<span class="keyword">eq</span> backend <span class="quoted">'hexo-html</span>)</span></span><br><span class="line">               <span class="list">(<span class="keyword">not</span> <span class="list">(<span class="keyword">string-match-p</span> blockquote-tag-start text)</span>)</span>)</span></span><br><span class="line">      <span class="list">(<span class="keyword">let*</span> <span class="list">(<span class="list">(<span class="keyword">result</span> text)</span></span><br><span class="line">             <span class="list">(<span class="keyword">result</span> <span class="list">(<span class="keyword">replace-regexp-in-string</span> <span class="string">"<div class="\" org-center\""="">"</div></span> blockquote-tag-start result)</span>)</span></span><br><span class="line">             <span class="list">(<span class="keyword">result</span> <span class="list">(<span class="keyword">replace-regexp-in-string</span> <span class="string">"</span></span></span></span></span></span></span></span></span></pre></td></tr></table></figure></div>" blockqoute-tag-end result)))<br><span class="line">        result)</span>)))<br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">with-eval-after-load</span> <span class="quoted">'ox</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="comment">;; disable interpret "_" and "^" for export ;;</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-export-with-sub-superscripts <span class="literal">nil</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">add-to-list</span> <span class="quoted">'org-export-filter-link-functions</span> <span class="quoted">#'hexo-theme-next/link-add-font-awesome</span>)</span></span><br><span class="line">  <span class="list">(<span class="keyword">add-to-list</span> <span class="quoted">'org-export-filter-center-block-functions</span> <span class="quoted">#'hexo-theme-next/center-quote</span>)</span></span><br><span class="line">  )</span></span><br><span class="line"></span><br><span class="line"><span class="list">(<span class="keyword">with-eval-after-load</span> <span class="quoted">'ox-html</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="comment">;; todo keyword use theme/next label CSS class ;;</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-html-todo-kwd-class-prefix <span class="string">"label warning "</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">setq</span> org-html-postamble-format</span><br><span class="line">        <span class="quoted">'((<span class="string">"en"</span></span><br><span class="line">           <span class="string">"<p style="font-size: .7em; font-style: italic">Generated using %c</p>"</span>)</span><br><span class="line">          )</span>)</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="comment">;; generate TOC using hexo theme/next tabs plugin at the top of article ;;</span></span><br><span class="line">  <span class="comment">;;                                                                      ;;</span></span><br><span class="line">  <span class="comment">;; redefine org-html-toc                                                ;;</span></span><br><span class="line">  <span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span></span><br><span class="line">  <span class="list">(<span class="keyword">defun</span> org-html-toc <span class="list">(<span class="keyword">depth</span> info <span class="keyword">&optional</span> scope)</span></span><br><span class="line">    <span class="string">"Build a table of contents.</span><br><span class="line">DEPTH is an integer specifying the depth of the table.  INFO is</span><br><span class="line">a plist used as a communication channel.  Optional argument SCOPE</span><br><span class="line">is an element defining the scope of the table.  Return the table</span><br><span class="line">of contents as a string, or nil if it is empty."</span></span><br><span class="line">    <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">toc-entries</span></span><br><span class="line">           <span class="list">(<span class="keyword">mapcar</span> <span class="list">(<span class="keyword">lambda</span> <span class="list">(<span class="keyword">headline</span>)</span></span><br><span class="line">                     <span class="list">(<span class="keyword">cons</span> <span class="list">(<span class="keyword">org-html--format-toc-headline</span> headline info)</span></span><br><span class="line">                           <span class="list">(<span class="keyword">org-export-get-relative-level</span> headline info)</span>)</span>)</span></span><br><span class="line">                   <span class="list">(<span class="keyword">org-export-collect-headlines</span> info depth scope)</span>)</span>)</span>)</span></span><br><span class="line">      <span class="list">(<span class="keyword">when</span> toc-entries</span><br><span class="line">        <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">toc</span> <span class="list">(<span class="keyword">concat</span> <span class="string">"<ul class="\" nav-tabs\""="">\n"</ul></span></span><br><span class="line">                           <span class="list">(<span class="keyword">hexo-theme-next/toc-nav-tabs</span> toc-entries)</span></span><br><span class="line">                           <span class="string">""</span></span><br><span class="line">                           <span class="string">"<div class="\" tab-content\""="">\n"</div></span></span><br><span class="line">                           <span class="list">(<span class="keyword">hexo-theme-next/toc-text</span> toc-entries)</span></span><br><span class="line">                           <span class="string">"</span></span></span></span></span></span></span></span></span></span></div>\n"<br><span class="line">                           )</span>))<br><span class="line">          <span class="list">(<span class="keyword">if</span> scope toc</span><br><span class="line">            <span class="list">(<span class="keyword">concat</span>  <span class="string">"<div class="\" tabs\""="" id="\" org-toc\""="" style="\" font-size:"="" 12px;\"="">\n"</div></span></span><br><span class="line">                     toc</span><br><span class="line">                     <span class="string">"</span></span></span></span></div>\n" ))<br><span class="line">          )</span>)))<br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">defun</span> hexo-theme-next/get-href <span class="list">(<span class="keyword">headline</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">if</span> <span class="list">(<span class="keyword">string-match</span> <span class="string">"href=\"#\\(.*\\)\""</span> headline)</span></span><br><span class="line">        <span class="list">(<span class="keyword">match-string-no-properties</span> <span class="number">1</span> headline)</span></span><br><span class="line">      <span class="string">""</span>)</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">defun</span> hexo-theme-next/toc-nav-tabs <span class="list">(<span class="keyword">toc-entries</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">mapconcat</span></span><br><span class="line">     <span class="list">(<span class="keyword">lambda</span> <span class="list">(<span class="keyword">entry</span>)</span></span><br><span class="line">       <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">headline</span> <span class="list">(<span class="keyword">car</span> entry)</span>)</span></span><br><span class="line">             <span class="list">(<span class="keyword">level</span> <span class="list">(<span class="keyword">cdr</span> entry)</span>)</span>)</span></span><br><span class="line">         <span class="list">(<span class="keyword">when</span> <span class="list">(<span class="keyword">=</span> level <span class="number">1</span>)</span></span><br><span class="line">           <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">ahref</span> <span class="list">(<span class="keyword">hexo-theme-next/get-href</span> headline)</span>)</span>)</span></span><br><span class="line">             <span class="list">(<span class="keyword">concat</span> <span class="string">"<li class="\" tab\""="">\n"</li></span></span><br><span class="line">                     <span class="list">(<span class="keyword">replace-regexp-in-string</span></span><br><span class="line">                      <span class="string">"<a href"<="" span=""></a></span><br><span class="line">                      <span class="string">"<a class="\" btn\""="" href"<="" span=""></a></span><br><span class="line">                      <span class="list">(<span class="keyword">replace-regexp-in-string</span> ahref <span class="list">(<span class="keyword">concat</span> <span class="string">"tab-"</span> ahref)</span> headline)</span>)</span></span><br><span class="line">                     <span class="string">"\n"</span>)</span>)</span>)</span>)</span>)</span></span><br><span class="line">     toc-entries <span class="string">""</span>)</span>)</span></span><br><span class="line"></span><br><span class="line">  <span class="list">(<span class="keyword">defun</span> hexo-theme-next/toc-text <span class="list">(<span class="keyword">toc-entries</span>)</span></span><br><span class="line">    <span class="string">"Return innards of a table of contents, as a string.</span><br><span class="line">TOC-ENTRIES is an alist where key is an entry title, as a string,</span><br><span class="line">and value is its relative level, as an integer."</span></span><br><span class="line">    <span class="list">(<span class="keyword">let*</span> <span class="list">(<span class="list">(<span class="keyword">prev-level</span> <span class="list">(<span class="number">1</span>- <span class="list">(<span class="keyword">cdar</span> toc-entries)</span>)</span>)</span></span><br><span class="line">           <span class="list">(<span class="keyword">start-level</span> prev-level)</span>)</span></span><br><span class="line">      <span class="list">(<span class="keyword">concat</span></span><br><span class="line">       <span class="list">(<span class="keyword">mapconcat</span></span><br><span class="line">        <span class="list">(<span class="keyword">lambda</span> <span class="list">(<span class="keyword">entry</span>)</span></span><br><span class="line">          <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">headline</span> <span class="list">(<span class="keyword">car</span> entry)</span>)</span></span><br><span class="line">                <span class="list">(<span class="keyword">level</span> <span class="list">(<span class="keyword">cdr</span> entry)</span>)</span>)</span></span><br><span class="line">            <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">ahref</span> <span class="list">(<span class="keyword">hexo-theme-next/get-href</span> headline )</span>)</span>)</span></span><br><span class="line">              <span class="list">(<span class="keyword">concat</span></span><br><span class="line">               <span class="list">(<span class="keyword">let*</span> <span class="list">(<span class="list">(<span class="keyword">cnt</span> <span class="list">(<span class="keyword">-</span> level prev-level)</span>)</span></span><br><span class="line">                      <span class="list">(<span class="keyword">times</span> <span class="list">(<span class="keyword">if</span> <span class="list">(<span class="keyword">></span> cnt <span class="number">0</span>)</span> <span class="list">(<span class="number">1</span>- cnt)</span> <span class="list">(<span class="keyword">-</span> cnt)</span>)</span>)</span>)</span></span><br><span class="line">                 <span class="list">(<span class="keyword">setq</span> prev-level level)</span></span><br><span class="line">                 <span class="list">(<span class="keyword">if</span> <span class="list">(<span class="keyword">></span> cnt <span class="number">0</span>)</span></span><br><span class="line">                     <span class="list">(<span class="keyword">cond</span> <span class="list">(<span class="list">(<span class="keyword">=</span> level <span class="number">1</span>)</span></span><br><span class="line">                            <span class="list">(<span class="keyword">format</span> <span class="string">"<div class="\" tab-pane\""="" id="\" %s\""="">\n<ul>\n"</ul></div></span></span><br><span class="line">                                    <span class="list">(<span class="keyword">concat</span> <span class="string">"tab-"</span> ahref)</span>)</span>)</span></span><br><span class="line">                           <span class="list">(<span class="list">(<span class="keyword">></span> level <span class="number">1</span>)</span></span><br><span class="line">                            <span class="string">"<li>\n"</li></span>)</span>)</span></span><br><span class="line">                   <span class="list">(<span class="keyword">cond</span> <span class="list">(<span class="list">(<span class="keyword">=</span> level <span class="number">1</span>)</span></span><br><span class="line">                          <span class="list">(<span class="keyword">format</span> <span class="string">"\n</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></div>\n<div class="\" tab-pane\""="" id="\" %s\""="">\n<ul>\n"<br><span class="line">                                  <span class="list">(<span class="keyword">concat</span> <span class="string">"tab-"</span> ahref)</span>)</span>)<br><span class="line">                         <span class="list">(<span class="list">(<span class="keyword">></span> level <span class="number">1</span>)</span></span><br><span class="line">                          <span class="string">"\n<li>\n"</li></span>)</span>)</span>))<br><span class="line">               headline)</span>)))<br><span class="line">        toc-entries <span class="string">""</span>)</span><br><span class="line">       <span class="string">"</span></span></ul></div>"<br><span class="line">       )</span>))<br><span class="line">  )</span><br>
+
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -696,50 +696,50 @@ Hexo3 &#x52A0;&#x5165;&#x4E86;<a href="https://hexo.io/zh-cn/docs/asset-folders.
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">&#xA0;</th>
-<th scope="col" class="org-left">&#x529F;&#x80FD;</th>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-left">功能</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">hexo-theme-next/link-add-font-awesome</td>
-<td class="org-left">&#x5C06;&#x6240;&#x6709;&#x94FE;&#x63A5;&#x540E;&#x63D2;&#x5165; font awesome <a href="https://fontawesome.com/v4.7.0/icon/external-link/" target="_blank" rel="noopener">&#x7BAD;&#x5934;&#x56FE;&#x6807; <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+<td class="org-left">将所有链接后插入 font awesome <a href="https://fontawesome.com/v4.7.0/icon/external-link/" target="_blank" rel="noopener">箭头图标 <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
 </tr>
 
 <tr>
 <td class="org-left">hexo-theme-next/center-quote</td>
-<td class="org-left">&#x5C06; org &#x7684; <code>#+BEGIN_CENTER</code> &#x4EE3;&#x7801;&#x5757;&#x8F6C;&#x6362;&#x4E3A; NexT &#x7684; <a href="https://theme-next.org/docs/tag-plugins/#Centered-Quote" target="_blank" rel="noopener">centerquote <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x6807;&#x7B7E;</td>
+<td class="org-left">将 org 的 <code>#+BEGIN_CENTER</code> 代码块转换为 NexT 的 <a href="https://theme-next.org/docs/tag-plugins/#Centered-Quote" target="_blank" rel="noopener">centerquote <i class="fa fa-external-link" aria-hidden="true"></i></a> 标签</td>
 </tr>
 
 <tr>
 <td class="org-left">org-html-todo-kwd-class-prefix</td>
-<td class="org-left">&#x7ED9;&#x6807;&#x9898;&#x4E2D;&#x7684; TODO &#x5173;&#x952E;&#x5B57;&#x52A0;&#x4E0A; NexT &#x7684; <a href="https://theme-next.org/docs/tag-plugins/label/" target="_blank" rel="noopener">label <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x6837;&#x5F0F;</td>
+<td class="org-left">给标题中的 TODO 关键字加上 NexT 的 <a href="https://theme-next.org/docs/tag-plugins/label/" target="_blank" rel="noopener">label <i class="fa fa-external-link" aria-hidden="true"></i></a> 样式</td>
 </tr>
 
 <tr>
 <td class="org-left">org-html-postamble-format</td>
-<td class="org-left">&#x914D;&#x5408; <code>_config.yml</code> &#x4E2D; <code>postamble:t</code> &#x4F7F;&#x7528;, &#x81EA;&#x52A8;&#x5728;&#x6587;&#x7AE0;&#x672B;&#x5C3E;&#x52A0;&#x4E0A; Generated &#x6587;&#x5B57;</td>
+<td class="org-left">配合 <code>_config.yml</code> 中 <code>postamble:t</code> 使用, 自动在文章末尾加上 Generated 文字</td>
 </tr>
 
 <tr>
 <td class="org-left">org-html-toc</td>
-<td class="org-left">&#x5C06;&#x6587;&#x7AE0;&#x5F00;&#x5934; org &#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684; Table of Content &#x8F6C;&#x6362;&#x6210; NexT &#x6F02;&#x4EAE;&#x7684; <a href="https://theme-next.org/docs/tag-plugins/tabs/" target="_blank" rel="noopener">tabs &#x6807;&#x7B7E; <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+<td class="org-left">将文章开头 org 自动生成的 Table of Content 转换成 NexT 漂亮的 <a href="https://theme-next.org/docs/tag-plugins/tabs/" target="_blank" rel="noopener">tabs 标签 <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 
-<div id="outline-container-org293bcaa" class="outline-2">
-<h2 id="org293bcaa"><span class="section-number-2">5</span> &#x6280;&#x5DE7;</h2>
+
+
+<div id="outline-container-org99d99fd" class="outline-2">
+<h2 id="org99d99fd"><span class="section-number-2">5.</span> 技巧</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-&#x6709;&#x65F6;&#x5019;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x5728; org &#x6587;&#x6863;&#x4E2D;&#x5305;&#x542B; hexo &#x7279;&#x6B8A;&#x6807;&#x7B7E;&#x5B57;&#x7B26;&#x65F6;&#x4F1A; <code>hexo g</code> &#x4F1A;&#x51FA;&#x9519;, &#x6216;&#x8005;&#x8F93;&#x51FA;&#x4F1A;&#x6D88;&#x5931;, &#x6BD4;&#x5982;&#x672C;&#x6587;&#x4E2D;&#x7684;
+有时候需要直接在 org 文档中包含 hexo 特殊标签字符时会 <code>hexo g</code> 会出错, 或者输出会消失, 比如本文中的
  {%% asset_img %%} {% asset_img %} .
 </p>
 
 <p>
-&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x4E9B;&#x5B57;&#x7B26;&#x4F1A;&#x88AB; Hexo &#x5F15;&#x64CE;&#x7279;&#x6B8A;&#x5904;&#x7406;, &#x5F53;&#x4F60;&#x9700;&#x8981;&#x8F93;&#x51FA;&#x8FD9;&#x4E9B;&#x7279;&#x6B8A;&#x5B57;&#x7B26;, &#x53EF;&#x4EE5;&#x5728;&#x5916;&#x9762;&#x7528; raw &#x6807;&#x7B7E;&#x5305;&#x56F4;, &#x8FD9;&#x6837; hexo &#x5F15;&#x64CE;&#x5C31;&#x4E0D;&#x4F1A;&#x5904;&#x7406;&#x8FD9;&#x4E9B;&#x5B57;&#x7B26;&#x4E86;.
+这是因为这些字符会被 Hexo 引擎特殊处理, 当你需要输出这些特殊字符, 可以在外面用 raw 标签包围, 这样 hexo 引擎就不会处理这些字符了.
 </p>
 
 <p>
@@ -758,19 +758,19 @@ Hexo3 &#x52A0;&#x5165;&#x4E86;<a href="https://hexo.io/zh-cn/docs/asset-folders.
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/hexo-renderer-org" target="_blank" rel="noopener">coldnew <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x5F00;&#x53D1;&#x7684;, &#x4F46;&#x662F;&#x5DF2;&#x7ECF;&#x505C;&#x6B62;&#x7EF4;&#x62A4;&#x4E86;,emacs &#x5347;&#x7EA7;&#x5230; 26.1 &#x4E4B;&#x540E;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;.
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+hexo-renderer-org 最早是 <a href="https://github.com/coldnew/hexo-renderer-org" target="_blank" rel="noopener">coldnew <i class="fa fa-external-link" aria-hidden="true"></i></a> 开发的, 但是已经停止维护了,emacs 升级到 26.1 之后不能使用.
 </p>
 
 <p class="footpara">
-<a href="https://github.com/MephistoMMM/hexo-renderer-org" target="_blank" rel="noopener">MephistoMMM <i class="fa fa-external-link" aria-hidden="true"></i></a> &#x4FEE;&#x590D;&#x4E86;&#x95EE;&#x9898;, &#x6211;&#x81EA;&#x5DF1; fork &#x4E4B;&#x540E;&#x53C8;&#x4FEE;&#x590D;&#x4E86;&#x51E0;&#x4E2A;&#x95EE;&#x9898;, &#x76EE;&#x524D;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x7A33;&#x5B9A;&#x4F7F;&#x7528;.
+<a href="https://github.com/MephistoMMM/hexo-renderer-org" target="_blank" rel="noopener">MephistoMMM <i class="fa fa-external-link" aria-hidden="true"></i></a> 修复了问题, 我自己 fork 之后又修复了几个问题, 目前已经可以稳定使用.
 </p></div></div>
 
 
 </div>
-</div></div>
+</div>
 <div id="postamble" class="status">
-<p style="font-size: .7em; font-style: italic">Generated using <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 26.3 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.2.6)</p>
+<p style="font-size: .7em; font-style: italic">Generated using <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 29.0.50 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.4.6)</p>
 </div>
 
       
@@ -792,13 +792,6 @@ hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/h
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2014/11/12/emcas-and-productivity/" rel="bookmark">Emacs: 编辑代码与工作效率</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
       <div class="popular-posts-title"><a href="/2013/08/10/using-emacs-under-mac/" rel="bookmark">using emacs under mac</a></div>
       
     </li>
@@ -806,7 +799,7 @@ hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/h
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2019/02/06/productivity/" rel="bookmark">spacemacs 与 org-mode 配置与使用技巧</a></div>
+      <div class="popular-posts-title"><a href="/2014/11/12/emcas-and-productivity/" rel="bookmark">Emacs: 编辑代码与工作效率</a></div>
       
     </li>
   
@@ -814,6 +807,13 @@ hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/h
       
       
       <div class="popular-posts-title"><a href="/2019/02/04/swith-to-org-re-reveal/" rel="bookmark">更换 ox-reveal 为 org-re-reveal</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/02/07/how-to-use-ob-ipython/" rel="bookmark">org 文档使用 ob-ipython 进行 python literal programming</a></div>
       
     </li>
   
@@ -945,7 +945,7 @@ hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/h
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -990,7 +990,9 @@ hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/h
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1021,17 +1023,6 @@ hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/h
                   <a href="https://github.com/mpwang" title="GitHub &rarr; https://github.com/mpwang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="http://douban.com/people/asbalckswings" title="Douban &rarr; http://douban.com/people/asbalckswings" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Douban</a>
-                </span>
-              
             </div>
           
 
@@ -1059,7 +1050,7 @@ hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/h
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org5e6a029"><span class="nav-text">1 Hexo 与 Org-mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orged9a103"><span class="nav-text">2 hexo-renderer-org</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf4180e6"><span class="nav-text">2.1 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org8ac48cc"><span class="nav-text">2.2 工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org5611c1c"><span class="nav-text">2.3 emacs 的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9a115af"><span class="nav-text">2.4 hexo 的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgea41260"><span class="nav-text">2.4.1 不要使用 emacs htmlize 功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org179a5ea"><span class="nav-text">2.5 Enjoy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org094b7e7"><span class="nav-text">3 配合使用 Hexo 的文章资源文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdb10464"><span class="nav-text">4 配合 Hexo 主题: NexT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org293bcaa"><span class="nav-text">5 技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcfce239"><span class="nav-text">1. Hexo 与 Org-mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgafff4fb"><span class="nav-text">2. hexo-renderer-org</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org1d9399b"><span class="nav-text">2.1. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org6ea8c0b"><span class="nav-text">2.2. 工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9fe38e4"><span class="nav-text">2.3. emacs 的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org65275b6"><span class="nav-text">2.4. hexo 的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org9e7a404"><span class="nav-text">2.4.1. 不要使用 emacs htmlize 功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9713123"><span class="nav-text">2.5. Enjoy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org64e951a"><span class="nav-text">3. 配合使用 Hexo 的文章资源文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc26a402"><span class="nav-text">4. 配合 Hexo 主题: NexT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org99d99fd"><span class="nav-text">5. 技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
             
 
           </div>
@@ -1086,7 +1077,7 @@ hexo-renderer-org &#x6700;&#x65E9;&#x662F; <a href="https://github.com/coldnew/h
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

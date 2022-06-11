@@ -324,6 +324,434 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/26/sqlalchemy-custom-query/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/26/sqlalchemy-custom-query/" class="post-title-link" itemprop="url">SQLAlchemy 使用自定义 Query 类</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-26 17:53:33 / 修改时间：18:51:09" itemprop="dateCreated datePublished" datetime="2018-05-26T17:53:33+08:00">2018-05-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/05/26/sqlalchemy-custom-query/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/05/26/sqlalchemy-custom-query/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>Session.query_property</h1>
+<p>在 SQLAlchemy 中可以使用 session 的方法<code>query_property</code>方便的使用自定义的 query 类 <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<p>以下是官方的示例代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Session = scoped_session(sessionmaker())</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    query = Session.query_property()</span><br><span class="line"></span><br><span class="line"><span class="comment"># after mappers are defined</span></span><br><span class="line">result = MyClass.query.filter(MyClass.name==<span class="string">'foo'</span>).all()</span><br></pre></td></tr></table></figure>
+<p><code>query_property</code>接收一个参数<code>cls</code>, 指定自定义的Query class (用户从<code>sqlalchemy.orm.Query</code>继承的子类), 而不是默认的Query.</p>
+<p>示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> Query</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClassQuery</span><span class="params">(Query)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    query = Session.query_property(cls=MyClassQuery)</span><br><span class="line"></span><br><span class="line"><span class="comment"># after mappers are defined</span></span><br><span class="line"><span class="keyword">assert</span> isinstance(MyClass.query, MyClassQuery)</span><br></pre></td></tr></table></figure>
+<p>以上的方法可以完成一些基本的需求, 但是问题是<code>MyClass.query</code>的类定义时和Session耦合在一起了.</p>
+<p>假如我想使用自定义的Query类, 使用query构造出查询条件后,需要应用到不同的session上
+(也许几个session代表不同的数据库连接), 这就要求<code>My Class.query</code>在定义时需要与
+Session解耦, 最后使用<code>query.with_session</code>方法将query绑定到session上应用查询.</p>
+<h1>自定义Query类, 与Session解耦</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例子使用了__init_subclass__方法, 要求python3.6+. 3.6之前的版本需要进行相应的修改.</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> (</span><br><span class="line">    Column,</span><br><span class="line">    String,</span><br><span class="line">    Integer,</span><br><span class="line">    and_,</span><br><span class="line">    orm,</span><br><span class="line">    create_engine</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> scoped_session, sessionmaker</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm.base <span class="keyword">import</span> class_mapper, exc <span class="keyword">as</span> orm_exc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseQuery</span><span class="params">(orm.Query)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, with_default=False, **kwargs)</span>:</span></span><br><span class="line">        model_cls = self._mapper_zero().class_</span><br><span class="line">        <span class="keyword">if</span> with_default:</span><br><span class="line">            filters = model_cls._default_filters()</span><br><span class="line">            <span class="keyword">if</span> filters <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">                self = self.enable_assertions(<span class="keyword">False</span>).filter(filters)</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserQuery</span><span class="params">(BaseQuery)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueryPropertyMixin</span>:</span></span><br><span class="line">    query_cls = BaseQuery</span><br><span class="line">    query: BaseQuery = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_default_filters</span><span class="params">(cls)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_query_property</span><span class="params">(query_cls)</span>:</span></span><br><span class="line"></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">query</span><span class="params">(object)</span>:</span></span><br><span class="line">            <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, instance, owner)</span>:</span></span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    mapper = class_mapper(owner)</span><br><span class="line">                    <span class="keyword">if</span> mapper:</span><br><span class="line">                        <span class="comment"># custom query class</span></span><br><span class="line">                        <span class="keyword">return</span> query_cls(mapper)</span><br><span class="line">                <span class="keyword">except</span> orm_exc.UnmappedClassError:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> query()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init_subclass__</span><span class="params">(cls, **kwargs)</span>:</span></span><br><span class="line">        cls.query = QueryPropertyMixin._query_property(cls.query_cls)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base, QueryPropertyMixin)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'users'</span></span><br><span class="line"></span><br><span class="line">    query_cls = UserQuery</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_default_filters</span><span class="params">(cls)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> and_(</span><br><span class="line">            cls.name != <span class="keyword">None</span>,</span><br><span class="line">            cls.fullname != <span class="keyword">None</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String)</span><br><span class="line">    fullname = Column(String)</span><br><span class="line">    password = Column(String)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'sqlite:///:memory:'</span>, echo=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">Session = scoped_session(sessionmaker(bind=engine))</span><br><span class="line"></span><br><span class="line">session = Session()</span><br><span class="line">Base.metadata.create_all(engine)</span><br><span class="line"></span><br><span class="line">session.add(User(id=<span class="number">1</span>, name=<span class="string">'name'</span>, fullname=<span class="string">'fullname'</span>))</span><br><span class="line">session.commit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> isinstance(User.query, UserQuery)</span><br><span class="line"></span><br><span class="line">record = User.query.filter_by(id=<span class="number">1</span>).with_session(session).one()</span><br><span class="line"><span class="keyword">assert</span> record.id == <span class="number">1</span></span><br><span class="line"></span><br><span class="line">query_str = User.query(with_default=<span class="keyword">True</span>)</span><br><span class="line"><span class="keyword">assert</span> str(query_str).find(<span class="string">'User.name IS NOT NULL'</span>)</span><br></pre></td></tr></table></figure>
+<p>首先定义自己的Query继承关系, BaseQuery继承<code>orm.Query</code>, 每个model如果需要有自己的特定查询类则继承BaseQuery. 在User中使用<code>query_cls</code>指定特定的查询类, 不定义则使用默认的BaseQuery.</p>
+<p>核心点在于User模型继承了<code>QueryPropertyMixin</code>, 在<code>QueryPropertyMixin</code>使用了<code>__init_subclass__</code>方法控制子类在初始化时生成<code>query</code>对象.这样<code>User.query</code>对象就与session解耦, 在之后就使用<code>with_session</code>与具体session绑定进行查询了.</p>
+<p>例子中还演示了如何在model类定义中一个default_filters, 代表某些情况中需要使用的
+filters, 方便查询特定条件的对象.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="http://docs.sqlalchemy.org/en/latest/orm/contextual.html#sqlalchemy.orm.scoping.scoped_session.query_property" target="_blank" rel="noopener">SQLAlchemy session query_property</a> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/05/delete-bootcamp-win10/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randall Wang">
+      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Slient Plant">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/05/delete-bootcamp-win10/" class="post-title-link" itemprop="url">Mac High Sierra 彻底删除bootcamp分区</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-05 22:30:53 / 修改时间：23:40:19" itemprop="dateCreated datePublished" datetime="2018-05-05T22:30:53+08:00">2018-05-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/05/05/delete-bootcamp-win10/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/05/05/delete-bootcamp-win10/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">8.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">8 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>bootcamp 无法删除 Windows 10分区</h1>
+<p>很久之前在Mac上使用bootcamp安装了windows10, Mac升级到10.13.4 High Sierra之后发现自己几乎没用过win10.
+于是想删除bootcamp分区, 理想情况下使用bootcamp助理应该可以无痛删除win10分区. 然而mac在升级之后应该是使用了新的文件系统格式APFS.</p>
+<p>打开bootcamp助理后, 提示错误: <code>启动磁盘不能被分区或恢复成单个分区</code>, 无法继续.</p>
+<p>官方说明: <a href="https://support.apple.com/zh-cn/HT203913" target="_blank" rel="noopener">将 Boot Camp 升级到 Windows 8.1 或更高版本时，您可能会看到一则警告信息“启动磁盘不能被分区或恢复成单个分区”</a>。</p>
+<p>于是开始折腾. 在没有做数据备份的情况下, 一路有惊无险, 记录解决过程如下.</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">警告：磁盘操作具有破坏性、高风险，建议操作前做好备份. 你必须十分清楚自己在做什么.</span><br></pre></td></tr></table></figure>
+<h1>分区情况</h1>
+<p>找开磁盘工具查看分区表, 这里借用网上找到的一张图片, 操作之前没有截图.</p>
+<p><img src="/images/bootcamp.jpg" alt="分区"></p>
+<p>我的情况是除了mac APFS分区顺时针有一个8G的未格式化可用空间, 40G的windows10分区, 以及一个800M的disk0s4额外分区(Microsoft 保留或者Windows 恢复分区).</p>
+<p>使用<code>diskutil</code>工具查看分区表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">╰─ diskutil list</span><br><span class="line">/dev/disk0 (internal):</span><br><span class="line"><span class="meta">   #</span><span class="bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      GUID_partition_scheme                         251.0 GB   disk0</span><br><span class="line">   1:                        EFI EFI                     314.6 MB   disk0s1</span><br><span class="line">   2:                 Apple_APFS Container disk1         201.4 GB   disk0s2</span><br><span class="line">   3:       Microsoft Basic Data BOOTCAMP                39.8 GB    disk0s3</span><br><span class="line">   4:           Windows Recovery                         892.3 MB   disk0s4</span><br><span class="line"></span><br><span class="line">/dev/disk1 (synthesized):</span><br><span class="line"><span class="meta">   #</span><span class="bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      APFS Container Scheme -                      +201.4 GB   disk1</span><br><span class="line">                                 Physical Store disk0s2</span><br><span class="line">   1:                APFS Volume Macintosh HD            166.1 GB   disk1s1</span><br><span class="line">   2:                APFS Volume Preboot                 22.7 MB    disk1s2</span><br><span class="line">   3:                APFS Volume Recovery                517.8 MB   disk1s3</span><br><span class="line">   4:                APFS Volume VM                      3.2 GB     disk1s4</span><br></pre></td></tr></table></figure>
+<p><strong>这里注意到8G的未格式化可用空间的分区在分区表中找不到</strong>.</p>
+<p>这里也决定了我按照官方的操作方法无法成功. 在磁盘工具分区里删除选择disk04分区, 点击上图<code>-</code>号后, 应用里提示错误: <code>无法找到其中一个分区</code>. 我推测这里应该是找不到8G空间那个分区导致无法使用磁盘工具正常删除disk0s4分区.</p>
+<p><img src="/images/bootcamp1.png" alt="删除失败"></p>
+<h1>diskutil eraseVolume</h1>
+<p>使用命令行工具删除disk0s4分区, 然后删除disk0s3分区(bootcamp分区). 这里顺序<span style="color: red"><strong>很重要</strong></span>.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">╰─ sudo diskutil eraseVolume JHFS+ deleteme /dev/disk0s4</span><br><span class="line">Password:</span><br><span class="line">Started erase on disk0s4</span><br><span class="line">Unmounting disk</span><br><span class="line">Erasing</span><br><span class="line">Initialized /dev/rdisk0s4 as a 851 MB case-insensitive HFS Plus volume with a 8192k journal</span><br><span class="line">Mounting disk</span><br><span class="line">Finished erase on disk0s4 deleteme</span><br><span class="line"></span><br><span class="line">╰─ sudo diskutil eraseVolume JHFS+ deleteme /dev/disk0s3</span><br><span class="line">Started erase on disk0s3 BOOTCAMP</span><br><span class="line">Unmounting disk</span><br><span class="line">Erasing</span><br><span class="line">Initialized /dev/rdisk0s3 as a 37 GB case-insensitive HFS Plus volume with a 8192k journal</span><br><span class="line">Mounting disk</span><br><span class="line">Finished erase on disk0s3 deleteme</span><br></pre></td></tr></table></figure>
+<p>这时使用磁盘工具, 选择根卷分区, 选择disk0s4分区, 点击减号, 选择disk0s3分区, 点击减号. 可以成功合并原来disk0s4 disk0s3的空间.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">╰─ diskutil list</span><br><span class="line">/dev/disk0 (internal):</span><br><span class="line"><span class="meta">   #</span><span class="bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      GUID_partition_scheme                         251.0 GB   disk0</span><br><span class="line">   1:                        EFI EFI                     314.6 MB   disk0s1</span><br><span class="line">   2:                 Apple_APFS Container disk1         201.4 GB   disk0s2</span><br><span class="line">   3:                  Apple_HFS deleteme                40.5 GB    disk0s3</span><br><span class="line"></span><br><span class="line">/dev/disk1 (synthesized):</span><br><span class="line"><span class="meta">   #</span><span class="bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      APFS Container Scheme -                      +201.4 GB   disk1</span><br><span class="line">                                 Physical Store disk0s2</span><br><span class="line">   1:                APFS Volume Macintosh HD            166.1 GB   disk1s1</span><br><span class="line">   2:                APFS Volume Preboot                 22.7 MB    disk1s2</span><br><span class="line">   3:                APFS Volume Recovery                517.8 MB   disk1s3</span><br><span class="line">   4:                APFS Volume VM                      2.1 GB     disk1s4</span><br></pre></td></tr></table></figure>
+<p>这时已经将bootcamp分区 disk0s3 格式化成 HFS+ 格式. 但是由于那个8G空间分区无法在分区表中找到. 始终无法使用磁盘工具将8G空间分区和bootcamp分区合并到mac APFS分区中.</p>
+<h1>diskutil mergePartitions</h1>
+<p>根据网上找到的资料, 开始作死使用<code>diskutil mergePartitions</code>命令尝试合并分区.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">╰─ diskutil mergePartitions --help</span><br><span class="line">Usage:  diskutil mergePartitions [force] format name</span><br><span class="line">        DiskIdentifier|DeviceNode DiskIdentifier|DeviceNode</span><br><span class="line">Merge two or more pre-existing partitions into one. The first disk parameter</span><br><span class="line">is the starting partition; the second disk parameter is the ending partition;</span><br><span class="line">this given range of two or more partitions will be merged into one.</span><br><span class="line">All partitions in the range, except for the first one, must be unmountable.</span><br><span class="line">All data on merged partitions other than the first will be lost; data on the</span><br><span class="line">first partition will be lost as well if the "force" argument is given.</span><br><span class="line">If "force" is not given, and the first partition has a resizable file system</span><br><span class="line">(e.g. JHFS+), it will be grown in a data-preserving manner, even if a different</span><br><span class="line">file system is specified (in fact, your file system and volume name parameters</span><br><span class="line">are both ignored in this case). Also, if "force" is not given, and the first</span><br><span class="line">partition is not resizable, you will be prompted if you want to erase.</span><br><span class="line">However, if "force" is given, the first partition is always formatted. You</span><br><span class="line">should do this if you wish to reformat to a new file system type.</span><br><span class="line">Merged partitions are required to be ordered sequentially on disk.</span><br><span class="line">See `diskutil list` for the actual on-disk ordering; BSD slice identifiers</span><br><span class="line">may in certain circumstances not always be in numerical order but the</span><br><span class="line">top-to-bottom order given by diskutil list is always the on-disk order.</span><br><span class="line">Ownership of the affected disk is required.</span><br><span class="line">Example: diskutil mergePartitions JHFS+ NewName disk3s4 disk3s7</span><br><span class="line">         This example will merge all partitions *BETWEEN* disk3s4 and disk3s7,</span><br><span class="line">         preserving data on disk3s4 but destroying data on disk3s5, disk3s6,</span><br><span class="line">         disk3s7 and any invisible free space partitions between those disks;</span><br><span class="line">         disk3s4 will be grown to cover the full space if possible.</span><br></pre></td></tr></table></figure>
+<p>发现无法成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">╰─ diskutil mergePartitions APFS randall disk0s2 disk0s3</span><br><span class="line">You cannot merge disks into an APFS Physical Store</span><br><span class="line">Instead, you can delete the partitions following the APFS Physical Store by</span><br><span class="line">using "diskutil eraseVolume free n &lt;disk&gt;" for all such partitions, and</span><br><span class="line">then by growing the corresponding APFS Container by its APFS Physical Store</span><br><span class="line">to fill the gap by using "diskutil apfs resizeContainer disk0s2 0"</span><br></pre></td></tr></table></figure>
+<h1>diskutil apfs resizeContainer</h1>
+<p>不得不赞mac命令行工具的提示真的做得非常好, 在这里发现了<span style="color: red">关键性的信息</span>:</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">APFS格式分区可以使用diskutil apfs resizeContainer命令自动扩展空间到下一个可用分区.</span><br></pre></td></tr></table></figure>
+<p>8G空间分区本身是未格式化的, 符合要求.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">╰─ diskutil apfs resizeContainer disk0s2 0</span><br><span class="line">Started APFS operation</span><br><span class="line">Aligning grow delta to 8,650,686,464 bytes and targeting a new physical store size of 210,007,728,128 bytes</span><br><span class="line">Determined the maximum size for the targeted physical store of this APFS Container to be 210,007,728,128 bytes</span><br><span class="line">Resizing APFS Container designated by APFS Container Reference disk1</span><br><span class="line">The specific APFS Physical Store being resized is disk0s2</span><br><span class="line">Verifying storage system</span><br><span class="line">Using live mode</span><br><span class="line">Performing fsck_apfs -n -x -l /dev/disk0s2</span><br><span class="line">Checking volume</span><br><span class="line">Checking the container superblock</span><br><span class="line">Checking the EFI jumpstart record</span><br><span class="line">Checking the space manager</span><br><span class="line">Checking the object map</span><br><span class="line">Checking the APFS volume superblock</span><br><span class="line">Checking the object map</span><br><span class="line">Checking the fsroot tree</span><br><span class="line">Checking the snapshot metadata tree</span><br><span class="line">Checking the extent ref tree</span><br><span class="line">Checking the snapshots</span><br><span class="line">Checking the APFS volume superblock</span><br><span class="line">Checking the object map</span><br><span class="line">Checking the fsroot tree</span><br><span class="line">Checking the snapshot metadata tree</span><br><span class="line">Checking the extent ref tree</span><br><span class="line">Checking the snapshots</span><br><span class="line">Checking the APFS volume superblock</span><br><span class="line">Checking the object map</span><br><span class="line">Checking the fsroot tree</span><br><span class="line">Checking the snapshot metadata tree</span><br><span class="line">Checking the extent ref tree</span><br><span class="line">Checking the snapshots</span><br><span class="line">Checking the APFS volume superblock</span><br><span class="line">Checking the object map</span><br><span class="line">Checking the fsroot tree</span><br><span class="line">Checking the snapshot metadata tree</span><br><span class="line">Checking the extent ref tree</span><br><span class="line">Checking the snapshots</span><br><span class="line">Verifying allocated space</span><br><span class="line">The volume /dev/disk0s2 appears to be OK</span><br><span class="line">Storage system check exit code is 0</span><br><span class="line">Growing APFS Physical Store disk0s2 from 201,357,041,664 to 210,007,728,128 bytes</span><br><span class="line">Modifying partition map</span><br><span class="line">Growing APFS data structures</span><br><span class="line">Finished APFS operation</span><br></pre></td></tr></table></figure>
+<p>运行成功, 打分磁盘工具, 查看根卷分区, 发现8G空间分区已经被合并至APFS分区, 只剩下一个40G的bootcamp分区.</p>
+<p>选择bootcamp分区, 点击减号, 应用成功. 成功将所有分区合并成一个完整大分区.</p>
+<p>现在Mac只有一个分区了.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">╰─ diskutil list</span><br><span class="line">/dev/disk0 (internal):</span><br><span class="line"><span class="meta">   #</span><span class="bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      GUID_partition_scheme                         251.0 GB   disk0</span><br><span class="line">   1:                        EFI EFI                     314.6 MB   disk0s1</span><br><span class="line">   2:                 Apple_APFS Container disk1         250.7 GB   disk0s2</span><br><span class="line"></span><br><span class="line">/dev/disk1 (synthesized):</span><br><span class="line"><span class="meta">   #</span><span class="bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      APFS Container Scheme -                      +250.7 GB   disk1</span><br><span class="line">                                 Physical Store disk0s2</span><br><span class="line">   1:                APFS Volume Macintosh HD            168.9 GB   disk1s1</span><br><span class="line">   2:                APFS Volume Preboot                 22.7 MB    disk1s2</span><br><span class="line">   3:                APFS Volume Recovery                517.8 MB   disk1s3</span><br><span class="line">   4:                APFS Volume VM                      2.1 GB     disk1s4</span><br></pre></td></tr></table></figure>
+<p>Done.</p>
+<hr>
+<p>参考: <a href="https://www.chadou.me/p/206" target="_blank" rel="noopener">BOOTCAMP 分区无法删除</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2018/05/05/construct-sql/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1374,489 +1802,11 @@ tox</a></li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2014/11/12/emcas-and-productivity/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randall Wang">
-      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Slient Plant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2014/11/12/emcas-and-productivity/" class="post-title-link" itemprop="url">Emacs: 编辑代码与工作效率</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2014-11-12 00:00:00" itemprop="dateCreated datePublished" datetime="2014-11-12T00:00:00+08:00">2014-11-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-08-27 17:17:51" itemprop="dateModified" datetime="2017-08-27T17:17:51+08:00">2017-08-27</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2014/11/12/emcas-and-productivity/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/11/12/emcas-and-productivity/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">2.6k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">2 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>硬件</h1>
-<blockquote class="blockquote-center"><p>投资硬件是最简单直接的提高工作效率的方法</p>
-</blockquote>
-<p>屏幕与键鼠是程序员与电脑之间的输出输入设置，是程序员每天工作接触时间最长的东西，硬件上的提升可以直接提高工作效率以及每天工作的心情。</p>
-<h2>键盘的选择</h2>
-<blockquote><p><a href="http://xahlee.info/kbd/keyboard_switch_mechanisms.html" target="_blank" rel="noopener">认识薄膜键盘，机械键盘与静电电容键盘</a></p>
-</blockquote>
-<h3>不差钱直接上静电电容键盘</h3>
-<h3>机械键盘</h3>
-<blockquote><p><a href="http://www.zhihu.com/question/23105050" target="_blank" rel="noopener">先说结论：只选红轴。</a></p>
-</blockquote>
-<p>键盘这东西最好一步到位一发退烧，不需要反复投入。就机械键盘说来，</p>
-<ul>
-<li>红轴与黑轴无冲，适合游戏玩家，不同的是按到底所需的力度红轴较小黑轴较大</li>
-<li>茶轴与青轴敲击有段落感适合程序员与打字員，青轴所需力度较小但是声音比较吵，茶轴是最多人选择的键芯。
-综上选择茶轴机械键盘使用，然后可以考虑转向红轴。最重要的是实际试用自己最符合自己的手感</li>
-</ul>
-<h3>人体工程学键盘</h3>
-<p>人体工程学键盘的选择见仁见智</p>
-<h3>HHKB(Happy Hacking Keyboard)</h3>
-<p>HHKB吹有很多，盲目买HHKB的更多。不引战，只说个人观点：<strong>HHKB不适合重度Emacs用户</strong></p>
-<h3>键盘布局的选择</h3>
-<p>市面上一般键盘所用的都是qwert布局的键盘，虽然有数据表示<a href="https://www.cnblogs.com/zhangshenjia/archive/2012/04/11/qwerty_dvorak_colemak.html" target="_blank" rel="noopener">dvorak布局</a>可以提高输入效率以及减少手指疲劳，但是较高的上手难度以及训练过渡期间几乎让你不会打字的痛苦都是使用dvorak布局的成本，而且不见得在你掌握新布局之后打字效率会有多大的提升。</p>
-<p>作为程序员打字的速度并不是瓶颈，思考速度才是瓶颈，老老实实使用qwert布局就足够了。</p>
-<h2>多屏幕</h2>
-<p><a href="http://www.techug.com/post/programmer-mult-monitors.html" target="_blank" rel="noopener">多个显示器可以提高程序员的工作效率</a>，减少切换屏幕带来的上下文切换。
-从一家公司是否给员工配置多个显示器可以看出公司是否尊重程序员的工作。</p>
-<p>无脑地使用两个显示器即可提高工作效率，你可能还需要屏幕支架。</p>
-<h2>使用轨迹球，避免鼠标手</h2>
-<p>Logitech M570 聊胜于无</p>
-<h1>选择正确的编程字体</h1>
-<p>windows 下自带的的 Consolas 以及 Mac 下自带的 Monaco 是不错的选择</p>
-<p>英文的等宽字体: <a href="https://be5invis.github.io/Iosevka/" target="_blank" rel="noopener">Iosevka</a>, <a href="https://sourcefoundry.org/hack/" target="_blank" rel="noopener">Hack</a>, <a href="https://adobe-fonts.github.io/source-code-pro/" target="_blank" rel="noopener">Source Code Pro</a></p>
-<p>中文的等宽字体: 文泉驿等宽微米黑, 微软雅黑</p>
-<p>好多人还在使用Windows系统默认的字体，那效果用来看代码实在是惨不忍睹。
-一旦选择了任一个编程字体，只要15分钟，你几乎不可能还会用回默认的Courier New字体。</p>
-<h2>Emacs中文与英文对齐</h2>
-<p><a href="https://github.com/tumashu/cnfonts" target="_blank" rel="noopener">chinese-fonts-setup</a> 分别设置Emacs显示中英文时使用不同的字体和大小，帮助你对齐中英文，在我看来在写org文档时这是一个必备的扩展。在使用org-mode table对齐时特别有用。</p>
-<h1>编辑器: Emacs</h1>
-<blockquote class="blockquote-center"><p>Why it's worth to learn emacs, because the experience will not go away</p>
-</blockquote>
-<p>Emacs的学习曲线是比较陡峭，但是长期来说投资在Emacs上的时间是值得的。逻辑非常简单：</p>
-<ul>
-<li>程序员的工作需要进行大量的文本编辑工作</li>
-<li>Emacs是非常强大的文本编辑器</li>
-<li>所以Emacs可以提高程序员的工作效率</li>
-</ul>
-<h2>key binding</h2>
-<p>当你在命令行界面使用bash时，你熟悉的<code>ctrl+a</code>跳至行首, <code>ctrl+e</code>跳至行末等快捷键其实就是来源于Emacs，事实上你使用的是bash依赖的<a href="https://cnswww.cns.cwru.edu/php/chet/readline/rluserman.html" target="_blank" rel="noopener">GNU readline</a>的默认emacs mode。</p>
-<p>Mac OS下的cocoa应用默认有emacs按键绑定，你用发现在Mac下使用emacs按键绑定是很自然的事情。</p>
-<p>大多数流行的IDE(Eclipse/JetBrains系列/VS Code)都可以设置为 emacs 布局的按键绑定。</p>
-<p>熟悉了 emacs 的基本操作快捷键组合后很多地方都可以用得上。</p>
-<h2>Emacs的编辑哲学</h2>
-<p>为什么学习Emacs可以带来好处，因为Emacs会让你对于编辑文本的思考方式不再是基于字符的方法，取而代之的是逻辑上的<code>编辑动作</code>。</p>
-<p>从最基本的两个命令（<code>M-x</code>调用命令，<code>ctrl+h</code>查找帮助）开始，你对于日常编辑文本的需求都会变成命令式的。</p>
-<h3>例子</h3>
-<p>排序，选中需要编辑的行，<code>M-x sort-lines</code>.</p>
-<p>消除行末多余的空格，选中需要编辑的行，<code>M-x whitespace-cleanup</code>.</p>
-<p>光标的移动，字符的删除不再是右移一个字符，删除一个字符。使用<code>ctrl</code>键组合进行基于字符的移动和删除，使用<code>meta</code>键组合进行基于词语的移动和删除。</p>
-<ul>
-<li><code>ctrl-f</code>右移一个字符 <code>meta-f</code>右移一个词语</li>
-<li><code>ctrl-d</code>删除一个字符 <code>meta-d</code>删除一个词语</li>
-</ul>
-<p>文件内的跳转不再是基于上下左右移动光标，使用<code>ace-jump-mode</code>或者<code>avy-mode</code>你可以快速将光标定位于你想要跳转到的单词。</p>
-<p><img src="/images/avy-goto-char.png" alt="jumping around"></p>
-<h3>showcases</h3>
-<p>想到知道 emacs 在日常的编辑文本工作中可以有多用。<a href="http://emacsrocks.com/" target="_blank" rel="noopener">Emacs Rocks</a>的一系列简短视频可以告诉你。掌握其中一些技巧可以让你在几秒钟内完成你之前也许需要用分钟来计算的任务。</p>
-<h3>秘密武器：emacs lisp</h3>
-<p>原生的emacs也许是很好，但是还不够好。Emacs的秘密在于它的扩展可以使用emacs lisp编程语言来写，Emacs 本身相当于emacs lisp的运行环境和解析器。</p>
-<p>emacs lisp是一门完善的编程语言，所以程序员们可以方便地编写扩展来集成调用第三方的应用，也许是一个web api也许是一个命令行工具，然后提供给emacs使用。emacs用户可以方便的使用<code>M-x</code>进行调用，相当于将复杂的编辑需求抽象成一个<code>编辑动作</code>。</p>
-<h3>杀手级应用</h3>
-<p>emacs的用户群体已经超出了程序员的范围，现在有许多作家以及科学写作者都开始使用emacs，这些都是emacs的 <a href="http://orgmode.org/" target="_blank" rel="noopener">org-mode</a> 带来。简单的说来org-mode是一个使用emacs来写笔记的扩展，使用一种类似于markdown的语法。</p>
-<p>我自己使用org-mode来组织笔记，编写内容然后生成<a href="https://github.com/fniessen/org-html-themes" target="_blank" rel="noopener">类似readthedocs风格的文档</a>，编写内容然后<a href="https://github.com/yjwen/org-reveal" target="_blank" rel="noopener">生成</a>用于<a href="http://lab.hakim.se/reveal-js/#/" target="_blank" rel="noopener">演讲分享的slides</a>。</p>
-<p>emacs的另一个杀手级应用我个人认为是<a href="https://magit.vc" target="_blank" rel="noopener">magit</a>，在emacs里进行 git 的管理。
-<img src="/images/magit.png" alt="magit"></p>
-<h1>结语</h1>
-<p>提高工作效率，投资硬件是最简单直接生效最快的方法。程序员的日常工作需要大量的文本编辑，emacs很有用，但即使不使用emacs投资时间去掌握一个自己喜欢的编辑器/IDE也是值得的，因为每日的工作大量时间花费在编辑器/IDE里面。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mpwang.github.io/2014/10/17/why-learn-useless-things/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randall Wang">
-      <meta itemprop="description" content="Just another coder . Heavy Emacs user">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/1566872?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Slient Plant">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2014/10/17/why-learn-useless-things/" class="post-title-link" itemprop="url">Scott H Young - 为什么要学'没用'的东西？</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2014-10-17 00:00:00" itemprop="dateCreated datePublished" datetime="2014-10-17T00:00:00+08:00">2014-10-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-08-05 19:30:25" itemprop="dateModified" datetime="2017-08-05T19:30:25+08:00">2017-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2014/10/17/why-learn-useless-things/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/10/17/why-learn-useless-things/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.3k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://www.scotthyoung.com/blog/" target="_blank" rel="noopener">Scott Young</a>是一位我很喜欢的博主，他关注于如何&quot;Learn fast, archieve more&quot;，并且身体力行。他最为人津津乐道的事迹是他的<a href="http://www.scotthyoung.com/blog/mit-challenge/" target="_blank" rel="noopener">MIT Challenge</a>，他在12个月的时间用一种苦行僧的生活方式，近似专业运动员训练般的高强度学习完成了MIT4年计算机系的课程学习并且通过了测试。</p>
-<p><a href="http://www.scotthyoung.com/blog/2014/10/03/learn-useless-things/" target="_blank" rel="noopener">Why learn &quot;Useless&quot; Things</a>这篇博文分享了他关于为什么要学习“没用”的东西的观点。</p>
-<p>大意概括Scott的观点如下：</p>
-<ul>
-<li>多学习知识能够增加人的启发式思考</li>
-<li>因为对新领域知识的缺乏在学习新知识时推断当前学习的知识是否“有用”可能不准确，现在看来没用的知识说不定在日后会派上用场</li>
-<li>即使所学的东西真的没用也可以让自己对现实理解的模型更加准确(an accurate model of reality)</li>
-</ul>
-<p>在与朋友闲聊时谈起在业余时间里评估与接触的各种技术与工具时也曾被人问起：“学这个有什么用？（看这种书有什么用？）不如...&quot;，Scott的观点我是十分赞同的，很好的回答了这种问题，对这个问题也曾思索过但是末能够像Scott那样清楚地表达出来。</p>
-<p>在程序员的圈子时也有着什么工具框架API用到的时候再说这种观点，这种观点当然是没错的。但是在遇到新的问题，新的应用场景时如果根本就不知道某种工具/技术/理论的存在，又怎么能够快速找到合适的解决方案呢？很多重复制造出来的轮子就是在这种情况下出现的，所以说博识强记是没错的，博识当然有益，强记不必强求。我自己在最近一个项目里快速地做出了让客户满意的方案，这相当程序得益于我平时阅读博客文章，关注技术动向，遇到有可能用到的工具技术时多加留意并记录下来的习惯。</p>
-<p>Steve Job应该是个相当好的例子，他在大学的时候去旁听了看起来与计算机毫无关系的美术字课程并著迷于书法和字体，并对排版产生了浓厚的兴趣。但是这却让他在日后设计苹果个人电脑时设计出了漂亮的字体帮助苹果赢得了市场。有时现在看来没用的知识，说不定日后真的会派上用场。</p>
-<p>Scott的最后一个观点有些哲学意味，我却是最赞成与喜欢这个观点。霍金在《大设计》一书中提出的最核心观点就是不存在不依赖模型的理论。多学习一点知识也就会获得多一点对于世界的了解，帮助自己形成一个对于认识世界更加准确的模型。从任何意义上说真是有益的。很多人都会有记录日记与写文章的习惯，这能够帮助人思考，但是并不了解这是为什么。几年前的夏天我翻书柜时发现了一本朋友大学时认知心理学的教材，闲来无事读了一遍。却是让我了解到大脑如何主动接受信息的模型，对知识进行深度加工会加深神经元之间的联接从而加深记忆的理论。在那之后我就养成了读书写读书笔记，学习时做思维导图，使用Pocket与Evernote记录信息的习惯。虽然对于认知科学只是有很浅薄的认识，也许我了解的知识不是最准确或者是绝对意义上正确的，但是在自己的实践过程中行之有效并且有益，这就足够了。</p>
-<p>开卷有益，古人诚不我欺。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1901,7 +1851,7 @@ tox</a></li>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1946,7 +1896,9 @@ tox</a></li>
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1975,17 +1927,6 @@ tox</a></li>
                     
                   
                   <a href="https://github.com/mpwang" title="GitHub &rarr; https://github.com/mpwang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="http://douban.com/people/asbalckswings" title="Douban &rarr; http://douban.com/people/asbalckswings" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Douban</a>
                 </span>
               
             </div>
@@ -2025,7 +1966,7 @@ tox</a></li>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
